@@ -5,6 +5,7 @@ mod config;
 mod conversation;
 mod file_ops;
 mod json;
+mod mcp;
 mod oauth;
 mod permissions;
 mod prompt;
@@ -32,6 +33,10 @@ pub use file_ops::{
     edit_file, glob_search, grep_search, read_file, write_file, EditFileOutput, GlobSearchOutput,
     GrepSearchInput, GrepSearchOutput, ReadFileOutput, StructuredPatchHunk, TextFilePayload,
     WriteFileOutput,
+};
+pub use mcp::{
+    mcp_server_signature, mcp_tool_name, mcp_tool_prefix, normalize_name_for_mcp,
+    scoped_mcp_config_hash, unwrap_ccr_proxy_url,
 };
 pub use oauth::{
     code_challenge_s256, generate_pkce_pair, generate_state, loopback_redirect_uri,
