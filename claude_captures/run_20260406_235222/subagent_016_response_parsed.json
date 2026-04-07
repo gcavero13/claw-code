@@ -1,0 +1,29 @@
+{
+  "text": "Let me check the MCP stdio process handling:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01K8Moq8Co8E2VZBKkHH85Yu",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/mcp_stdio.rs\", \"limit\": 300}"
+    },
+    {
+      "id": "toolu_01AQQ4KcPuLXXnTRBf3B1AvE",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"spawn\\\\|Command\\\\|Stdio\\\\|process\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/mcp_stdio.rs | head -50\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 6985,
+    "cache_read_input_tokens": 82090,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 6985,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 206,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

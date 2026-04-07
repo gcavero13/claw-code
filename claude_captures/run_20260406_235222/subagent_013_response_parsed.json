@@ -1,0 +1,29 @@
+{
+  "text": "Now let me check for the configuration system and hooks:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01DyqSwKjdiu1L7FC4Co9HWT",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/config.rs\", \"limit\": 250}"
+    },
+    {
+      "id": "toolu_01A9SnrKzsyUeX85SvG7xssS",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/hooks.rs\", \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2489,
+    "cache_creation_input_tokens": 4710,
+    "cache_read_input_tokens": 67670,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 4710,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 199,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

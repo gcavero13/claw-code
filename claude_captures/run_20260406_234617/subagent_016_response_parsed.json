@@ -1,0 +1,24 @@
+{
+  "text": "Now let me check the runtime crate which is crucial:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01LjPxVcAGVBYcxrtsK8VRZb",
+      "name": "Bash",
+      "input": "{\"command\": \"ls -la /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 3328,
+    "cache_read_input_tokens": 59462,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3328,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 96,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

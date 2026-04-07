@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claw Code Security Audit Report</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2129;
+    --border: #30363d;
+    --text: #c9d1d9;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --orange: #db6d28;
+    --red: #f85149;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .subtitle { color: var(--text-muted); font-size: 15px; }
+  .header .meta { display: flex; gap: 24px; margin-top: 12px; color: var(--text-muted); font-size: 13px; }
+
+  /* Score Card */
+  .score-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .score-ring {
+    width: 160px; height: 160px;
+    position: relative;
+    margin: 0 auto;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring .value {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42px; font-weight: 700;
+    color: var(--green);
+  }
+  .score-ring .label {
+    position: absolute; bottom: 18px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;
+  }
+  .score-breakdown h3 { margin-bottom: 12px; font-size: 16px; }
+  .score-bar-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 8px; font-size: 13px;
+  }
+  .score-bar-row .bar-label { width: 180px; color: var(--text-muted); }
+  .score-bar-row .bar-track {
+    flex: 1; height: 8px; background: var(--surface2);
+    border-radius: 4px; overflow: hidden;
+  }
+  .score-bar-row .bar-fill { height: 100%; border-radius: 4px; }
+  .score-bar-row .bar-value { width: 40px; text-align: right; font-weight: 600; }
+
+  /* Severity badges */
+  .severity {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .severity.critical { background: rgba(248,81,73,0.15); color: var(--red); }
+  .severity.high { background: rgba(219,109,40,0.15); color: var(--orange); }
+  .severity.medium { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .severity.low { background: rgba(63,185,80,0.15); color: var(--green); }
+  .severity.info { background: rgba(88,166,255,0.15); color: var(--accent); }
+
+  /* Stats row */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 16px; text-align: center;
+  }
+  .stat-card .num { font-size: 32px; font-weight: 700; }
+  .stat-card .desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .tab {
+    padding: 10px 20px; cursor: pointer;
+    color: var(--text-muted); font-size: 14px; font-weight: 500;
+    border-bottom: 2px solid transparent; transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Findings */
+  .finding {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .finding-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .finding-header:hover { background: var(--surface2); }
+  .finding-header .arrow {
+    font-size: 12px; color: var(--text-muted);
+    transition: transform 0.2s;
+    width: 16px; text-align: center;
+  }
+  .finding.open .finding-header .arrow { transform: rotate(90deg); }
+  .finding-header .title { flex: 1; font-weight: 600; font-size: 15px; }
+  .finding-header .file-badge {
+    font-size: 12px; color: var(--text-muted);
+    background: var(--surface2); padding: 2px 8px; border-radius: 4px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+  }
+  .finding-body {
+    display: none;
+    padding: 0 20px 20px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .finding.open .finding-body { display: block; }
+
+  .finding-body h4 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--text-muted); margin: 16px 0 8px;
+  }
+  .finding-body p { color: var(--text-muted); font-size: 14px; margin-bottom: 8px; }
+
+  /* Code blocks */
+  pre.code {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #c9d1d9;
+    margin: 8px 0;
+  }
+  pre.code .kw { color: #ff7b72; }
+  pre.code .str { color: #a5d6ff; }
+  pre.code .cmt { color: #8b949e; font-style: italic; }
+  pre.code .fn { color: #d2a8ff; }
+  pre.code .type { color: #79c0ff; }
+  pre.code .num { color: #79c0ff; }
+
+  /* Recommendation */
+  .recommendation {
+    background: rgba(88,166,255,0.06);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+  .recommendation strong { color: var(--accent); }
+
+  /* Status pills */
+  .status { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; }
+  .status .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .status.protected .dot { background: var(--green); }
+  .status.partial .dot { background: var(--yellow); }
+  .status.gap .dot { background: var(--red); }
+
+  /* Filter bar */
+  .filter-bar {
+    display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 5px 14px; border-radius: 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text-muted); font-size: 12px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: rgba(88,166,255,0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Architecture diagram */
+  .arch-diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--text-muted);
+  }
+  .arch-diagram .layer { color: var(--accent); font-weight: 600; }
+  .arch-diagram .guard { color: var(--green); }
+  .arch-diagram .risk { color: var(--yellow); }
+
+  /* Coverage matrix */
+  table.matrix {
+    width: 100%; border-collapse: collapse;
+    font-size: 13px; margin-top: 12px;
+  }
+  table.matrix th {
+    text-align: left; padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  table.matrix td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.matrix tr:hover td { background: var(--surface2); }
+  .check { color: var(--green); }
+  .cross { color: var(--red); }
+  .partial-check { color: var(--yellow); }
+
+  @media (max-width: 768px) {
+    .score-section { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>Claw Code &mdash; Security Audit Report</h1>
+  <div class="subtitle">Comprehensive analysis of the Rust CLI agent harness security posture</div>
+  <div class="meta">
+    <span>Repo: claw-code</span>
+    <span>Language: Rust</span>
+    <span>Date: 2026-04-06</span>
+    <span>Scope: rust/crates/runtime + rust/crates/api</span>
+  </div>
+</div>
+
+<!-- Overall Score -->
+<div class="score-section">
+  <div class="score-ring">
+    <svg width="160" height="160" viewBox="0 0 160 160">
+      <circle cx="80" cy="80" r="70" fill="none" stroke="#30363d" stroke-width="10"/>
+      <circle cx="80" cy="80" r="70" fill="none" stroke="#3fb950" stroke-width="10"
+              stroke-dasharray="440" stroke-dashoffset="52.8" stroke-linecap="round"/>
+    </svg>
+    <div class="value">88</div>
+    <div class="label">Overall</div>
+  </div>
+  <div class="score-breakdown">
+    <h3>Category Scores</h3>
+    <div class="score-bar-row">
+      <span class="bar-label">Memory Safety</span>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--green)"></div></div>
+      <span class="bar-value" style="color:var(--green)">100</span>
+    </div>
+    <div class="score-bar-row">
+      <span class="bar-label">Input Validation</span>
+      <div class="bar-track"><div class="bar-fill" style="width:92%;background:var(--green)"></div></div>
+      <span class="bar-value" style="color:var(--green)">92</span>
+    </div>
+    <div class="score-bar-row">
+      <span class="bar-label">Access Control</span>
+      <div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--green)"></div></div>
+      <span class="bar-value" style="color:var(--green)">90</span>
+    </div>
+    <div class="score-bar-row">
+      <span class="bar-label">Credential Handling</span>
+      <div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)"></div></div>
+      <span class="bar-value" style="color:var(--green)">85</span>
+    </div>
+    <div class="score-bar-row">
+      <span class="bar-label">Sandbox / Isolation</span>
+      <div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--yellow)"></div></div>
+      <span class="bar-value" style="color:var(--yellow)">78</span>
+    </div>
+    <div class="score-bar-row">
+      <span class="bar-label">Supply Chain</span>
+      <div class="bar-track"><div class="bar-fill" style="width:82%;background:var(--green)"></div></div>
+      <span class="bar-value" style="color:var(--green)">82</span>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="num" style="color:var(--green)">0</div>
+    <div class="desc">Critical Findings</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--orange)">2</div>
+    <div class="desc">High Findings</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--yellow)">4</div>
+    <div class="desc">Medium Findings</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--green)">5</div>
+    <div class="desc">Low / Info</div>
+  </div>
+  <div class="stat-card">
+    <div class="num" style="color:var(--accent)">8</div>
+    <div class="desc">Strengths Identified</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" data-tab="findings">Findings</div>
+  <div class="tab" data-tab="architecture">Defense Architecture</div>
+  <div class="tab" data-tab="coverage">Coverage Matrix</div>
+  <div class="tab" data-tab="strengths">Strengths</div>
+</div>
+
+<!-- ======================== FINDINGS TAB ======================== -->
+<div class="tab-panel active" id="tab-findings">
+  <div class="filter-bar">
+    <button class="filter-btn active" data-severity="all">All (11)</button>
+    <button class="filter-btn" data-severity="high">High (2)</button>
+    <button class="filter-btn" data-severity="medium">Medium (4)</button>
+    <button class="filter-btn" data-severity="low">Low (3)</button>
+    <button class="filter-btn" data-severity="info">Info (2)</button>
+  </div>
+
+  <!-- HIGH-1: LLM-Controlled Shell Execution -->
+  <div class="finding" data-severity="high">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity high">High</span>
+      <span class="title">LLM-Generated Bash Commands Executed on Host</span>
+      <span class="file-badge">bash.rs / bash_validation.rs</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>The tool accepts bash commands generated by the LLM and executes them via <code>std::process::Command</code>. While heavily validated, the LLM could be influenced by prompt injection to craft commands that bypass heuristic checks.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// bash_validation.rs:103 &mdash; Read-only validation gate</span>
+<span class="kw">pub fn</span> <span class="fn">validate_read_only</span>(command: &amp;<span class="type">str</span>, mode: <span class="type">PermissionMode</span>) -&gt; <span class="type">ValidationResult</span> {
+    <span class="kw">if</span> mode != <span class="type">PermissionMode</span>::ReadOnly {
+        <span class="kw">return</span> <span class="type">ValidationResult</span>::Allow;
+    }
+    <span class="kw">let</span> first_command = <span class="fn">extract_first_command</span>(command);
+    <span class="kw">for</span> &amp;write_cmd <span class="kw">in</span> WRITE_COMMANDS { ... }
+    <span class="kw">for</span> &amp;state_cmd <span class="kw">in</span> STATE_MODIFYING_COMMANDS { ... }
+}</pre>
+
+      <h4>Current Guardrails</h4>
+      <p><span class="status protected"><span class="dot"></span> Read-only command blocklist (30+ commands)</span></p>
+      <p><span class="status protected"><span class="dot"></span> Destructive pattern detection (fork bombs, rm -rf /)</span></p>
+      <p><span class="status protected"><span class="dot"></span> Permission mode gating per command</span></p>
+      <p><span class="status protected"><span class="dot"></span> Path traversal heuristics</span></p>
+      <p><span class="status partial"><span class="dot"></span> Sandbox support (Linux only)</span></p>
+
+      <h4>Gap Analysis</h4>
+      <p>Blocklist approach is inherently incomplete &mdash; novel command combinations, aliased binaries, or encoded payloads (e.g., <code>python3 -c "..."</code>, <code>perl -e "..."</code>) can bypass first-command extraction. The <code>extract_first_command</code> parser splits on whitespace which may miss shell metacharacters.</p>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> (1) Complement blocklist with allowlist of known-safe commands for read-only mode. (2) Add sandbox enforcement as default on Linux. (3) Consider integrating <code>seccomp-bpf</code> filters for fine-grained syscall control. (4) Log all executed commands to an audit trail for post-hoc review.
+      </div>
+    </div>
+  </div>
+
+  <!-- HIGH-2: MCP Subprocess Environment -->
+  <div class="finding" data-severity="high">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity high">High</span>
+      <span class="title">MCP Server Subprocess Inherits Unsanitized Environment</span>
+      <span class="file-badge">mcp_stdio.rs / mcp_client.rs</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>MCP servers are spawned as child processes via <code>tokio::process::Command</code>. Environment variables from configuration are passed directly without sanitization. A malicious <code>.claw.json</code> project config could inject environment variables like <code>LD_PRELOAD</code> or <code>PATH</code> to hijack execution.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// mcp_client.rs &mdash; MCP transport config</span>
+<span class="kw">pub struct</span> <span class="type">McpStdioTransport</span> {
+    <span class="kw">pub</span> command: <span class="type">String</span>,
+    <span class="kw">pub</span> args: <span class="type">Vec</span>&lt;<span class="type">String</span>&gt;,
+    <span class="kw">pub</span> env: <span class="type">BTreeMap</span>&lt;<span class="type">String</span>, <span class="type">String</span>&gt;, <span class="cmt">// passed to subprocess directly</span>
+}</pre>
+
+      <h4>Current Guardrails</h4>
+      <p><span class="status protected"><span class="dot"></span> Environment scoped to config-specified keys only</span></p>
+      <p><span class="status gap"><span class="dot"></span> No blocklist for dangerous env vars (LD_PRELOAD, PATH, etc.)</span></p>
+      <p><span class="status gap"><span class="dot"></span> Project-level config can define MCP servers (untrusted source)</span></p>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> (1) Blocklist dangerous environment variable names (<code>LD_PRELOAD</code>, <code>LD_LIBRARY_PATH</code>, <code>DYLD_INSERT_LIBRARIES</code>, <code>PATH</code>). (2) Require user confirmation before spawning MCP servers defined in project-level config. (3) Run MCP subprocesses in a restricted environment rather than inheriting the full parent env.
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM-1: Sandbox macOS Gap -->
+  <div class="finding" data-severity="medium">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity medium">Medium</span>
+      <span class="title">Sandbox Namespace Isolation Unavailable on macOS</span>
+      <span class="file-badge">sandbox.rs</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>Linux namespace sandboxing (<code>unshare</code>) provides process/network isolation, but macOS has no equivalent. On macOS, the sandbox is effectively a no-op for namespace and network isolation, leaving only filesystem boundary checks as protection.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// sandbox.rs:164</span>
+<span class="kw">let</span> namespace_supported = <span class="fn">cfg!</span>(target_os = <span class="str">"linux"</span>) &amp;&amp; <span class="fn">unshare_user_namespace_works</span>();
+<span class="kw">let</span> network_supported = namespace_supported; <span class="cmt">// false on macOS</span></pre>
+
+      <h4>Current Guardrails</h4>
+      <p><span class="status protected"><span class="dot"></span> Filesystem boundary enforcement (all platforms)</span></p>
+      <p><span class="status protected"><span class="dot"></span> Fallback reason reporting when capabilities unavailable</span></p>
+      <p><span class="status gap"><span class="dot"></span> No macOS sandbox-exec or App Sandbox integration</span></p>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Investigate macOS <code>sandbox-exec</code> (seatbelt) profiles or the App Sandbox entitlement API to provide filesystem and network isolation on macOS. At minimum, document the reduced security posture for macOS users.
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM-2: OAuth Token Disk Storage -->
+  <div class="finding" data-severity="medium">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity medium">Medium</span>
+      <span class="title">OAuth Tokens Persisted to Disk Without Encryption</span>
+      <span class="file-badge">oauth.rs</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>OAuth access tokens and refresh tokens are serialized to disk as plaintext JSON. Any process or user with filesystem read access can extract these credentials.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// oauth.rs:13 &mdash; Token struct persisted via serde</span>
+<span class="kw">pub struct</span> <span class="type">OAuthTokenSet</span> {
+    <span class="kw">pub</span> access_token: <span class="type">String</span>,
+    <span class="kw">pub</span> refresh_token: <span class="type">Option</span>&lt;<span class="type">String</span>&gt;,
+    <span class="kw">pub</span> expires_at: <span class="type">Option</span>&lt;<span class="type">u64</span>&gt;,
+    <span class="kw">pub</span> scopes: <span class="type">Vec</span>&lt;<span class="type">String</span>&gt;,
+}</pre>
+
+      <h4>Current Guardrails</h4>
+      <p><span class="status protected"><span class="dot"></span> PKCE (S256) for authorization code exchange</span></p>
+      <p><span class="status protected"><span class="dot"></span> Token masking in log output</span></p>
+      <p><span class="status partial"><span class="dot"></span> OS file permissions (relies on user-level access control)</span></p>
+      <p><span class="status gap"><span class="dot"></span> No encryption-at-rest or OS keychain integration</span></p>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Integrate with platform keychains (macOS Keychain, Linux Secret Service / libsecret, Windows Credential Manager) for token storage. Alternatively, encrypt the token file with a key derived from machine-specific entropy.
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM-3: Path Validation Heuristic -->
+  <div class="finding" data-severity="medium">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity medium">Medium</span>
+      <span class="title">Bash Path Validation Uses Heuristic String Matching</span>
+      <span class="file-badge">bash_validation.rs:360</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>The <code>validate_paths</code> function detects <code>../</code> traversal and home-directory references using simple string matching. This can be bypassed with encoded paths, shell variable expansion (<code>$(...)</code>), or symlink-relative references.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// bash_validation.rs:360</span>
+<span class="kw">pub fn</span> <span class="fn">validate_paths</span>(command: &amp;<span class="type">str</span>, workspace: &amp;<span class="type">Path</span>) -&gt; <span class="type">ValidationResult</span> {
+    <span class="kw">if</span> command.<span class="fn">contains</span>(<span class="str">"../"</span>) {
+        <span class="kw">let</span> workspace_str = workspace.<span class="fn">to_string_lossy</span>();
+        <span class="kw">if</span> !command.<span class="fn">contains</span>(&amp;*workspace_str) {
+            <span class="kw">return</span> <span class="type">ValidationResult</span>::Warn { ... };
+        }
+    }
+    <span class="kw">if</span> command.<span class="fn">contains</span>(<span class="str">"~/"</span>) || command.<span class="fn">contains</span>(<span class="str">"$HOME"</span>) {
+        <span class="kw">return</span> <span class="type">ValidationResult</span>::Warn { ... };
+    }
+}</pre>
+
+      <h4>Gap</h4>
+      <p>Does not detect: <code>$(cd /etc &amp;&amp; cat passwd)</code>, <code>eval</code>-based expansion, backtick substitution, or symlink chains that reach outside workspace.</p>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Expand validation to cover shell substitution patterns (<code>$()</code>, backticks, <code>eval</code>, <code>source</code>). For write commands, resolve the actual target path after shell expansion rather than pattern-matching the raw command string.
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIUM-4: Hook Permission Override -->
+  <div class="finding" data-severity="medium">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity medium">Medium</span>
+      <span class="title">Hooks Can Override Permission Decisions</span>
+      <span class="file-badge">hooks.rs / permissions.rs</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>Hooks execute shell commands and can return <code>PermissionOverride::Allow</code>, which bypasses normal permission evaluation. While hooks are user-configured, a compromised or malicious project-level config could define hooks that auto-approve dangerous operations.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// permissions.rs:196 &mdash; Hook overrides evaluated early</span>
+<span class="kw">match</span> context.<span class="fn">override_decision</span>() {
+    <span class="type">Some</span>(<span class="type">PermissionOverride</span>::Allow) =&gt; {
+        <span class="kw">if</span> allow_rule.<span class="fn">is_some</span>() || current_mode == <span class="type">PermissionMode</span>::Allow
+            || current_mode &gt;= required_mode {
+            <span class="kw">return</span> <span class="type">PermissionOutcome</span>::Allow;
+        }
+    }
+}</pre>
+
+      <h4>Mitigation Note</h4>
+      <p>The code does check <code>ask_rule</code> even when a hook says Allow (line 220), which limits the override scope. Deny rules always take precedence (line 182).</p>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> (1) Clearly separate user-level hooks from project-level hooks in trust evaluation. (2) Add an audit log entry whenever a hook overrides a permission check. (3) Consider requiring user confirmation when project-level hooks attempt Allow overrides.
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW-1: No Rate Limiting -->
+  <div class="finding" data-severity="low">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity low">Low</span>
+      <span class="title">No Rate Limiting on Tool Execution</span>
+      <span class="file-badge">runtime (general)</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>There is no built-in rate limiting on how many tool calls the LLM can make per unit of time. A misbehaving model loop could generate rapid file operations or bash commands.</p>
+      <h4>Current Mitigations</h4>
+      <p><span class="status protected"><span class="dot"></span> Timeout support per individual bash command</span></p>
+      <p><span class="status protected"><span class="dot"></span> File size limits (10 MB read/write)</span></p>
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Add configurable per-minute limits on tool invocations, particularly for bash execution and file write operations.
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW-2: Write Redirection Detection -->
+  <div class="finding" data-severity="low">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity low">Low</span>
+      <span class="title">Write Redirection Detection Is Simple String Match</span>
+      <span class="file-badge">bash_validation.rs:97</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>Write redirections (<code>&gt;</code>, <code>&gt;&gt;</code>, <code>&gt;&amp;</code>) are detected by checking if the command string contains these characters. This triggers false positives for quoted strings and misses redirections inside subshells or variables.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// bash_validation.rs:97</span>
+<span class="kw">const</span> WRITE_REDIRECTIONS: &amp;[&amp;<span class="type">str</span>] = &amp;[<span class="str">"&gt;"</span>, <span class="str">"&gt;&gt;"</span>, <span class="str">"&gt;&amp;"</span>];
+<span class="cmt">// Line 144: simple contains check</span>
+<span class="kw">for</span> &amp;redir <span class="kw">in</span> WRITE_REDIRECTIONS {
+    <span class="kw">if</span> command.<span class="fn">contains</span>(redir) { <span class="kw">return</span> Block; }
+}</pre>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Use a shell-aware tokenizer to distinguish actual redirections from characters inside quoted strings or variables.
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW-3: git config in read-only allowlist -->
+  <div class="finding" data-severity="low">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity low">Low</span>
+      <span class="title"><code>git config</code> Allowed in Read-Only Mode</span>
+      <span class="file-badge">bash_validation.rs:183</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p><code>git config</code> is listed in the read-only safe subcommands, but <code>git config --global user.name "..."</code> can write to <code>~/.gitconfig</code>, modifying state outside the workspace.</p>
+
+      <h4>Affected Code</h4>
+<pre class="code"><span class="cmt">// bash_validation.rs:163</span>
+<span class="kw">const</span> GIT_READ_ONLY_SUBCOMMANDS: &amp;[&amp;<span class="type">str</span>] = &amp;[
+    <span class="str">"status"</span>, <span class="str">"log"</span>, <span class="str">"diff"</span>, <span class="str">"show"</span>, <span class="str">"branch"</span>, <span class="str">"tag"</span>,
+    <span class="str">"stash"</span>, <span class="str">"remote"</span>, <span class="str">"fetch"</span>, <span class="str">"ls-files"</span>, <span class="str">"ls-tree"</span>,
+    <span class="str">"cat-file"</span>, <span class="str">"rev-parse"</span>, <span class="str">"describe"</span>, <span class="str">"shortlog"</span>,
+    <span class="str">"blame"</span>, <span class="str">"bisect"</span>, <span class="str">"reflog"</span>, <span class="str">"config"</span>, <span class="cmt">// &lt;-- can write</span>
+];</pre>
+
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Remove <code>config</code> from the read-only allowlist, or add a sub-check that only allows <code>git config --get</code> and <code>git config --list</code> in read-only mode.
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO-1 -->
+  <div class="finding" data-severity="info">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity info">Info</span>
+      <span class="title">Session Token Stored at Predictable Path</span>
+      <span class="file-badge">remote.rs:8</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>The default session token path is <code>/run/ccr/session_token</code>. This is a well-known location that any process on the machine could read, though <code>/run</code> typically has restricted permissions.</p>
+<pre class="code"><span class="kw">pub const</span> DEFAULT_SESSION_TOKEN_PATH: &amp;<span class="type">str</span> = <span class="str">"/run/ccr/session_token"</span>;</pre>
+      <div class="recommendation">
+        <strong>Recommendation:</strong> Ensure the token file is created with <code>0600</code> permissions. Consider using <code>XDG_RUNTIME_DIR</code> which is per-user and typically <code>tmpfs</code>.
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO-2 -->
+  <div class="finding" data-severity="info">
+    <div class="finding-header">
+      <span class="arrow">&#9654;</span>
+      <span class="severity info">Info</span>
+      <span class="title">Proxy Environment Allowlist Is Broad</span>
+      <span class="file-badge">remote.rs:11</span>
+    </div>
+    <div class="finding-body">
+      <h4>Description</h4>
+      <p>The <code>UPSTREAM_PROXY_ENV_KEYS</code> allowlist includes TLS certificate bundle paths (<code>SSL_CERT_FILE</code>, <code>NODE_EXTRA_CA_CERTS</code>, etc.). A malicious proxy config pointing these at a crafted CA bundle could enable MITM interception of API traffic.</p>
+<pre class="code"><span class="kw">pub const</span> UPSTREAM_PROXY_ENV_KEYS: [&amp;<span class="type">str</span>; <span class="num">8</span>] = [
+    <span class="str">"HTTPS_PROXY"</span>, <span class="str">"https_proxy"</span>, <span class="str">"NO_PROXY"</span>, <span class="str">"no_proxy"</span>,
+    <span class="str">"SSL_CERT_FILE"</span>, <span class="str">"NODE_EXTRA_CA_CERTS"</span>,
+    <span class="str">"REQUESTS_CA_BUNDLE"</span>, <span class="str">"CURL_CA_BUNDLE"</span>,
+];</pre>
+      <div class="recommendation">
+        <strong>Recommendation:</strong> If not required for enterprise proxy scenarios, consider requiring explicit opt-in for custom CA bundle paths. Log when custom CA bundles are in use.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== ARCHITECTURE TAB ======================== -->
+<div class="tab-panel" id="tab-architecture">
+  <h3 style="margin-bottom:16px;">Defense-in-Depth Architecture</h3>
+  <div class="arch-diagram"><span class="layer">Layer 1: INPUT VALIDATION</span>              <span class="guard">[bash_validation.rs]</span>
+  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+  &boxv; Read-only blocklist &bull; Destructive pattern detection     &boxv;
+  &boxv; Sed validation &bull; Path traversal heuristics             &boxv;
+  &boxv; Command intent classification (8 categories)            &boxv;
+  &boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxul;
+                              &boxv;
+<span class="layer">Layer 2: PERMISSION SYSTEM</span>               <span class="guard">[permissions.rs]</span>
+  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+  &boxv; Deny rules (checked first, always wins)                 &boxv;
+  &boxv; Ask rules  (trigger interactive prompt)                 &boxv;
+  &boxv; Allow rules (grant access by pattern)                   &boxv;
+  &boxv; Mode check (ReadOnly &lt; WorkspaceWrite &lt; FullAccess)    &boxv;
+  &boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxul;
+                              &boxv;
+<span class="layer">Layer 3: HOOKS</span>                          <span class="guard">[hooks.rs]</span>
+  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+  &boxv; PreToolUse  &rarr; can Allow / Deny / Ask override         &boxv;
+  &boxv; PostToolUse &rarr; can audit or transform output           &boxv;
+  &boxv; Abort signal support for cancellation                   &boxv;
+  &boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxul;
+                              &boxv;
+<span class="layer">Layer 4: FILESYSTEM BOUNDARY</span>             <span class="guard">[file_ops.rs]</span>
+  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+  &boxv; canonicalize() + starts_with(workspace_root)           &boxv;
+  &boxv; Symlink escape detection                               &boxv;
+  &boxv; Binary file rejection &bull; 10 MB size limit               &boxv;
+  &boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxul;
+                              &boxv;
+<span class="layer">Layer 5: SANDBOX</span> <span class="risk">(Linux only)</span>          <span class="guard">[sandbox.rs]</span>
+  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+  &boxv; Filesystem: WorkspaceOnly (default) / AllowList / Off   &boxv;
+  &boxv; Network isolation via unshare (Linux)                   &boxv;
+  &boxv; Container environment detection                        &boxv;
+  &boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxul;
+                              &boxv;
+<span class="layer">Layer 6: AUTHENTICATION</span>                  <span class="guard">[oauth.rs, anthropic.rs]</span>
+  &boxdr;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxdl;
+  &boxv; OAuth PKCE (S256) &bull; Bearer token masking in logs       &boxv;
+  &boxv; rustls TLS (no OpenSSL) &bull; Custom CA bundle support    &boxv;
+  &boxv; Proxy env allowlist &bull; NO_PROXY for private networks   &boxv;
+  &boxur;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxh;&boxul;</div>
+</div>
+
+<!-- ======================== COVERAGE MATRIX TAB ======================== -->
+<div class="tab-panel" id="tab-coverage">
+  <h3 style="margin-bottom:16px;">Security Control Coverage Matrix</h3>
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>Attack Vector</th>
+        <th>Validation</th>
+        <th>Permission Check</th>
+        <th>Sandbox</th>
+        <th>Audit / Log</th>
+        <th>Test Coverage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Path Traversal (../../)</td>
+        <td><span class="check">&#10003;</span> canonicalize + boundary</td>
+        <td><span class="check">&#10003;</span> workspace mode</td>
+        <td><span class="check">&#10003;</span> filesystem mode</td>
+        <td><span class="partial-check">&#9679;</span> implicit</td>
+        <td><span class="check">&#10003;</span> file_ops tests</td>
+      </tr>
+      <tr>
+        <td>Symlink Escape</td>
+        <td><span class="check">&#10003;</span> is_symlink_escape()</td>
+        <td><span class="check">&#10003;</span> workspace mode</td>
+        <td><span class="check">&#10003;</span> filesystem mode</td>
+        <td><span class="partial-check">&#9679;</span> implicit</td>
+        <td><span class="check">&#10003;</span> symlink test</td>
+      </tr>
+      <tr>
+        <td>Command Injection</td>
+        <td><span class="check">&#10003;</span> blocklist + intent</td>
+        <td><span class="check">&#10003;</span> mode validation</td>
+        <td><span class="partial-check">&#9679;</span> Linux only</td>
+        <td><span class="cross">&#10007;</span> no audit trail</td>
+        <td><span class="partial-check">&#9679;</span> partial</td>
+      </tr>
+      <tr>
+        <td>Destructive Commands</td>
+        <td><span class="check">&#10003;</span> pattern + warn</td>
+        <td><span class="check">&#10003;</span> prompt mode</td>
+        <td><span class="partial-check">&#9679;</span> Linux only</td>
+        <td><span class="cross">&#10007;</span> no audit trail</td>
+        <td><span class="partial-check">&#9679;</span> partial</td>
+      </tr>
+      <tr>
+        <td>Binary File Manipulation</td>
+        <td><span class="check">&#10003;</span> NUL-byte check</td>
+        <td><span class="check">&#10003;</span> workspace mode</td>
+        <td><span class="check">&#10003;</span> filesystem mode</td>
+        <td><span class="partial-check">&#9679;</span> implicit</td>
+        <td><span class="check">&#10003;</span> binary test</td>
+      </tr>
+      <tr>
+        <td>Oversized File Write</td>
+        <td><span class="check">&#10003;</span> 10 MB limit</td>
+        <td><span class="check">&#10003;</span> workspace mode</td>
+        <td><span class="check">&#10003;</span> filesystem mode</td>
+        <td><span class="partial-check">&#9679;</span> implicit</td>
+        <td><span class="check">&#10003;</span> size test</td>
+      </tr>
+      <tr>
+        <td>Credential Theft (disk)</td>
+        <td><span class="cross">&#10007;</span> no encryption</td>
+        <td><span class="partial-check">&#9679;</span> OS permissions</td>
+        <td><span class="cross">&#10007;</span> not addressed</td>
+        <td><span class="check">&#10003;</span> token masking</td>
+        <td><span class="cross">&#10007;</span> not tested</td>
+      </tr>
+      <tr>
+        <td>MCP Env Injection</td>
+        <td><span class="cross">&#10007;</span> no blocklist</td>
+        <td><span class="partial-check">&#9679;</span> config-scoped</td>
+        <td><span class="cross">&#10007;</span> not sandboxed</td>
+        <td><span class="cross">&#10007;</span> no logging</td>
+        <td><span class="cross">&#10007;</span> not tested</td>
+      </tr>
+      <tr>
+        <td>Network Exfiltration</td>
+        <td><span class="partial-check">&#9679;</span> proxy allowlist</td>
+        <td><span class="partial-check">&#9679;</span> mode-dependent</td>
+        <td><span class="partial-check">&#9679;</span> Linux only</td>
+        <td><span class="cross">&#10007;</span> no logging</td>
+        <td><span class="cross">&#10007;</span> not tested</td>
+      </tr>
+      <tr>
+        <td>Memory Safety Bugs</td>
+        <td><span class="check">&#10003;</span> unsafe = "forbid"</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        <td><span class="check">&#10003;</span> Rust guarantees</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:20px; display:flex; gap:24px; font-size:12px; color:var(--text-muted);">
+    <span><span class="check">&#10003;</span> Fully covered</span>
+    <span><span class="partial-check">&#9679;</span> Partially covered</span>
+    <span><span class="cross">&#10007;</span> Gap identified</span>
+  </div>
+</div>
+
+<!-- ======================== STRENGTHS TAB ======================== -->
+<div class="tab-panel" id="tab-strengths">
+  <h3 style="margin-bottom:16px;">Notable Security Strengths</h3>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">Zero Unsafe Code &mdash; Workspace-Wide Forbid</span>
+      <span class="file-badge">Cargo.toml:15</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>The workspace root sets <code>unsafe_code = "forbid"</code>, preventing any crate in the workspace from using unsafe blocks. This eliminates entire classes of memory safety vulnerabilities (buffer overflows, use-after-free, data races).</p>
+<pre class="code"><span class="cmt">// Cargo.toml</span>
+[workspace.lints.rust]
+unsafe_code = <span class="str">"forbid"</span></pre>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">Defense-in-Depth: 5-Layer Security Architecture</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>Security controls are layered so that no single failure is catastrophic: input validation &rarr; permission system &rarr; hooks &rarr; filesystem boundary &rarr; sandbox. Each layer independently prevents different attack classes.</p>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">Comprehensive Path Traversal Protection with Symlink Detection</span>
+      <span class="file-badge">file_ops.rs:28-43, 604-615</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>Path canonicalization via <code>canonicalize()</code> resolves all symlinks and relative components before boundary checking. A dedicated <code>is_symlink_escape()</code> function catches symlinks that resolve outside the workspace. Both are covered by unit tests.</p>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">1004-Line Bash Validation Pipeline</span>
+      <span class="file-badge">bash_validation.rs</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>The validation pipeline mirrors upstream TypeScript with 6 sub-validators: read-only enforcement, destructive command warning, mode validation, sed validation, path validation, and semantic command classification with 8 intent categories.</p>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">rustls TLS &mdash; No OpenSSL Dependency</span>
+      <span class="file-badge">api/Cargo.toml</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>Using <code>rustls</code> instead of OpenSSL eliminates a large class of C-based TLS vulnerabilities. The entire TLS stack is pure Rust with memory-safe guarantees.</p>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">OAuth PKCE with CSRF State Parameter</span>
+      <span class="file-badge">oauth.rs</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>OAuth implementation uses PKCE with S256 challenge method and includes a state parameter for CSRF protection. This follows current best practices for public client OAuth flows (RFC 7636).</p>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">Deny Rules Always Take Precedence</span>
+      <span class="file-badge">permissions.rs:182</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>The permission system evaluates deny rules first, before any allow rule or hook override. This fail-safe design ensures that explicitly blocked operations cannot be overridden by any other mechanism.</p>
+    </div>
+  </div>
+
+  <div class="finding open">
+    <div class="finding-header" style="cursor:default">
+      <span class="severity" style="background:rgba(63,185,80,0.15);color:var(--green);">Strength</span>
+      <span class="title">Strict Clippy Lints (pedantic + all = warn)</span>
+      <span class="file-badge">Cargo.toml:17-19</span>
+    </div>
+    <div class="finding-body" style="display:block">
+      <p>Workspace-wide Clippy configuration with both <code>all</code> and <code>pedantic</code> lint groups set to warn catches subtle code quality issues that could become security problems (unchecked casts, implicit conversions, etc.).</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Finding expand/collapse
+document.querySelectorAll('.finding-header').forEach(header => {
+  if (header.style.cursor === 'default') return; // strengths are always open
+  header.addEventListener('click', () => {
+    header.parentElement.classList.toggle('open');
+  });
+});
+
+// Severity filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const sev = btn.dataset.severity;
+    document.querySelectorAll('#tab-findings .finding').forEach(f => {
+      if (sev === 'all' || f.dataset.severity === sev) {
+        f.style.display = '';
+      } else {
+        f.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

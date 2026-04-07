@@ -1,0 +1,270 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_013xt2GASMgWRKQAgi9G5hDy","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":5170,"cache_read_input_tokens":54895,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":5170},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}         }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}   }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Here"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" is the complete lifecycle of a single user message through the claw-code system.\n\n---\n\n## End-to-End Message"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Flow: claw-code\n\n### Layer 0 —"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" CLI Entry Point\n\n**`rust/crates/rusty-claude-cli/src/main.rs`**\n\nThe `"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"main()` function (~line 91) parses CLI arguments and routes to action handlers."}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" For interactive use, `LiveCli::new"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"()` (~line 2078) creates a `Session`, builds the system prompt, and initial"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"izes a `BuiltRuntime` containing the API client and tool executor.\n\n###"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Layer 1 — Turn Initiation\n\n**`rust/crates/rusty-claude-cli/src/main.rs:~2"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"193`**\n\n`LiveCli::run_turn(input)` orchestrates a"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" single conversation turn:\n1. Calls `prepare_turn_runtime()` to build a"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `(BuiltRuntime, HookAbortMonitor)`\n2. Initializes a `"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"CliPermissionPrompter`\n3. Delegates to `runtime.run_turn(input,"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Some(&mut permission_prompter))`\n4. On completion, calls `persist"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_session()` to flush state to disk\n\n### Layer 2 — Conversation Loop (the core"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")\n\n**`rust/crates/runtime/src/conversation.rs:~296`**\n\n`ConversationRuntime<C, T>::"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"run_turn()` is the main agentic loop:\n\n```\n1. session.push_user_text(user_input)        "}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"// append to message history\n2. loop {\n     a. Build"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" ApiRequest { system_prompt, messages }\n     b. api_client.stream(request)            // SSE stream to Claude API"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n     c. build_assistant_message(events)       // assemble text + tool_use blocks\n     d. session.push"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_message(assistant_msg)   // persist assistant reply\n     e. if no tool"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_use blocks → break         // turn complete\n     f. for each tool_use:"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n        - run_pre_tool_use_hook()\n        - permission_policy.authorize_with_context()\n        - tool"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_executor.execute(&name, &input)\n        - run_post_tool_use_hook()\n        - session.push_message(tool_result)\n     g. continue"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" loop (next API round-trip)\n   }\n3. Auto"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-compact session if input tokens exceed threshold\n4. Return TurnSummary { messages, tool_results, usage, metrics }\n```\n\n### Layer "}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"3 — System Prompt Assembly\n\n**`rust/crates/runtime/src/prompt.rs:~89`**\n\n`SystemPromptBuilder::build()` (~line 140) assembles the prompt in"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" order:\n\n1. Static intro, output style, system role, task-doing guidance, actions section\n2. **Dynamic boundary marker** (`SYSTEM_PROMPT_DYNAMIC_BOUNDARY"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`)\n3. Environment context (cwd, platform, date)\n4. Git status/diff snapshot\n5. Project instruction files (CLAUDE.md, up to 12KB)\n6."}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Runtime config sections (permissions, features)\n7. Custom append sections (MCP server instructions, etc.)\n\n### Layer 4 — API"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Request Construction & HTTP\n\n**`rust/crates/api/src/types.rs:~5`** — `MessageRequest` struct:\n- `model`,"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `max_tokens`, `messages: Vec<InputMessage>`, `system`, `tools: Vec<ToolDefinition>`, `tool_choice`, `stream"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`\n\n**`rust/crates/api/src/providers/anthropic.rs`**:\n\n- `stream_message()` (~line 336"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"): Sets `stream: true`, calls `send_with_retry()`\n- `send_with_retry()` (~line 397):"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Exponential backoff, up to 2 retries, records analytics via session tracer\n- `send_raw_request()"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` (~line 461): Builds HTTP POST to `/v1/messages`, applies auth headers via `auth.apply()`, adds provider headers from `request_profile.header_pairs()"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`, serializes body via `request_profile.render_json_body()`\n\n### Layer 5 — Response Streaming & Parsing\n\n**`rust/crates/api/src/providers/anthrop"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ic.rs`**\n\n`MessageStream` wraps the HTTP response with"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" an `SseParser`. Its `next_event()` (~line 115) yields `StreamEvent` variants"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":\n\n| Event | Purpose |\n|---|---|\n| `MessageStart` | Model info, usage pream"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ble |\n| `ContentBlockStart` | New text or tool_use block begins |\n| `ContentBlockDelta"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` | Incremental text or JSON input delta |\n| `ContentBlockStop` | Block fin"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"alized |\n| `MessageDelta` | Stop reason, final usage |\n| `MessageStop` | End of stream |\n\nBack"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" in `conversation.rs`, `build_assistant_message(events)` (~line 362) accumulates deltas into a `"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ConversationMessage { role: Assistant, blocks: Vec<ContentBlock> }`.\n\n### Layer 6 — Tool Execution Dispatch\n\n**`rust"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/crates/rusty-claude-cli/src/main.rs:~5414`**\n\n`CliToolExecutor::execute()` routes by tool name:"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- Permission check against `allowed_tools`\n- Parse JSON input\n- Match to handler (`\"ToolSearch\"` → `"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"execute_search_tool()`, MCP tools → `execute_runtime_tool()`, built-ins → `tool_registry.execute()`)\n\n**`rust/crates/tools/src/lib.rs:~1"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"158`**\n\n`execute_tool(name, input)` is a large match dispatching to 40+ handlers ("}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"bash, file read/write/edit, glob, grep, web fetch/search, MCP, task management, worker orchestration, etc.). Each handler: deserialize →"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" validate → execute → serialize result.\n\n### Layer 7 — Permission Enforcement\n\n**`rust/crates/runtime/src/permissions.rs`**\n\nCalled at `conversation"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs:~431`:\n```rust\npermission_policy.authorize_with_context(&tool_name, &input, &context, prompt)\n```"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\nReturns `PermissionOutcome::Allow` or `Deny { reason }`. On deny, a `tool_result` with"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `is_error: true` is pushed to session instead of executing.\n\n### Layer 8 — Hook Pipeline\n\n**`rust/crates/"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"runtime/src/conversation.rs:~224`**\n\nTool invocations are bracketed by hooks:\n- **Pre-hook** (`run_pre_tool_use_hook`"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"): Can modify input, deny execution, inject feedback\n- **Post-hook** (`run_post_tool_use_hook` / `run_post_tool_use_failure_hook`): Can augment output, report failures"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\nHooks are configured in settings.json and executed by the harness.\n\n### Layer 9 — Session Persistence\n\n**`rust/c"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rates/runtime/src/session.rs:~74`**\n\n`Session` holds `session_id`, `messages: Vec<ConversationMessage>`,"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `compaction`, `fork`, and `persistence` metadata.\n\n- `push_message()` (~line 184): Appends to history"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", calls `append_persisted_message()` for JSONL write\n- `save_to_path()` (~line 159): One message per line as JSON, atomic writes via temp file + rename,"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rotates at 256KB boundary keeping max 3 files\n\n### Layer 10 — MCP Integration\n\n**`rust/crates/runtime/src/mcp_tool_bridge.rs:~"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"232`** — `McpToolRegistry::call_tool()` spawns a thread with tokio async runtime to call MCP servers."}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**`rust/crates/runtime/src/mcp_stdio.rs`** — Manages MCP server lifecycle over stdio ("}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Initialize → ListTools → CallTool → Shutdown).\n\n### Layer 11 — Capture Proxy (Debug)"}   }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**`capture_proxy.py`** — Optional MITM proxy between CLI and Anthropic API. Activated via `ANTHROPIC_BASE_URL=http://127.0.0.1:9999`."}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Captures each request/response iteration to numbered JSON files under `claude_captures/`.\n\n---\n\n### Key Data Structures\n\n|"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Struct | File | Role |\n|---|---|---|\n| `Session` | `session.rs:74` | Full conversation state +"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" persistence |\n| `ConversationMessage` | `session.rs:46` | Single message (role + content blocks) |\n| `ContentBlock` | `session.rs:28` | Text, ToolUse, or ToolResult"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" payload |\n| `MessageRequest` | `types.rs:5` | Wire format for Claude API |\n| `ApiRequest` | `conversation.rs:"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"23` | Runtime abstraction (system_prompt + messages) |\n| `MessageStream` | `anthropic.rs` | SSE stream consumer"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" |\n| `TurnSummary` | `conversation.rs:110` | Aggregated turn result |\n| `ConversationRuntime<C, T>` | `conversation.rs:126` | Core"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" loop orchestrator |\n| `CliToolExecutor` | `main.rs:5326` | CLI tool dispatcher |\n\n---\n\n### Summary Flow Diagram\n\n```\nUser"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Input\n  │\n  ▼\nLiveCli::run_turn()          ← main.rs"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  │\n  ▼\nConversationRuntime::run_turn()  ← conversation.rs  (agentic loop)\n  │"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  ├──► session.push_user_text()\n  │\n  ├──► SystemPromptBuilder::build()  ← prompt.rs"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  │\n  ├──► ApiRequest { system_prompt, messages }\n  │       │\n  │       ▼\n  │    AnthropicClient::stream_message()  ← anthropic.rs"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  │       │\n  │       ▼\n  │    POST /v1/messages (SSE)\n  │       │\n  │       ▼\n  │    MessageStream::next_event()  →"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" StreamEvent variants\n  │       │\n  │       ▼\n  │    build_assistant_message()  → ConversationMessage\n  │\n  ├──► session.push"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_message(assistant_msg)\n  │\n  ├──► For each tool_use block:\n  │       │\n  │       ├─ run_pre_tool_use_hook()\n  │       "}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"├─ permission_policy.authorize_with_context()\n  │       ├─ CliToolExecutor::execute()  → tool_registry.execute()\n  │       ├─ run_post_tool"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_use_hook()\n  │       └─ session.push_message(tool_result)\n  │\n  ├──► (loop back to API"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" if tools were called)\n  │\n  ▼\nTurnSummary → persist_session() → JSONL on"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" disk\n```"}            }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0             }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":5170,"cache_read_input_tokens":54895,"output_tokens":2608},"context_management":{"applied_edits":[]}             }
+
+event: message_stop
+data: {"type":"message_stop"              }
+

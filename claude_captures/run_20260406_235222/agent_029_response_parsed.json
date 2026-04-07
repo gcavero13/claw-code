@@ -1,0 +1,18 @@
+{
+  "text": "The interactive security audit report is ready at `/tmp/security_audit.html`. Here's a summary of what it covers:\n\n**Overall Score: 88/100** — strong posture with a few targeted gaps.\n\n**Key Findings (11 total):**\n\n| Severity | Count | Top Issues |\n|----------|-------|------------|\n| Critical | 0 | — |\n| High | 2 | LLM-generated bash execution (blocklist-based, bypassable); MCP subprocess env var injection (no `LD_PRELOAD` blocklist) |\n| Medium | 4 | macOS sandbox gap (Linux-only namespace isolation); plaintext OAuth tokens on disk; heuristic path validation in bash; hook permission overrides |\n| Low | 3 | No rate limiting; simple redirection detection; `git config` in read-only allowlist |\n| Info | 2 | Predictable session token path; broad proxy CA env allowlist |\n\n**8 Notable Strengths:**\n- `unsafe_code = \"forbid\"` workspace-wide (zero unsafe blocks)\n- 5-layer defense-in-depth architecture\n- Path traversal + symlink escape detection with tests\n- 1004-line bash validation pipeline\n- rustls TLS (no OpenSSL)\n- OAuth PKCE with CSRF state\n- Deny rules always take precedence in permissions\n- Strict Clippy pedantic lints\n\nThe report has 4 interactive tabs: **Findings** (filterable by severity, expandable code + recommendations), **Defense Architecture** (visual layer diagram), **Coverage Matrix** (attack vector vs. control coverage), and **Strengths**.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 17495,
+    "cache_read_input_tokens": 74739,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 17495
+    },
+    "output_tokens": 382,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

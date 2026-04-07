@@ -1,0 +1,44 @@
+======================================================================
+AGENT_044 — RESPONSE
+======================================================================
+
+SSE events: 90
+Model: claude-opus-4-6
+Message ID: msg_013xt2GASMgWRKQAgi9G5hDy
+
+Text output (8061 chars):
+  Here is the complete lifecycle of a single user message through the claw-code system.
+
+---
+
+## End-to-End Message Flow: claw-code
+
+### Layer 0 — CLI Entry Point
+
+**`rust/crates/rusty-claude-cli/src/main.rs`**
+
+The `main()` function (~line 91) parses CLI arguments and routes to action handlers. For interactive use, `LiveCli::new()` (~line 2078) creates a `Session`, builds the system prompt, and initializes a `BuiltRuntime` containing the API client and tool executor.
+
+### Layer 1 — Turn Initiation
+
+**`rust/crates/rusty-claude-cli/src/main.rs:~2193`**
+
+`LiveCli::run_turn(input)` orchestrates a single conversation turn:
+1. Calls `prepare_turn_runtime()` to build a `(BuiltRuntime, HookAbortMonitor)`
+2. Initializes a `CliPermissionPrompter`
+3. Delegates to `runtime.run_turn(input, Some(&mut permission_prompter))`
+4. On completion, calls `persist_session()` to flush state to disk
+
+### Layer 2 — Conversation Loop (the core)
+
+**`rust/crates/runtime/src/conversation.rs:~296`**
+
+`ConversationRun...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 5170
+  cache_read_input_tokens: 54895
+  output_tokens: 2608

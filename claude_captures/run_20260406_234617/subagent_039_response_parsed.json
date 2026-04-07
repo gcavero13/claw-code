@@ -1,0 +1,24 @@
+{
+  "text": "Perfect! Now let me create a comprehensive summary document. Let me gather a few more critical pieces about the complete flow:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01R379gS7Kf11v7AP8npxYyz",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"struct BuiltRuntime\\\\|impl BuiltRuntime\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs | head -10\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 4967,
+    "cache_read_input_tokens": 102986,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 4967,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 137,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

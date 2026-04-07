@@ -1,0 +1,24 @@
+{
+  "text": "Now let me look at how tools are handled and executed. Let me check the tools module:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01KEUowWyhGznKgjFH7HR62m",
+      "name": "Bash",
+      "input": "{\"command\": \"ls -la /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3050,
+    "cache_read_input_tokens": 95755,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3050,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 103,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

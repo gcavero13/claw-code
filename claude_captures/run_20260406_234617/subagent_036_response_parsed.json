@@ -1,0 +1,24 @@
+{
+  "text": "Let me check where tools are actually dispatched and executed:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01MM3NnB8BR87T6FrPUeXtrD",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"pub fn execute_tool\\\\|fn dispatch_tool\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs | head -20\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3752,
+    "cache_read_input_tokens": 99070,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3752,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 117,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}
