@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01LMCBTskSHFxT2o1cj5af3H",
+      "name": "Bash",
+      "input": "{\"command\": \"find /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src -type f -name \\\"*.rs\\\" | sort\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 354,
+    "cache_read_input_tokens": 42017,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 354,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 92,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,609 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_01DT8pdZ78p69F8H4C8UWJHG","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":4,"cache_creation_input_tokens":1416,"cache_read_input_tokens":90941,"cache_creation":{"ephemeral_5m_input_tokens":1416,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}              }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}      }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Perfect"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"! Now I have all the information I need. Let me compile a comprehensive report.\n\n##"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Comprehensive Exploration of Claw-Code API"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Crate\n\nBased on my thorough exploration of `/Users/gladyscav"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ero/Documents/PEOPL/GitHub/claw-code/rust"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/crates/api/`, here's a complete understanding"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" of the API layer:\n\n### **File Structure**\n\n```\n/Users/gladyscavero/Documents"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/PEOPL/GitHub/claw-code/rust/crates/api/src/\n├── lib.rs                  # Public exports and module"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" organization\n├── types.rs                # Core request/response and stream event types\n├── client"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs               # Provider client abstraction and routing\n├── error.rs                # Comprehensive error handling"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n├── sse.rs                  # Server-Sent Events parser for Anthropic\n├── prompt_cache"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs         # Prompt caching with fingerprinting and break detection\n└"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"── providers/\n    ├── mod.rs              # Provider trait, detection, and model registry"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n    ├── anthropic.rs        # Anthropic API client implementation\n    └── openai_compat.rs    # OpenAI-compatible provider"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (xAI, OpenAI)\n```\n\n---\n\n### **1. Streaming API Responses"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**\n\n#### **Streaming Architecture**\n- **Abstraction**: Streaming is"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" implemented per-provider (Anthropic and OpenAI-compatible have different stream types)\n- **Parser"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Strategy**: \n  - `SseParser` for Anthropic (parses raw SSE format)\n  - `OpenAi"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"SseParser` for OpenAI-compatible providers (parses OpenAI's streaming format)\n\n#### **Key Structs**"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**Anthropic MessageStream** (`anthropic.rs:755`):\n```"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rust\npub struct MessageStream {\n    request_id: Option<String>,\n    response: reqwest::Response,\n    parser: S"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"seParser,\n    pending: VecDeque<StreamEvent>,\n    done: bool,\n    request"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": MessageRequest,\n    prompt_cache: Option<PromptCache>,\n    latest_usage"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": Option<Usage>,\n    usage_recorded: bool,\n    last_prompt_"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"cache_record: Arc<Mutex<Option<PromptCacheRecord>>>,\n}\n```\n\n**OpenAI Compat"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" MessageStream** (`openai_compat.rs:236`):\n```rust\npub struct MessageStream {\n    request_id: Option<String>,\n    response: reqwest::Response,\n    parser: OpenAiSseParser,\n    pending: VecDe"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"que<StreamEvent>,\n    done: bool,\n    state: StreamState,\n}\n```\n\n#### **Data Flow**\n1. **Raw HTTP chunks"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** arrive from `reqwest::Response`\n2. **Parser buffers** chunks until"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" complete frames are assembled (SSE format: `\\n\\n` or `\\r\\n\\r\\n` del"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"imiters)\n3. **Frame parsing** extracts event type and JSON data\n4. **Events"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" are enqueued** into `pending: VecDeque<StreamEvent>` \n5. **Consumer polls"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** via `next_event()` → returns `Option<StreamEvent>`\n6. **Usage tracking** ("}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Anthropic only): `observe_event()` tracks `MessageD"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"eltaEvent` and records at `MessageStop`"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n#### **Stream Event Types** (`types.rs:238-246`):\n```rust\npub"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" enum StreamEvent {\n    MessageStart(MessageStartEvent),        // Initial message metadata\n    MessageDelta(MessageDeltaEvent),        "}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"// Usage/stop reason updates\n    ContentBlockStart(ContentBlockStartEvent),"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"     // Text/tool/thinking starts\n    ContentBlockDelta(ContentBlockDeltaEvent"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"),     // Text/JSON/thinking chunks\n    ContentBlockStop(ContentBlockStopEvent),       // Content"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" block ends\n    MessageStop(MessageStopEvent),                 // Stream complete\n}\n```\n\n#### **Content Block"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Deltas** (`types.rs:220-227`):\n- `TextDelta"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" { text: String }`\n- `InputJsonDelta { partial_json: String }` (for tool use"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")\n- `ThinkingDelta { thinking: String }`\n- `SignatureDelta { signature: String }`\n\n---\n\n### **2. API Providers Architecture"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**\n\n#### **Provider Abstraction**\n\n**Core Trait** (`providers/mod.rs:12-24"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`):\n```rust\npub trait Provider {\n    type Stream;\n\n    fn send_message<'a>("}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n        &'a self,\n        request: &'a MessageRequest,\n    ) -> ProviderFuture<'a, MessageResponse>;"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n    fn stream_message<'a>(\n        &'a self,\n        request: &'a MessageRequest,\n    ) -> ProviderFuture<'a, Self::Stream>;\n}\n\npub type"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" ProviderFuture<'a, T> = Pin<Box<dyn Future<Output = Result<T, ApiError>> + Send + 'a>>;\n```\n\n#### **Provider Detection"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" & Routing** (`providers/mod.rs:25-179`)\n\n**ProviderKind Enum**:\n```rust\npub"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" enum ProviderKind {\n    Anthropic,\n    Xai,\n    OpenAi,\n}\n```\n\n**Model Registry** (hardcoded aliases"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"):\n- **Anthropic models**: \"opus\" → \"claude-opus-"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"4-6\", \"sonnet\" → \"claude-sonnet-4-6\", \"haiku\" → \"claude-haiku-4-5-"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"20251213\"\n- **xAI models**: \"grok\", \"grok-3\", \"grok-mini"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\", \"grok-3-mini\", \"grok-2\"\n- **Detection logic**:\n  1"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". Check model name prefix (claude*, grok*)"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  2. Fall back to environment variable checks (ANTHROPIC_API_KEY, XAI_API_KEY, OPENAI_API_KEY)\n  3. Default to"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Anthropic\n\n**Provider Metadata** (`providers/mod.rs:34-39`):\n```rust\npub struct ProviderMetadata {\n    pub provider"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": ProviderKind,\n    pub auth_env: &'static str,\n    pub base_url_env"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": &'static str,\n    pub default_base_url: &'static str,\n}\n```\n\n#### **Supported Providers**"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n1. **Anthropic** (`anthropic.rs`)\n   - Auth: API key, Bearer token,"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" or OAuth\n   - Base URL: `https://api.anthropic.com`\n   - Features: Prompt caching, request"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" retry policy, session tracing\n\n2. **xAI (Grok)** ("} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"via `openai_compat.rs`)\n   - Auth: API key only\n   - Base URL: `https://api.x.ai/v1`\n   - Adapter"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" pattern: Translates Anthropic message format to OpenAI Chat Completion format\n\n3. **OpenAI** ("}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"via `openai_compat.rs`)\n   - Auth: API key only\n   - Base URL: `https://api.openai.com/v1`\n   - Same adapter pattern\n\n#### **Client Routing"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (`client.rs`)\n\n**ProviderClient Enum** (10-14"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"):\n```rust\npub enum ProviderClient {\n    Anthropic(AnthropicClient),\n    Xai(OpenAiCompatClient),\n    OpenAi(OpenAiCompatClient),\n}"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n```\n\n**Factory Methods**:\n- `from_model(model: &str)` → auto-detects provider"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `from_model_with_anthropic_auth(model, auth_source)` → explicit Anthropic auth\n- Aggregates provider capabilities"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": `send_message()`, `stream_message()`, prompt cache stats\n\n---\n\n### **3. Prompt"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Caching**\n\n#### **Architecture** (`prompt_cache.rs`)\n\n**Caching Strategy**:\n- **Completion cache"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**: Stores full responses keyed by request hash\n- **Session-based tracking**: Monitors"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" prompt fingerprints (model, system, tools"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", messages)\n- **Cache break detection**: Identifies when cache becomes invalid\n- **TTL management**: Separate"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" TTLs for completions (30s) and prompts (5m)\n\n####"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Key Types**\n\n**PromptCache** (108-249):\n-"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Wraps mutable state in `Arc<Mutex<PromptCacheInner>>`\n- Main methods"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":\n  - `lookup_completion(request)` → checks completion"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" cache and TTL\n  - `record_response(request, response)` → persists response and tracks state"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - `record_usage(request, usage)` → tracks streaming usage without full response\n\n**PromptCacheStats"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (75-91):\n```rust\npub struct PromptCacheStats {\n    pub tracked_requests: u64,\n    pub completion_cache_hits: u64,"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n    pub completion_cache_misses: u64,\n    pub completion_cache_writes: u64,\n    pub expected_invalidations: u64,\n    pub unexpected"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_cache_breaks: u64,\n    pub total_cache_creation_input_tokens: u64,\n    pub total_cache_read"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_input_tokens: u64,\n    pub last_cache_creation_input_tokens: Option<u32>,\n    pub last_cache_"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"read_input_tokens: Option<u32>,\n    pub last_request_hash: Option<String>,\n    pub last_completion_cache"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_key: Option<String>,\n    pub last_break_reason: Option<String>,\n    pub last_cache_source: Option<String>,\n}"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n```\n\n**CacheBreakEvent** (93-100):\n```rust\npub struct CacheBreakEvent {\n    pub unexpected:"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" bool,\n    pub reason: String,\n    pub previous_cache_read_input_tokens: u32,\n    pub current_cache_read_input_tokens"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": u32,\n    pub token_drop: u32,\n}\n```\n\n#### **Cache Break Detection** (`detect_"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"cache_break()` at 314-382)\n\n**Detects cache invalid"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ation by**:\n1. **Fingerprint changes** (expected):\n   - Model changed\n   - System prompt"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" changed\n   - Tool definitions changed\n   - Message payload changed\n2. **Unexpected breaks** (suspicious):\n   - Cache"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" read tokens drop without prompt changes\n   - Triggered when drop"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" > `cache_break_min_drop` (default 2,"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"000 tokens)\n3. **TTL expiry** (expected):\n   - Prompt cache expires after 5 minutes\n\n#### **Finger"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"printing** (295-312)\n\nUses FNV-1a hash ("} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"64-bit) on serialized JSON:\n```rust\nstruct RequestFingerprints"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" {\n    model: u64,\n    system: u64,\n    tools: u64,\n    messages: u64,\n}\n```\n\n#### **Storage"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Paths** (`PromptCachePaths::for_session"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"()` at 56-67)\n\n```\n$CLAUDE_CONFIG_HOME/cache"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/prompt-cache/<session-id>/\n├── completions/\n│   └"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"── v1-<hash>.json      # Full MessageResponse\n├── session"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-state.json       # TrackedPromptState\n└── stats.json              # PromptCacheStats\n```\n\n---\n\n### **4. Key Traits"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", Structs, Enums**\n\n#### **Traits**\n\n**Provider** (`providers/mod.rs:12`"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"): Core abstraction for model API clients\n- Methods: `send_message()`, `"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"stream_message()`\n- Associated type: `Stream` (provider-specific stream type)\n\n####"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Request Types** (`types.rs`)\n\n**MessageRequest** (5-26):\n```rust\npub struct Message"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Request {\n    pub model: String,\n    pub max_tokens: u32,\n    pub messages: Vec<InputMessage>,\n    pub system: Option<String>,\n    pub tools: Option<Vec"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<ToolDefinition>>,\n    pub tool_choice: Option<ToolChoice>,\n    pub stream: bool,\n}\n```\n\n**InputMessage** (28-60"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"):\n```rust\npub struct InputMessage {\n    pub role: String,\n    pub content: Vec<InputContentBlock>,\n}\n```\n- Helper:"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `user_text(text)`, `user_tool_result"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(tool_use_id, content, is_error"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")`\n\n**InputContentBlock** (62-79):\n```rust\npub enum InputContentBlock {\n    Text { text: String },\n    ToolUse { id"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": String, name: String, input: Value },\n    ToolResult { tool_use_id: String, content: Vec<ToolResult"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ContentBlock>, is_error: bool },\n}\n```\n\n**ToolDefinition** (88-94):\n```rust\npub struct ToolDefinition {\n    pub name"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": String,\n    pub description: Option<String>,\n    pub input_schema: Value,  // JSON Schema\n}\n```\n\n**ToolChoice"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (96-102):\n```rust\npub enum ToolChoice {\n    Auto,\n    Any,\n    Tool { name: String },\n}\n```\n\n####"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Response Types** (`types.rs`)\n\n**MessageResponse** (104-126):\n```rust\npub struct MessageResponse {\n    pub id: String,\n    pub kind: String,\n    pub role"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": String,\n    pub content: Vec<OutputContentBlock>,\n    pub model: String,\n    pub stop_reason: Option<String>,\n    pub stop_sequence: Option<String"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":">,\n    pub usage: Usage,\n    pub request_id: Option<String>,\n}\n```\n\n**OutputContentBlock** (128-148):\n```rust\npub enum Output"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ContentBlock {\n    Text { text: String },\n    ToolUse { id: String, name: String, input: Value },\n    Thinking { thinking: String, signature"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": Option<String> },\n    RedactedThinking { data: Value },\n}\n```\n\n**Usage** (150-187"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"):\n```rust\npub struct Usage {\n    pub input_tokens: u32,\n    pub cache_creation_input_tokens: u32,\n    pub cache_read_input_tokens"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": u32,\n    pub output_tokens: u32,\n}\n```\n- Methods: `total_tokens()`, `estimated_cost"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_usd(model)`\n- Integration with runtime c"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rate for pricing lookup\n\n#### **Error Types** (`error.rs`)\n\n**ApiError** (5-33"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"):\n```rust\npub enum ApiError {\n    MissingCredentials { provider: &'static str, env_vars: &'static [&'static str] },\n    ExpiredO"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"AuthToken,\n    Auth(String),\n    InvalidApiKeyEnv(VarError"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"),\n    Http(reqwest::Error),\n    Io(std::io::Error),\n    Json(serde_json::Error),\n    Api { status"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": StatusCode, error_type: Option<String>, message: Option<String>,"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" body: String, retryable: bool },\n    RetriesExhausted { attempts"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": u32, last_error: Box<ApiError> },\n    InvalidSseFrame(&'static str),\n    Back"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"offOverflow { attempt: u32, base_delay: Duration },\n}\n```"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `is_retryable()` method determines if error should trigger retry logic\n\n---\n\n### **5. Request"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/Response Data Flow**\n\n#### **Non-Streaming Flow**\n\n```\nMessageRequest"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n    ↓\nAnthropicClient::send_message()\n    ├─ Check prompt cache for completion\n    ├─ send"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_with_retry() [exponential backoff: 200ms →"}               }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 2s]\n    │   └─ send_raw_request()\n    │"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"       ├─ Auth header application (API key / Bearer token)\n    │       ├─ Request profile"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" headers (client ID, beta flags)\n    │       └─ POST /"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"v1/messages with JSON body\n    ├─ Parse MessageResponse JSON\n    ├─ Record in prompt cache ("}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"if enabled)\n    └─ Emit analytics event (via SessionTra"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"cer)\n    ↓\nMessageResponse\n```\n\n#### **Streaming Flow**\n\n```\nMessageRequest\n    ↓\nAnthropicClient::stream_message()\n    ├─ send"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_with_retry(&request.with_streaming())\n    │   └─ POST"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" /v1/messages with stream=true\n    ├─ Create MessageStream\n    │   ├─ SseParser (buff"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ering parser)\n    │   ├─ pending: VecDeque (event queue)\n    │   └─ "}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PromptCache (if enabled)\n    ↓\nloop {\n    next_event()\n    ├─ Pull from pending"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" queue (buffered events)\n    ├─ If empty and not done:"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n    │   ├─ Fetch chunk from HTTP response\n    │   ├─ parser.push"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(chunk) → parses SSE frames\n    │   ├─ observe_event() → track"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" usage\n    │   └─ Enqueue events\n    └─ Return next StreamEvent\n}\n    ↓\nStream"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Event (per-event consumption)\n```\n\n#### **Prompt Cache Integration"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (in `AnthropicClient`)\n\n```\nsend_message():\n    1"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". lookup_completion(request) → Option<MessageResponse>\n    2. If hit: return cached response ("}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"no API call)\n    3. If miss: call API normally\n    4. record_response(request, response) → PromptCacheRecord\n    "}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"5. Detect cache breaks from record.cache_break"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\nstream_message():\n    1. No lookup (streaming responses not cached, only"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" usage)\n    2. observe_event() tracks MessageDeltaEvent usage\n    3. At MessageStop: record_"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"usage(request, usage)\n    4. PromptCacheRecord tracks cache break\n```\n\n---\n\n### **6. API"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Crate Interactions with Other Crates**\n\n#### **Runtime Crate** (`runtime/`)\n- **Pricing"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**: `pricing_for_model()` → lookup token pricing\n- **Usage**: `Token"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Usage`, `UsageCostEstimate` types\n- **Formatting"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**: `format_usd()` helper\n- **OAuth**: `load_oauth_credentials()`, `save"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_oauth_credentials()`, `OAuthConfig`\n\n#### **Telemetry Crate** (`telemetry/`)\n- **Types**: `"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"AnalyticsEvent`, `ClientIdentity`, `SessionTracer`\n- **Profiling**: `AnthropicRequest"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Profile` for custom headers/body params\n- **Tr"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"acing**: `record_http_request_*` methods for session"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" trace recording\n\n#### **Dependencies** (`Cargo.toml`)\n```toml\nreqwest = \""} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"0.12\"           # HTTP client\ntokio = \"1\"                # Async runtime\nserde/"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"serde_json           # Serialization\nruntime = { path = \"../runtime\" }      "}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"# Crate\ntelemetry = { path = \"../telemetry\" }  # Crate\n```\n\n---\n\n### **7. Auth"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Sources** (`AuthSource`)\n\n**Implementation** (`anthropic.rs:28"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-95`):\n\n```rust\npub enum AuthSource {\n    None,\n    ApiKey(String),\n    Bear"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"erToken(String),\n    ApiKeyAndBearer { api_key: String, bearer_token: String },\n}\n```\n\n**Loading Strategy"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (`from_env_or_saved()`):\n1"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". Check `ANTHROPIC_API_KEY` env var\n2. Check `ANTHROPIC_AUTH_TOKEN` env var\n3. Load"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" saved OAuth token from disk\n4. If OAuth token expired and no refresh"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" token: error\n5. Default: `missing_credentials` error\n\n**Application** (`apply"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"()` method):\n- API key → `x-api-key` header\n- Bearer token → `Authorization: Bearer ...` header"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n---\n\n### **8. Retry & Backoff Strategy**\n\n**Exponential backoff** (`backoff_for"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_attempt()` in both providers):\n- Initial: 200ms\n- Max: 2"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" seconds\n- Formula: `base_delay * 2^(attempt-1)` capped at max"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- Retries: up to 3 attempts (2 retries)\n\n**Ret"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ryable statuses**: 408, 409, 429, 500, 502, 503, 504\n\n**Retry logic** (`send_with_retry("}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")`):\n- Wraps response in `expect_success()`\n- Parses error JSON"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" for `ApiError::Api` details\n- Tracks via"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `SessionTracer` if available\n\n---\n\n### **Summary of Key Data Flows**\n\n1. **Model"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Detection**: `detect_provider_kind()` → `ProviderKind` → `ProviderClient::from_model()` → specific"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" client\n2. **Streaming**: HTTP chunks → SSE parser → buffered events → consumed one"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" per `next_event()` call\n3. **Caching**: Request fingerprint (F"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"NV hash) → check completion cache → API call → record usage/breaks\n4. **Auth**: Multi"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-source (env vars, saved OAuth, explicit) → `AuthSource` → header"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" application\n5. **Error Handling**: HTTP/JSON errors → `ApiError` with retryability classification"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" → retry loop\n\nThis architecture cleanly separates concerns: providers handle protocol details, the client layer"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" routes based on model, streaming is buffered independently, and prompt caching tracks"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" without modifying the request/response flow."}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0             }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":4,"cache_creation_input_tokens":1416,"cache_read_input_tokens":90941,"output_tokens":5096},"context_management":{"applied_edits":[]}  }
+
+event: message_stop
+data: {"type":"message_stop"   }
+

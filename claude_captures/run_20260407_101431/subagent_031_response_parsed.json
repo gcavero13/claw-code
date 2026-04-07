@@ -1,0 +1,29 @@
+{
+  "text": "Now let me read the openai_compat provider and error handling:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01SQ52s5qWDadqMyC9V4fiwf",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/providers/openai_compat.rs\", \"limit\": 200}"
+    },
+    {
+      "id": "toolu_01XLpQW7aStWY2ptSf1sCtbW",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/error.rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 7448,
+    "cache_read_input_tokens": 64900,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 7448,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 192,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

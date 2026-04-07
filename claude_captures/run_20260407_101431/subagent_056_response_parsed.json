@@ -1,0 +1,24 @@
+{
+  "text": "Let me check the plugin lifecycle and session control:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_014Rzw4WDfXG7FdVAgVgKRnT",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/plugin_lifecycle.rs\", \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 2446,
+    "cache_read_input_tokens": 76436,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2446,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 115,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

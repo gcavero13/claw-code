@@ -1,0 +1,84 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_016eAAxtE1K9QJGhWTxLA5gD","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":16936,"cache_read_input_tokens":64254,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":16936},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}             }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}   }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"The"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" interactive architecture visualization is ready at `/tmp/claw_architecture.html`. Here's what"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" it contains:\n\n**Top-level diagrams:**\n- **System Overview** - Shows all"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" three crates and how they connect (Runtime orchestrates,"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Tools dispatches, API streams)\n- **Conversation Turn Data Flow** - Sequence"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" diagram of a full turn: user input ->"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" API streaming -> tool execution loop -> compaction check -> return\n\n**Three"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tabbed crate sections with expandable details:**\n\n| Crate | Key"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Components |\n|-------|---------------|\n| **Runtime** | ConversationRuntime (generic over `C: ApiClient,"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" T: ToolExecutor`), Session (JSONL persistence with"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 256KB rotation), Compaction (auto at 100"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"K tokens, preserves last 4 messages), Permissions/"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Hooks/MCP bridge |\n| **Tools** | Giant match dispatch"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (~80 tools), Agent spawning (OS threads with `"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"SubagentToolExecutor` filtering tools per sub"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"agent type), Worker/Team/Cron registries |\n| **API** | Provider"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" abstraction (Anthropic + OpenAI-compat for xAI/OpenAI), SSE streaming parser"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" with `VecDeque` buffering, Prompt cache with FNV-1a fingerprinting and"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" break detection, Exponential retry (200ms-2s) |\n\n**Cross-crate dependency"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" diagram** at the bottom showing how tools implements `ToolExecutor` for runtime, agents"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" spawn their own `ConversationRuntime`, and runtime calls `ApiClient.stream()` on the API crate.\n\nOpen"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" it with: `open /tmp/claw_architecture.html`"}            }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0              }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":16936,"cache_read_input_tokens":64254,"output_tokens":380},"context_management":{"applied_edits":[]}   }
+
+event: message_stop
+data: {"type":"message_stop"       }
+

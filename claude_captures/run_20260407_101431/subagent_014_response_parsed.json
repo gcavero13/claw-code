@@ -1,0 +1,24 @@
+{
+  "text": "Now let me read the key files for conversation loop, session management, and compaction:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01XR6WxcDXgjyNAuyb4dF2u4",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/conversation.rs\", \"limit\": 300}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 2658,
+    "cache_read_input_tokens": 43841,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2658,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 121,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

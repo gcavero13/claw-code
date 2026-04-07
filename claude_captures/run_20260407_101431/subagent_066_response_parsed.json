@@ -1,0 +1,24 @@
+{
+  "text": "Perfect! Now let me create a comprehensive summary document by examining the complete architecture. Let me check one more critical file - worker_boot to understand how workers integrate with the runtime:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_018xuZnVUocELWcVY271Bh1K",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/worker_boot.rs\", \"limit\": 250}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 3264,
+    "cache_read_input_tokens": 87277,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3264,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 141,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

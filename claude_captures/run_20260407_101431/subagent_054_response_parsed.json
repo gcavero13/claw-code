@@ -1,0 +1,29 @@
+{
+  "text": "Now let me search for the Worker and Team implementation:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01AsewjP2kNZZGPdN5wDz3se",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"struct WorkerCreateInput\\\\|struct TeamCreateInput\\\\|struct CronCreateInput\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\"}"
+    },
+    {
+      "id": "toolu_0144NbRochDL5oS7S36yvP93",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"DEFAULT_AGENT_MODEL\\\\|DEFAULT_AGENT_MAX_ITERATIONS\\\\|DEFAULT_AGENT_SYSTEM_DATE\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1176,
+    "cache_creation_input_tokens": 3730,
+    "cache_read_input_tokens": 74745,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3730,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 219,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

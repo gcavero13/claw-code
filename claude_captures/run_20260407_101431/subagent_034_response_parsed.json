@@ -1,0 +1,29 @@
+{
+  "text": "Let me read more of openai_compat and check the Cargo.toml:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01ES59J2xeqqsMYTQxbJtLNW",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/providers/openai_compat.rs\", \"offset\": 200, \"limit\": 300}"
+    },
+    {
+      "id": "toolu_01Mui9B8HqDvTA3kMoFpnuh4",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/Cargo.toml\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1512,
+    "cache_creation_input_tokens": 2656,
+    "cache_read_input_tokens": 72348,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2656,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 213,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}
