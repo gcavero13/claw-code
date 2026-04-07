@@ -1,0 +1,780 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_01USxyzZJb5sk3qyA1sDUwm8","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":4059,"cache_read_input_tokens":85524,"cache_creation":{"ephemeral_5m_input_tokens":4059,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}             }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""} }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Perfect"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"! Now I have comprehensive information. Let me create a final summary document by comp"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"iling all the findings.\n\n## Comprehensive Exploration Summary: Claw Code"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Rust Project\n\nThis is a high-performance Rust rewrite of an autonomous AI"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" coding agent harness (inspired by Claude Code)."} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" The project represents an evolution from a previous TypeScript implementation, with both a Rust production implementation"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" and a Python porting workspace.\n\n---\n\n### OVERALL ARCHITECTURE\n\n**"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"What this CLI does:**\n- Provides an interactive REPL and one"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-shot CLI interface for conversing with Claude AI models\n- Orchestrates a complete"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" agentic loop: user input → Claude API calls → tool execution → result feedback"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" → continuation\n- Manages sessions, permissions, configuration, M"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"CP servers, and plugins\n- Supports streaming responses, session persistence, cost tracking, and extensive tool"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" ecosystem\n\n**Core Purpose:** Act as a sophisticated harness for autonomous"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" software development workflows where AI agents can read files, execute bash"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" commands, modify code, run tests, and coordinate with external tools (M"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"CP servers, plugins, LSP).\n\n---\n\n### WORKSPACE STRUCTURE\n\n```\nclaw-code/\n├── rust/                              "}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"# Active Rust implementation (9 crates, ~60K"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" LOC)\n│   ├── Cargo.toml                     # Workspace root\n│   ├── crates"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/\n│   │   ├── api/                       # Anthropic API client + streaming ("}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"1290 LOC)\n│   │   ├── commands/                  # Slash-command registry"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (4257 LOC)\n│   │   ├── compat-harness/            # Archive manifest"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" extraction\n│   │   ├── mock-anthropic-service/    # Determin"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"istic mock for testing\n│   │   ├── plugins/                   # Plugin lifecycle + hook system"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n│   │   ├── runtime/                   # Core session/config/MCP/"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"permissions (106K+ LOC across 40"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" modules)\n│   │   ├── rusty-claude-cli"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/          # Main CLI binary \"claw\" (7749 LOC main."}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rs)\n│   │   ├── telemetry/                 # Usage tracking + session tracing (520 LOC)\n│   │"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"   └── tools/                     # Built-in and plugin tool dispatch (varies)\n│   ├── scripts"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/\n│   │   ├── run_mock_parity_harness.sh #"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Clean-env test harness\n│   │   └── run_mock_parity_diff.py"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"    # Scenario checklist runner\n│   └── mock_"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"parity_scenarios.json      # Scenario definitions\n├── src/                               # Python"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" porting workspace (67 .py files)\n│   ├── main.py                        # CLI entry with 30+ sub"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"commands\n│   ├── models.py                      # Dataclass definitions\n│   ├── commands."}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"py                    # Mirrored command metadata\n│   ├── tools.py                       # Mirrored tool metadata\n│   ├── query"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_engine.py                # Renders porting summary\n│   ├── port"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_manifest.py               # Workspace manifest builder\n│   └── [subsystems"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"]/                  # assistant/, bridge/, utils/, etc.\n├── tests/"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n│   └── test_porting_workspace.py      # Python porting verification"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (150+ tests)\n├── .claude.json                       # CLI"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" defaults (permissions mode)\n└── .claude/"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"settings.local.json        # Machine-local overrides\n```\n\n---\n\n### KEY RUST"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" CRATES & RESPONSIBILITIES\n\n**1. rusty-claude-cli (Main Binary)**\n- **"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"File:** `/rust/crates/rusty-claude-cli/src/main.rs` (7749 LOC)\n- **"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Responsibility:** CLI argument parsing, REPL loop, streaming display,"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" session resume\n- **Key Entry Points:**\n  - `parse_args()` — handles `"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"--model`, `--permission-mode`, `--resume`, `--output-format`, etc.\n  - `run_re"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"pl()` — interactive loop with rustyline\n  - `run_turn_with_output"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"()` — one-shot prompt mode\n  - `resume_session()` — loads and re"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-enters a previous session\n- **Modules:**\n  - `init."}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rs` (433 LOC) — `.claude.json` initialization\n  - `input.rs` (330 LOC) —"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" REPL input handling\n  - `render.rs` — markdown terminal rendering (ANSI)"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - `app.rs` (567 LOC) — high-level CLI coordinator\n\n**2. api (Anthropic HTTP Client)**\n- **File:** `/rust/"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"crates/api/src/` \n- **Key Modules:**\n  - `client.rs` (155 LOC) — HTTP request/response handling\n  - `providers"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/anthropic.rs` (1290 LOC) — Anthropic API implementation + auth\n  - `providers/openai"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_compat.rs` (1104 LOC) — OpenAI-compatible proxy support\n  - `sse"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs` (279 LOC) — Server-Sent Events parser for streaming\n  - `prompt_cache.rs` (734"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" LOC) — Prompt caching with statistics\n- **Exports:** `MessageStream`, `"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ProviderClient`, `StreamEvent`, model alias resolution\n\n**3. runtime"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (Core Orchestration)**\n- **Path:** `/rust/crates/runtime/src/` (40 modules,"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" ~106K LOC)\n- **Critical Modules:**\n  - **conversation.rs** (62K+ LOC) — `"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ConversationRuntime` struct; implements the model loop (prompt"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" → API call → tool execution → feedback)\n  - **session.rs** —"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `Session` struct with message history, token tracking\n  - **config.rs** (52K LOC) — `ConfigLoader"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` hierarchy, `.claude.json` parsing, MCP server config\n  - **permissions.rs** (21"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"K LOC) — `PermissionPolicy`, `PermissionMode` (read-only, workspace-"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"write, danger-full-access)\n  - **permission_enforcer.rs** (340 "}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"LOC) — `PermissionEnforcer` for tool gating, file write boundaries, bash read-only checks\n  - **prompt.rs** (28"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"K LOC) — `SystemPromptBuilder`, CLAUDE.md context assembly"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - **bash.rs** (11K LOC) — `execute_bash()` with timeout, background execution, sandbox support\n  - **bash"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_validation.rs** (28K LOC) — Read-only validation, destructive command warnings"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", mode/sed/path validation\n  - **file_ops"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs** (25K LOC) — `read_file()`, `write_file()`, `edit_file()`, `glob_search()`, `grep_search()`\n  - **mcp_stdio.rs** (106"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"K LOC) — MCP server lifecycle, JSON-RPC protocol, tool discovery\n  - **mcp_lifecycle_"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"hardened.rs** (27K LOC) — Server health checks, degraded mode handling\n  - **mcp_tool"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_bridge.rs** (406 LOC) — Bridge between CLI tool dispatch and MCP registry"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - **lsp_client.rs** (438 LOC) — LSP client for hover, diagnost"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ics, definition, references\n  - **task_registry.rs** (335 LOC) — In-memory task lifecycle"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (create, get, list, stop, update)\n  - **team_"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"cron_registry.rs** (363 LOC) — Team and cron job registries\n  - **oauth.rs** (19"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"K LOC) — OAuth login/logout, PKCE flow, credential persistence\n  - **recovery_"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"recipes.rs** (20K LOC) — Failure recovery strategies\n  - **policy_engine.rs** (16K LOC) — Lane"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-based policy evaluation\n  - **sandbox.rs** (12K LOC) — Linux container detection, sandbox flag assembly"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - **compact.rs** (23K LOC) — Session history compaction\n  - **hooks.rs** (29K LOC) — Pre"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/post-tool-use hook execution\n  - **worker"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_boot.rs** — Sub-agent orchestration metadata\n- **Key"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Structs:**\n  - `ConversationRuntime<C, T>` — generic over"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" API client and tool executor\n  - `Session` — conversation history + token accounting"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - `PermissionPolicy` — authorization rules\n  - `ConfigLoader` — config file hierarchy\n\n**4. tools (Tool Dispatch"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" & Specs)**\n- **File:** `/rust/crates/tools/src/lib.rs`\n- **Key Functions:**\n  - `mvp_tool_specs()` — Returns "} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"40+ tool specifications (see below)\n  - `GlobalToolRegistry` — registry"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" for built-in, plugin, and runtime tools\n  - `execute_tool()` — dispatches tool execution with enforcer"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" checks\n  - `execute_tool_with_enforcer()` — enforces permission checks before execution\n- **Tool"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Categories:**\n  - **File I/O:** `bash`, `read_file`, `write_file`, `edit_file`, `glob_search`, `grep_search`\n  - **Web:**"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `WebFetch`, `WebSearch`\n  - **Workflows:** `TodoWrite`, `NotebookEdit`, `Skill`, `Agent`\n  - **Utilities:** `Sleep"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`, `SendUserMessage`, `Config`, `REPL`, `PowerShell`, `AskUserQuestion`, `Struct"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"uredOutput`\n  - **Planning:** `EnterPlanMode`, `ExitPlanMode`, `ToolSearch`\n  - **Tasks"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `TaskCreate`, `TaskGet`, `TaskList`, `TaskStop`, `TaskUpdate`, `TaskOutput` (registry-backed)\n  - **Teams"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/Cron:** `TeamCreate`, `TeamDelete`, `CronCreate`, `CronDelete`, `C"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ronList` (registry-backed)\n  - **MCP:** `ListMcpResources`, `ReadMcpResource`, `McpAuth`, `MCP` (bridge"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-backed)\n  - **LSP:** `LSP` (registry dispatch for diagnost"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ics, hover, definition, references, symbols, format)\n\n**5. commands (Slash-Command Registry)**\n- **File:** `/rust/c"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rates/commands/src/lib.rs` (4257 LOC)\n- **Key Structs:**\n  - `SlashCommandSpec` — name"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", aliases, summary, argument hint, resume support\n  - `CommandRegistry`, `Command"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ManifestEntry`, `CommandSource`\n- **Specs"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** 22+ slash commands including `/help`, `/status`, `/model"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`, `/permissions`, `/clear`, `/compact`, `/cost`, `/resume`, `/config"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`, `/mcp`, `/memory`, `/init`, `/diff`, `/version`, `/commit`, `/pr`, `/issue"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`, etc.\n\n**6. plugins (Plugin Lifecycle)**\n- **File:** `/rust/crates/plugins/src/lib.rs`\n- **Key Structs:**\n  - `Plug"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"inManifest` — name, version, description, permissions, hooks, lifecycle, tools"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", commands\n  - `PluginHooks` — `PreToolU"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"se`, `PostToolUse`, `PostToolUseFailure` vectors\n  - `PluginLifecycle` — `"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Init`, `Shutdown` vectors\n  - `PluginMetadata`, `PluginKind` ("}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Builtin/Bundled/External), `PluginPermission`,"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `PluginToolPermission`\n- **Bundled Plugins:** example-bundled, sample"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-hooks (in `/rust/crates/plugins/bundled/`)\n\n**7. telemetry (Session Tr"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"acing & Usage)**\n- **File:** `/rust/crates/telemetry/src/lib.rs` (520 LOC)\n- **Types"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `SessionTracer`, `SessionTraceRecord`, `AnalyticsEvent`, `TelemetryEvent"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`, `ClientIdentity`\n- **Exports:** `DEFAULT_ANTHROPIC_VERSION"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` constant\n\n---\n\n### SYSTEM PROMPT & BEHAVIORAL LOGIC"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**System Prompt Assembly** (`runtime/src/prompt.rs`):\n- `SystemPromptBuilder` reads"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" context from multiple sources:\n  - CLAUDE.md (project-level"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" instructions)\n  - PHILOSOPHY.md, README.md, and other context"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" files\n  - Tool descriptions (dynamic injection per session)\n  - Permission"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" mode restrictions (read-only vs. full-access)\n  - MCP server availability\n- **Frontier Model"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `FRONTIER_MODEL_NAME = \"claude-opus-4-"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"6\"` (defined in prompt.rs)\n- **Dynamic Boundary:** `SYSTEM"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_PROMPT_DYNAMIC_BOUNDARY` marks where dynamic content begins\n\n**Permission System"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (`runtime/src/permissions.rs`):\n- **Modes:**\n  - `ReadOnly` — can read files, execute read-only bash"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", search; cannot write\n  - `WorkspaceWrite` — can read, write, edit files"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"; limited bash\n  - `DangerFullAccess` — full bash + all file"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" operations\n- **Permission Policy:** evaluates tool requests against mode + user override"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rules\n- **Prompt Enforcement:** certain operations (like writing files or"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" running dangerous commands in read-only mode) trigger user approval prompts\n\n**Tool Execution Flow** (`runtime/src/conversation"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs`):\n1. **Turn Loop:** calls `api_client.stream("}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"request)` → gets `AssistantEvent` stream\n2. **Tool Inter"}    }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ception:** on `ToolUse` event, calls `tool_executor.execute("}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"tool_name, input)`\n3. **Permission Check:** `PermissionEnforcer::check()` evaluates tool"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" against policy\n4. **Hook Execution:** pre-tool and post-tool hooks run via"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `HookRunner`\n5. **Result Feedback:** tool result added to conversation as"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `ToolResultContentBlock`\n6. **Continuation:** loop continues until"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `MessageStop` event or max iterations\n\n**Auto-Compaction"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** (`runtime/src/compact.rs`):\n- Monitors input token usage during conversation\n- When"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" threshold exceeded (`DEFAULT_AUTO_COMPACTION_INPUT_TOKENS_"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"THRESHOLD = 100_000`), compacts message history\n- Preserves context"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" while reducing tokens\n\n---\n\n### CONFIGURATION FILES\n\n**`.claude.json`** (Repository"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Root):\n```json\n{\n  \"permissions\": {\n    \"defaultMode\": \"dontAsk\"\n  }"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n}\n```\n- Controls default permission behavior\n- Per-repo overrides possible\n\n**`.claude"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/settings.local.json`** (Machine-local):\n- Stores OAuth tokens, API keys, local preferences\n- Git"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-ignored\n\n**MCP Server Config** (via `.claude."}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"json`):\n- Supports `mcpServers` array with `stdio`,"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `websocket`, `managed-proxy`, and `remote` trans"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ports\n- Each server has `command`, `args`, `auth`, resource, and tool discovery"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" metadata\n\n**Plugin Registry** (`installed.json`):\n- Tracks plugin metadata"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" and enabled/disabled status per workspace\n\n---\n\n### TOOLS IMPLEMENTATION STATUS\n\n**Fully"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Implemented (MVP):**\n- ✅ `bash` — execute shell commands with timeout"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", background support, sandbox options\n- ✅ `read_file` — read text files with offset/limit"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- ✅ `write_file` — create/overwrite files\n- ✅ `edit_file` — in-place text replacement\n- ✅ `glob_search` — pattern"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-based file discovery\n- ✅ `grep_search` — regex content search with context"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- ✅ `WebFetch` — fetch URLs and answer questions about content\n- ✅ `WebSearch` — search web"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" with result citation\n- ✅ `TodoWrite` — update task list structure\n- ✅ `Not"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ebookEdit` — Jupyter notebook cell manipulation\n- ✅ `Sleep` — time delay without shell"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" process\n- ✅ `SendUserMessage` — send message to user\n- ✅ `AskUserQuestion` — prompt user with optional"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" choices\n- ✅ `StructuredOutput` — return structured data\n- ✅ `Config` — get/set Claude"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" settings\n- ✅ `REPL` — code execution (language-specific)\n- ✅"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `PowerShell` — Windows shell support\n\n**Partially Implemented (Registry-Backed, No"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" External Subprocess):**\n- ⚙️ `TaskCreate`, `TaskGet`, `TaskList`, `TaskStop`, `TaskUpdate`,"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `TaskOutput` — in-memory task registry\n- ⚙️ `TeamCreate`, `TeamDelete` — in-memory team registry\n- ⚙️ `CronCreate`, `CronDelete`,"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `CronList` — in-memory cron registry\n- ⚙️ `LSP` — registry dispatch for hover, diagnostics, definition, references, symbols (no external"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" LSP server subprocess)\n- ⚙️ `ListMcpResources`, `ReadMcpResource`, `Mcp"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Auth`, `MCP` — MCP tool bridge (lifecycle tracked, servers managed"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" via MCP stdio)\n\n**Stubbed/Deferred (Spec Present,"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Limited/No Execution):**\n- 📋 `Skill` — load skill definition ("}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"placeholder)\n- 📋 `Agent` — launch sub-agent task (metadata only)\n- 📋 `ToolSearch` — search for"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" deferred tools (spec only)\n- 📋 `EnterPlanMode` / `ExitPlanMode` — planning mode over"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rides (minimal state)\n\n---\n\n### TESTING INFRASTRUCTURE\n\n**Rust Tests"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":**\n- `/rust/crates/rusty-claude-cli/tests/mock_parity_harness.rs"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` — **19 captured scenarios** with mock Anthropic API\n  "}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"- `streaming_text`, `read_file_roundtrip`, `grep"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_chunk_assembly`\n  - `write_file_allowed`, `write_file_denied`\n  - `multi"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_tool_turn_roundtrip`, `bash_stdout_roundtrip`\n  - `bash_permission_prompt_approved`, `bash_permission"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_prompt_denied`\n  - `plugin_tool_roundtrip`\n- `/rust/crates/rusty-claude-cli/tests/cli_flags"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_and_config_defaults.rs` — CLI arg parsing\n- `/rust/crates/rusty-claude-cli/tests/"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"resume_slash_commands.rs` — session resume behavior\n- `/rust/crates/runtime/tests/integration_tests.rs` — runtime"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" integration\n- `/rust/crates/api/tests/` — provider client integration (Anthropic +"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" OpenAI compatibility)\n\n**Python Tests:**\n- `/tests/test_porting_workspace.py` — 100+ assertions"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" verifying:\n  - Manifest counts (20+"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Python files, 150+ commands, 100+ tools)\n  - Query"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" engine summary output\n  - CLI runs (`summary`, `parity-"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"audit`, `commands`, `tools`)\n  - Root file coverage parity\n  -"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Subsystem metadata exposure\n\n**Mock Service:**\n- `/rust/crates/mock"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-anthropic-service/` — deterministic, reproducible `/v1/messages"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` mock for clean-env harness testing\n\n---\n\n### WHAT'S STUB"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"BED OUT / NOT YET IMPLEMENTED\n\n1. **Plugin System** — specs present"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", but hook execution minimal (`🔧 Config only`)\n2. **Skills"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Registry** — (`📋 Planned`) metadata present, actual skill engine"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" deferred\n3. **External Task Subprocess** — tasks tracked in registry"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", but no actual background process scheduling\n4. **External Cron Scheduler** — cron entries registered, but no actual background execution\n5"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". **LSP External Server** — registry dispatch works, but actual language-server"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" subprocess orchestration separate\n6. **Agent Handoff Persistence** — agent launch metadata"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" collected, but sub-agent execution deferred\n7. **Deferred Tool Search** — tool search spec present, but full de"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ferred/specialized tool discovery incomplete\n\n---\n\n### KEY STRUCTS & ENUMS\n\n**Core"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Message Types:**\n- `ConversationMessage` — user/assistant message with role +"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" content blocks\n- `MessageRole::User | Assistant`\n- `Content"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Block::Text | ToolUse | ToolResult`\n- `OutputContentBlock`"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" — Claude response content\n\n**Session & State:**\n- `Session` — conversation history, token counts"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", metadata\n- `PermissionPolicy` — authorization rules\n- `PermissionMode::ReadOnly | WorkspaceWrite | DangerFullAccess`\n- `ConfigLoader` — loads"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `.claude.json` hierarchy\n\n**Tool System:**\n- `ToolDefinition` — name, description, input schema"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `ToolSpec` — runtime spec with required permission\n- `GlobalToolRegistry` — dispatches to built"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-in + plugin tools\n- `RuntimeToolDefinition` — dynamic tool from M"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"CP/LSP/plugins\n\n**Runtime:**\n- `ConversationRuntime<C, T>` — orchest"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rates model loop\n- `AssistantEvent` — TextDelta | ToolUse | Usage | "}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PromptCache | MessageStop\n- `ApiRequest` — system prompt + messages\n- `T"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"urnSummary` — assistant messages, tool results, usage, prompt cache events\n\n**API"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":**\n- `MessageRequest` — request payload sent to Claude\n- `MessageResponse` — full"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" response from API\n- `StreamEvent` — single streaming event from SSE"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**Configuration:**\n- `RuntimeConfig` — merged configuration\n- `McpServerConfig` — stdio"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/websocket/managed-proxy/remote transport\n- `PluginManifest` — plugin definition with tools, commands, hooks, lifecycle\n- `PluginH"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ooks` — pre/post-tool-use, post-tool-use-failure\n\n---"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n### PROJECT STATS\n\n- **Total Rust LOC:** ~60K"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (across 71 .rs files)\n- **Largest Files"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":**\n  - `rusty-claude-cli/src/main.rs` — 7,749 LOC\n  - `runtime/src/mcp_stdio.rs` — 106"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"K LOC\n  - `runtime/src/conversation.rs` — 62K+ LOC\n  - `runtime/src/config.rs` — 52K LOC\n- **Python"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" LOC:** ~67 .py files\n- **Crates:** 9 in workspace"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Tool Specs:** 40+ defined\n- **Slash Commands:** 22+\n- **Test Scenarios:** 19 mock"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" parity harness scenarios\n- **Commits on main:** 292 (as of"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" PARITY.md checkpoint)\n- **Contributors:** 3 authors\n- **Binary"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Name:** `claw`\n- **Default Model:** `claude-opus-4-6`\n\n---\n\n### BEHAVIORAL HIGHLIGHTS"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n1. **Streaming Response Handling** — SSE stream parser feeds"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" incremental text/tool use events to REPL renderer\n2. **Permission-"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Aware Tool Dispatch** — each tool gated by required permission level; enforcement"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" checked before execution\n3. **Session Persistence** — conversations saved as JSONL;"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" resume capability loads previous context\n4. **Cost Tracking** — token usage accumulated per turn"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"; `/cost` slash command shows breakdown\n5. **MCP Integration** — full JSON"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-RPC lifecycle for discovering and executing MCP tools\n6. **Bash Validation** — read"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-only mode blocks destructive commands; path/sed/mode-specific warnings"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n7. **File Boundary Guards** — write operations confined to workspace; sym"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"link escape detection\n8. **Prompt Caching** — optional prompt caching with telemetry on"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" cache hits/misses\n9. **CLAUDE.md Memory** — project-level instructions loaded and"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" injected into system prompt\n10. **Plugin Hooks** — pre/post-tool-use hooks for logging, monitoring"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", validation\n\n---\n\n### PARITY STATUS SUMMARY\n\n**9-Lane Merge"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Checkpoint** (all on `main` as"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" of 2026-04-03):\n1. ✅ Bash"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" validation submodules\n2. ✅ CI sandbox probing"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" fix\n3. ✅ File-tool edge-case guards ("}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"binary detection, size limits, boundaries)\n4. ✅ Task"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Registry in-memory lifecycle\n5. ✅ Task wiring into tool"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" dispatch\n6. ✅ TeamRegistry + CronRegistry\n7. ✅ MCP lifecycle bridge\n8. ✅ LSP client"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" dispatch\n9. ✅ Permission enforcement layer\n\nThe Rust implementation is **functionally mature** with real"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tool execution, permissions, session management, MCP integration, and testing infrastructure in place. **Remaining work** is"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" primarily in external subprocess orchestration (tasks, cron, agent handoff),"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" full LSP server management, and deferred tool discovery."}    }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0  }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":4059,"cache_read_input_tokens":85524,"output_tokens":5839},"context_management":{"applied_edits":[]}          }
+
+event: message_stop
+data: {"type":"message_stop"          }
+

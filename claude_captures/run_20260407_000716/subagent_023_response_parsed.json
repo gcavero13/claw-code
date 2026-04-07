@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01JehQBEoewCYy88rjsw39xv",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/src/models.py\", \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 820,
+    "cache_read_input_tokens": 67997,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 820,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 95,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

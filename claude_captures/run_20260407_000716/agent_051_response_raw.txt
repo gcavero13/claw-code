@@ -1,0 +1,450 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01DUZWQny1CcS2qz5CJdViaG","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":8272,"cache_read_input_tokens":91160,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":8272},"output_tokens":8,"service_tier":"standard","inference_geo":"not_available"}}               }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}               }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"I"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" now have enough information to compile a comprehensive gap analysis. Let me organize what I've found."}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n\nFrom the captured Claude Code prompt and tools file, the"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" core built-in tools are:\n1. Agent (with subagent_type: general-purpose,"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" statusline-setup, Explore, Plan, claude-code-guide)\n2. AskUserQuestion\n3. Bash\n4. C"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"ronCreate (with `durable`"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" parameter)\n5. CronDelete\n6. CronList\n7. Edit\n8. EnterPlanMode\n9. EnterWorktree\n10. ExitPlanMode ("}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"with `allowedPrompts`)\n"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n\n11. ExitWorktree"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n12. Glob\n13. Grep\n14. ListMcpResourcesTool\n15. LSP\n16. NotebookEdit\n17. Read\n18. ReadMcpResourceTool\n19. RemoteTrigger\n20. Skill\n21. TaskOutput"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n22. TaskStop\n23. TodoWrite\n24. WebFetch\n25. WebSearch\n26. Write\n\nPlus MCP tools like Airtable, Gmail, and Google Calendar that are user-configured rather than built"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"-in.\n\nLooking at what claw-code actually implements, I can see it has bash, file reading"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":", file writing, and edit capabilities, but I need to map out which"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" of these core tools are missing or only partially implemented."}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" I"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"'m noticing some key gaps where Claude Code has"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" capabilities that claw-code is missing—EnterWorktree and ExitWorktree for workspace management, RemoteTrigger for"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" external invocation, a durable parameter on CronCreate to persist scheduled tasks, and actual Agent"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" subprocess execution rather than just metadata. There's also a naming convention difference where Claude Code uses capitalized tool names while c"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"law-code uses snake_case."}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n\nBeyond"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" the tools themselves, the captured system prompt contains extensive behavioral guidelines around"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" security policies, URL generation, system behavior rules, task execution principles, and tool usage preferences that would"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" need to be incorporated into claw-code's SystemPromptBuilder to match Claude Code's full instruction set."}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"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"}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0    }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"I now have a complete picture. Here's the gap analysis, prioritized by impact.\n\n---\n\n#"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Claw-Code vs Claude Code: Full Compatibility Gap Analysis\n\n## TIER 1 "}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"— Critical (breaks core agent loop or user experience"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":")\n\n### 1. Agent Tool: No Actual Sub-Agent Execution\n**Gap"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":":** Claw-code has `Agent` metadata/spec but no subprocess spawning. Claude Code launches"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" real child processes with their own model calls, tool access"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":", and context isolation.\n- Missing: `subagent_type` dispatch (general-purpose,"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Explore, Plan, claude-code-guide, statusline-setup)\n- Missing: `model` override enum (`sonnet`, `opus`, `haiku"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"`)\n- Missing: `isolation: \"worktree\"` — git worktree isolation per agent"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n- Missing: `run_in_background` with async notification\n- Missing: `SendMessage` continuation"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" to a previously spawned agent\n- **Impact:** Without this, the model"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" can't parallelize research, delegate exploration, or run background tasks —"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" a core Claude Code differentiator.\n\n### 2. System Prompt: Missing ~60% of"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Behavioral Instructions\n**Gap:** `prompt.rs` builds a system"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" prompt from CLAUDE.md and tool descriptions, but the captured prompt contains large sections"}         }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" that must be injected by the harness itself (not derived"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" from CLAUDE.md):\n- **Security policy** — authorized testing boundaries, dual-use tool"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" rules\n- **URL generation policy** — never guess URLs\n- **\"Executing actions with care\""}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"** — reversibility/blast-radius guidelines, risky action confirmation rules\n- **Git"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Safety Protocol** — detailed commit/PR creation workflows, HEREDOC formatting"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":", `Co-Authored-By` trailer, never amend,"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" never force-push\n- **Tool preference rules** — \"use Read not"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" cat\", \"use Grep not rg\"\n- **Output efficiency** — \"go straight to the point\", conc"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"ise output rules\n- **Tone and style** — no emojis, file_path:"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"line_number references, owner/repo#123 format\n- **Auto memory system** — full memory spec (types:"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" user/feedback/project/reference, save/recall rules, MEMORY."}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"md index, frontmatter format)\n- **Session-specific guidance** — when to use Agent vs Glob"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"/Grep, Skill invocation rules\n- **Impact:** The model"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" behaves completely differently without these instructions. This is the"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" #1 fidelity gap.\n\n### 3. Tool Name Mismatch\n**Gap:** Claude"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Code uses `Read`, `Edit`, `Write`, `Glob`, `Grep`, `Bash`. Claw-code uses `read_file`, `edit_file`, `write_file`, `glob_search`, `grep_search`, `"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"bash`.\n- The system prompt references tools by their Claude Code names (\""}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"use Read instead of cat\"). If claw-code sends these instructions but"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" the tools have different names, the model will fail to call them correctly.\n- **Impact:** Every tool call from the model could"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" fail or get confused.\n\n### 4. Bash Tool: Missing Parameters"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n**Gap:**\n- Missing `rerun` parameter (re-execute a prior command by"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" alias `bN`)\n- Missing `dangerouslyDisableSandbox` parameter\n- Missing `description` parameter (human"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"-readable description for permission UI)\n- **Impact:** `rerun` is used"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" frequently in Claude Code sessions; `description` drives the permission approval U"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"X.\n\n### 5. Read Tool: Schema Differences\n**Gap:**\n- Claude Code's Read accepts relative paths (preferred"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" for brevity); claw-code's `read_file` requires absolute paths\n- Missing `"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"pages` parameter for PDF reading\n- **Impact:** Model will generate"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" relative paths per system prompt instructions but tool will"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" reject them.\n\n---\n\n## TIER 2 — High (missing features users depend on)\n\n### 6. En"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"terWorktree / ExitWorktree Tools: Completely Missing\n**Gap:** These tools create isolated"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" git worktrees for branching work. Not in claw-code's tool list at all.\n- **Impact:** Users"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" can't say \"work in a worktree\" — a supported Claude Code workflow"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":".\n\n### 7. RemoteTrigger Tool: Completely Missing\n**Gap:** Claude Code has a `RemoteTrigger` tool that calls the"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" claude.ai remote-trigger API for scheduled"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" remote agents (CRUD + run). Not in claw-code."}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n- **Impact:** The `/schedule` skill and remote agent scheduling won"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"'t work.\n\n### 8. CronCreate: Missing `durable` Parameter\n**Gap:** Claude Code's CronCreate has `durable: true` to persist jobs to `.claude/scheduled_tasks."}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"json` across sessions. Claw-code's registry is in-memory only.\n- **Impact:**"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Scheduled tasks are lost on restart — users expect persistence when they ask for it.\n\n### 9. Skill Tool: Stub"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Only\n**Gap:** Claude Code's Skill tool loads and expands skill definitions"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" (commit, review-pr, pdf, etc.) into"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" full prompts at runtime. Claw-code has the spec but no skill"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" engine.\n- Available skills in captured prompt: `update-config`, `ke"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"ybindings-help`, `simplify`, `loop`, `schedule`, `claude"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"-api`\n- **Impact:** `/commit`, `/review-pr`, and other slash commands don"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"'t work.\n\n### 10. ExitPlanMode: Missing `allowedPrompts` Parameter\n**Gap:** Claude Code's ExitPlanMode includes an `allowedPrompts` array describing"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Bash permissions needed to implement the plan. Claw-code's version is minimal.\n- **Impact:**"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Plan-then-execute workflow can't pre-authorize bash"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" commands.\n\n---\n\n## TIER 3 — Medium (behavioral fidelity and polish)\n\n### 11. Edit Tool: Missing `replace"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"_all` parameter\n**Gap:** Claude Code's Edit has `replace_all: boolean` for renaming across a"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" file. Need to verify claw-code's `edit_file` supports this.\n- **Impact:** Rename refactors"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" require multiple edit calls instead of one.\n\n### 12. Grep Tool: Missing Advanced"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Parameters\n**Gap:** Claude Code's Grep has: `head_limit` (default 250"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"), `offset`, `multiline`, `type`, `output_mode` enum, context flags"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" (`-A`, `-B`, `-C`, `-n`, `-i`). Verify"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" claw-code's `grep_search` matches this full schema.\n- **Impact:** Model generates parameters"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" the tool doesn't accept.\n\n### 13. AskUserQuestion: Missing `annotations`, `metadata`, `preview"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"` Fields\n**Gap:** Claude Code's AskUserQuestion supports preview content for side"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"-by-side comparison, metadata for analytics tracking, and per-question annotations. Claw-code may not have these.\n- **Impact"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":":** Rich question UX (code previews, option compar"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"isons) won't render.\n\n### 14. Billing Header Not Sent\n**Gap:** Claude Code sends `x-anthropic-billing-"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"header: cc_version=...; cc"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"_entrypoint=...; cch=...` as a system"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" block. Claw-code may not send this.\n- **Impact:** Anthropic billing/analytics won't attribute usage"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" correctly.\n\n### 15. System Prompt Caching\n**Gap:** Claude Code uses `cache={'type': 'ephemeral', 'ttl': '"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"1h'}` on system blocks. Claw-code has a `prompt_cache."}           }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"rs` module — need to verify it sets ephemeral cache breakpoints on"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" the correct system blocks.\n- **Impact:** Without proper cache breakpoints, every turn"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" re-processes the full system prompt, increasing cost and latency.\n\n### 16. Todo"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"Write: `activeForm` Field\n**Gap:** Claude Code's TodoWrite requires both `content"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"` and `activeForm` (present continuous tense) per task. Verify claw-code's spec"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" matches.\n- **Impact:** Status line won't show \"Running tests...\" style"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" progress.\n\n---\n\n## TIER 4 — Low (nice-to-have, edge cases)\n\n### 17. NotebookEdit: `cell_id` Field\n**Gap:**"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Claude Code's NotebookEdit uses `cell_id` (string) instead of `cell_number` (integer). Verify claw-code matches."}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n\n### 18. Agent `subagent_type` Enum Values\n**Gap:** Specific agent types (`status"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"line-setup`, `claude-code-guide`) are Claude Code-specific and may need custom"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" implementations or stubs.\n\n### 19. MCP Tools Are User-Configured, Not Built-In\n**Gap:** The"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Airtable, Gmail, Google Calendar tools in the capture are MCP-provided"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":". Claw-code already has MCP bridge support — these should work if"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" MCP servers are configured. No code gap, just"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" configuration parity.\n\n### 20. Environment Block Injection\n**Gap:** Claude Code injects platform, shell, OS version, model ID"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":", knowledge cutoff, git status, and current date into the system prompt. Verify"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" claw-code's `SystemPromptBuilder` includes all of these fields with the"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" same format.\n\n---\n\n## Summary: Effort Estimate by Tier\n\n| Tier | Gaps"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" | Relative Effort |\n|------|------|----------------|\n| **T1 — Critical** | 5 gaps"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" (Agent execution, system prompt, tool names, Bash params, Read paths) | **Large** — weeks"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" of work, especially agent subprocess and system prompt |\n| **T2 — High** | 5 gaps (Worktree, RemoteTrigger, d"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"urable cron, Skills, plan permissions) | **Medium** — new tool implementations |"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n| **T3 — Medium** | 6 gaps (schema mismatches, billing, caching, UI"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" fields) | **Small-Medium** — parameter additions and validation |\n| **T4 —"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Low** | 4 gaps (edge cases, config parity) | **Small** — incremental fixes |\n\n## Recommended Attack"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Order\n\n1. **Rename tools** to match Claude Code names (Read/Edit/Write/Glob/Grep/Bash)"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" — immediate fidelity win, touches `mvp_tool"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"_specs()` and dispatch\n2. **Port the full system prompt** from"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" the capture into `SystemPromptBuilder` — biggest behavioral impact\n3. **Implement"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" Agent subprocess execution** — the hardest piece, but the most impactful feature"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n4. **Add missing Bash/Read/Grep parameters** — straightforward schema extensions\n5. **Implement EnterWorktree/Exit"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"Worktree** — git worktree management\n6. **Build the Skill engine** — load and expand skill"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" definitions at runtime\n7. **Add RemoteTrigger** — HTTP client to claude.ai trigger"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" API\n8. **Polish** — durable cron, preview fields, billing header, cache breakpoints"}     }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1     }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":8272,"cache_read_input_tokens":91160,"output_tokens":3579},"context_management":{"applied_edits":[]}    }
+
+event: message_stop
+data: {"type":"message_stop"      }
+

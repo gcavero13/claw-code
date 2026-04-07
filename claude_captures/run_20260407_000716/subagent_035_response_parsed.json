@@ -1,0 +1,24 @@
+{
+  "text": "Now let me check key configuration files and examine what's in tests for Rust:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_015F3Rosbdvm89ichvmB4KDr",
+      "name": "Bash",
+      "input": "{\"command\": \"find /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates -name \\\"tests\\\" -type d -exec find {} -name \\\"*.rs\\\" \\\\;\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 4567,
+    "cache_read_input_tokens": 80349,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 4567,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 114,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

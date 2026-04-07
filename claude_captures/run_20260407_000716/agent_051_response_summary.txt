@@ -1,0 +1,56 @@
+======================================================================
+AGENT_051 — RESPONSE
+======================================================================
+
+SSE events: 150
+Model: claude-opus-4-6
+Message ID: msg_01DUZWQny1CcS2qz5CJdViaG
+
+Thinking (1775 chars):
+  I now have enough information to compile a comprehensive gap analysis. Let me organize what I've found.
+
+From the captured Claude Code prompt and tools file, the core built-in tools are:
+1. Agent (with subagent_type: general-purpose, statusline-setup, Explore, Plan, claude-code-guide)
+2. AskUserQuestion
+3. Bash
+4. CronCreate (with `durable` parameter)
+5. CronDelete
+6. CronList
+7. Edit
+8. EnterPlanMode
+9. EnterWorktree
+10. ExitPlanMode (with `allowedPrompts`)
+
+
+11. ExitWorktree
+12. Glob
+13. Grep
+...
+
+Text output (9116 chars):
+  I now have a complete picture. Here's the gap analysis, prioritized by impact.
+
+---
+
+# Claw-Code vs Claude Code: Full Compatibility Gap Analysis
+
+## TIER 1 — Critical (breaks core agent loop or user experience)
+
+### 1. Agent Tool: No Actual Sub-Agent Execution
+**Gap:** Claw-code has `Agent` metadata/spec but no subprocess spawning. Claude Code launches real child processes with their own model calls, tool access, and context isolation.
+- Missing: `subagent_type` dispatch (general-purpose, Explore, Plan, claude-code-guide, statusline-setup)
+- Missing: `model` override enum (`sonnet`, `opus`, `haiku`)
+- Missing: `isolation: "worktree"` — git worktree isolation per agent
+- Missing: `run_in_background` with async notification
+- Missing: `SendMessage` continuation to a previously spawned agent
+- **Impact:** Without this, the model can't parallelize research, delegate exploration, or run background tasks — a core Claude Code differentiator.
+
+### 2. System Prompt: Missing ~60% of Behavioral I...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 8272
+  cache_read_input_tokens: 91160
+  output_tokens: 3579
