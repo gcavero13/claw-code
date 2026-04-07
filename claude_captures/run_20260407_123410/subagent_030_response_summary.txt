@@ -1,0 +1,33 @@
+======================================================================
+SUBAGENT_030 — RESPONSE
+======================================================================
+
+SSE events: 86
+Model: claude-opus-4-6
+Message ID: msg_01Bt46W9NmwMPK55vGaPszw5
+
+Text output (7820 chars):
+  Now let me verify whether `compress_summary` is referenced outside `summary_compression.rs`.
+
+The results show `compress_summary` only appears in `summary_compression.rs` -- the definition at line 37, the internal call at line 92, and test uses at lines 236, 244, 269. No external references.
+
+Here is the complete analysis:
+
+---
+
+## ZERO external references (only defined + used within own file, including tests in that file)
+
+These public functions have **no callers outside their defining file** -- all references are the definition itself, internal calls within the same file, and tests within the same file:
+
+1. **`validate_read_only`** (bash_validation.rs) -- called only internally by `validate_mode` in the same file, plus tests in that file
+2. **`check_destructive`** (bash_validation.rs) -- called only by `validate_command` in the same file, plus tests
+3. **`validate_mode`** (bash_validation.rs) -- called only by `validate_command` in the same file, plus tests
+4. **`validate_sed`** (bas...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 183
+  cache_read_input_tokens: 60883
+  output_tokens: 2505

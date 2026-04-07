@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01SKEX7KCXtUZmZiwWtsvrL6",
+      "name": "Grep",
+      "input": "{\"pattern\": \"upstream_proxy_ws_url|no_proxy_list|inherited_upstream_proxy_env|prepend_bullets|code_challenge_s256|parse_oauth_callback_query|credentials_path|detect_container_environment\", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust\", \"output_mode\": \"content\", \"glob\": \"*.rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 591,
+    "cache_read_input_tokens": 73298,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 591
+    },
+    "output_tokens": 177,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,31 @@
+======================================================================
+AGENT_022 — RESPONSE
+======================================================================
+
+SSE events: 488
+Model: claude-opus-4-6
+Message ID: msg_01DznVcRKcVdhJ34AHg8AoLJ
+
+Thinking (2382 chars):
+  Now I have:
+1. A complete list of all 429 pub fns in the runtime crate
+2. A comprehensive analysis of which functions are consumed externally
+
+Let me cross-reference these to find pub fns that are never called from outside their own module. I need to check which functions from the list are NOT mentioned in any external consumer.
+
+Let me analyze module by module to find functions that appear to be unused externally. I'll need to be careful - some functions are methods on structs that are used ext...
+
+Text output (84 chars):
+  Now let me cross-reference to find specific functions that appear unused externally.
+
+Tool calls (1):
+  - Agent (id=toolu_01B1xQX9oa3Jp8aWaoNqeoVv)
+    input: {"subagent_type": "general-purpose", "description": "Check unused pub fn candidates", "prompt": "I'm looking for public functions in the runtime crate that are never called from outside their own modu...
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 3291
+  cache_creation_input_tokens: 10290
+  cache_read_input_tokens: 55211
+  output_tokens: 1926

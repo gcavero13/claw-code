@@ -1,0 +1,36 @@
+======================================================================
+SUBAGENT_020 — RESPONSE
+======================================================================
+
+SSE events: 229
+Model: claude-opus-4-6
+Message ID: msg_01Mbh4AHRZ2FdjkpYkDegz3y
+
+Text output (22187 chars):
+  Here is the complete list of every `pub fn` and `pub async fn` found in the runtime crate's `src/` directory, organized by file. There are **429 public functions** total across **30 .rs files**.
+
+---
+
+### mcp.rs (6 functions)
+- **Line 7:** `pub fn normalize_name_for_mcp(name: &str) -> String {`
+- **Line 26:** `pub fn mcp_tool_prefix(server_name: &str) -> String {`
+- **Line 31:** `pub fn mcp_tool_name(server_name: &str, tool_name: &str) -> String {`
+- **Line 40:** `pub fn unwrap_ccr_proxy_url(url: &str) -> String {`
+- **Line 65:** `pub fn mcp_server_signature(config: &McpServerConfig) -> Option<String> {`
+- **Line 84:** `pub fn scoped_mcp_config_hash(config: &ScopedMcpServerConfig) -> String {`
+
+### bootstrap.rs (3 functions)
+- **Line 24:** `pub fn claude_code_default() -> Self {`
+- **Line 42:** `pub fn from_phases(phases: Vec<BootstrapPhase>) -> Self {`
+- **Line 53:** `pub fn phases(&self) -> &[BootstrapPhase] {`
+
+### task_packet.rs (5 functions)
+- **Line 23:** `pub fn new(errors: Vec<...
+
+Stop reason: max_tokens
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 224
+  cache_read_input_tokens: 61165
+  output_tokens: 8000

@@ -1,0 +1,687 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01Mbh4AHRZ2FdjkpYkDegz3y","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":224,"cache_read_input_tokens":61165,"cache_creation":{"ephemeral_5m_input_tokens":224,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}             }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""} }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Here"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" is the complete list of every `pub fn` and `pub async fn` found in the runtime"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" crate's `src/` directory, organized by file. There are **429 public functions** total"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" across **30 .rs files**.\n\n---\n\n### mcp.rs (6"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" functions)\n- **Line 7:** `pub fn normalize_name_"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"for_mcp(name: &str) -> String {`\n- **Line 26:** `pub fn mcp_tool_prefix"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(server_name: &str) -> String {`\n- **Line 31:** `pub fn mcp_tool_name(server_name: &str, tool_name: &str) ->"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" String {`\n- **Line 40:** `pub fn unwrap_ccr_proxy_url(url: &str) ->"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" String {`\n- **Line 65:** `pub fn mcp_server_signature(config: &McpServerConfig) -> Option<String> {`\n- **"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Line 84:** `pub fn scoped_mcp_config_hash(config: &ScopedMcpServerConfig) -> String {`\n\n###"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" bootstrap.rs (3 functions)\n- **Line 24:** `pub fn claude_code_default() -> Self"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" {`\n- **Line 42:** `pub fn from_phases(phases: Vec<BootstrapPhase>) -> Self {`\n- **Line 53:** `pub fn phases"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self) -> &[BootstrapPhase] {`\n\n### task_packet.rs (5 functions)\n- **Line "}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"23:** `pub fn new(errors: Vec<String>) -> Self {`\n- **Line 28:** `pub fn errors(&self) -> &[String]"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" {`\n- **Line 46:** `pub fn packet(&self) -> &TaskPacket {`\n- **Line 51:** `pub fn into_inner(self) -> TaskPacket {"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`\n- **Line 56:** `pub fn validate_packet(packet: TaskPacket) -> Result<ValidatedPacket, Task"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PacketValidationError> {`\n\n### mcp_tool_bridge.rs (13 functions)\n- **Line 73"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn new() -> Self {`\n- **Line 77:** `pub fn set_manager(`\n- **Line 84:** `pub fn register"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_server(`\n- **Line 106:** `pub fn get_server(&self, server_name: &str) -> Option<McpServerState"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"> {`\n- **Line 111:** `pub fn list_servers(&self) -> Vec<McpServerState> {`\n- **Line 116:** `pub fn list_resources"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self, server_name: &str) -> Result<Vec<McpResourceInfo>, String> {`\n- **Line 132:** `pub fn read_resource(&self, server_name: &str"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", uri: &str) -> Result<McpResourceInfo, String> {`\n- **Line 153:** `pub fn list_tools(&self, server_name: &str) -> Result<Vec<Mc"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"pToolInfo>, String> {`\n- **Line 232:** `pub fn call_tool(`\n- **Line 273:** `pub fn set_auth_status(`\n- **Line 287"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn disconnect(&self, server_name: &str) -> Option<McpServerState> {`\n- **Line 294:** `pub fn len"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self) -> usize {`\n- **Line 300:** `pub fn is_empty(&self) -> bool {`\n\n### remote.rs (14 functions)\n- **Line "}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"68:** `pub fn from_env() -> Self {`\n- **Line 73:** `pub fn from_env_map(env_map: &BTreeMap<String, String>) ->"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Self {`\n- **Line 91:** `pub fn from_env() -> Self {`\n- **Line 96:** `pub fn from_env_map(env_map: &BTreeMap<String, String>) -> Self {`\n- **"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Line 123:** `pub fn should_enable(&self) -> bool {`\n- **Line 131:** `pub fn ws"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_url(&self) -> String {`\n- **Line 136:** `pub fn state_for_port(&self, port: u16)"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" -> UpstreamProxyState {`\n- **Line 151:** `pub fn disabled() -> Self {`\n- **Line"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 161:** `pub fn subprocess_env(&self) -> BTreeMap<String, String> {`\n- **Line 185:** `pub fn read_token"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(path: &Path) -> io::Result<Option<String>> {`\n- **Line 201:** `pub fn upstream"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_proxy_ws_url(base_url: &str) -> String {`\n- **Line 214:** `pub fn no_proxy_list"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"() -> String {`\n- **Line 221:** `pub fn inherited_upstream_proxy_env(`\n\n### sandbox"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs (7 functions)\n- **Line 18:** `pub fn as_str(self) -> &'static str {`"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 87:** `pub fn resolve_request(`\n- **Line 109:** `pub fn detect_container_environment"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"() -> ContainerEnvironment {`\n- **Line 120:** `pub fn detect_container_environment_from(`\n- **Line 156"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn resolve_sandbox_status(config: &SandboxConfig, cwd: &Path) -> Sand"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"boxStatus {`\n- **Line 162:** `pub fn resolve_sandbox_status_for_request(request"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": &SandboxRequest, cwd: &Path) -> SandboxStatus {`\n- **Line 211:** `pub fn build_linux_sandbox_command"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(`\n\n### summary_compression.rs (2 functions)\n- **Line 37:** `pub fn compress"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_summary(`\n- **Line 91:** `pub fn compress_summary_text(summary: &str) -> String {`\n\n### usage."}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rs (15 functions)\n- **Line 49:** `pub fn total_cost_usd(self"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":") -> f64 {`\n- **Line 59:** `pub fn pricing_for_model(model: &str) -> Option<ModelPricing> {`\n-"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Line 85:** `pub fn total_tokens(self) -> u32 {`\n- **Line 93:** `pub fn estimate_cost"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_usd(self) -> UsageCostEstimate {`\n- **Line 98:** `pub fn estimate_cost_"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"usd_with_pricing(self, pricing: ModelPricing) -> UsageCostEstimate {`\n- **Line 114:** `pub fn summary_lines"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(self, label: &str) -> Vec<String> {`\n- **Line 119:** `pub fn summary_lines_for_model"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(self, label: &str, model: Option<&str>) -> Vec<String> {`\n- **Line 163:** `pub fn format"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_usd(amount: f64) -> String {`\n- **Line 177:** `pub fn new() -> Self {`\n- **Line 182:** `pub fn from"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_session(session: &Session) -> Self {`\n- **Line 192:** `pub fn record(&mut self, usage: Token"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Usage) {`\n- **Line 202:** `pub fn current_turn_usage(&self) -> TokenUsage {`\n- **Line 207:** `pub fn cum"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ulative_usage(&self) -> TokenUsage {`\n- **Line 212:** `pub fn turns(&self) -> u32 {`\n\n### bash"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_validation.rs (7 functions)\n- **Line 103:** `pub fn validate_read_only(command"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": &str, mode: PermissionMode) -> ValidationResult {`\n- **Line 241:** `pub fn check_destruct"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ive(command: &str) -> ValidationResult {`\n- **Line 284:** `pub fn validate_mode(command: &str, mode: PermissionMode) -> ValidationResult"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" {`\n- **Line 336:** `pub fn validate_sed(command: &str, mode: PermissionMode) -> ValidationResult {`\n- **Line 360:** `pub fn validate_paths"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(command: &str, workspace: &Path) -> ValidationResult {`\n- **Line 533:** `pub fn classify_command(command: &str) -> CommandIntent {`\n- **Line 594"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn validate_command(command: &str, mode: PermissionMode, workspace: &Path) -> ValidationResult {`\n\n### mcp_client"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs (4 functions)\n- **Line 62:** `pub fn from_scoped_config(server_name: &str, config: &ScopedMcpServer"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Config) -> Self {`\n- **Line 75:** `pub fn from_config(config: &McpServerConfig) -> Self {`\n- **Line 114:** `pub fn resolved_tool"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_call_timeout_ms(&self) -> u64 {`\n- **Line 122:** `pub fn from_oauth"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(oauth: Option<McpOAuthConfig>) -> Self {`\n\n### plugin_lifecycle.rs (4"}   }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" functions)\n- **Line 64:** `pub fn from_servers(servers: &[ServerHealth]) -> Self {`\n- **"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Line 125:** `pub fn new(plugin_name: impl Into<String>, servers: Vec<ServerHealth>) -> Self {`\n- **Line 136"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn degraded_mode(&self, discovery: &DiscoveryResult) -> Option"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<DegradedMode> {`\n- **Line 178:** `pub fn new(`\n\n### prompt.rs (12"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" functions)\n- **Line 63:** `pub fn discover(`\n- **Line 78:** `pub fn discover_with_git(`\n- **Line 103"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn new() -> Self {`\n- **Line 108:** `pub fn with_output_style"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(mut self, name: impl Into<String>, prompt: impl Into<String>) -> Self {`\n- **Line 115:** `pub fn with_os("}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"mut self, os_name: impl Into<String>, os_version: impl Into<String>) -> Self {`\n- **Line 122:** `pub fn with_project_context(mut self, project_context"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": ProjectContext) -> Self {`\n- **Line 128:** `pub fn with_runtime_config(mut self, config: RuntimeConfig) -> Self {`\n- **Line 134:** `pub fn append"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_section(mut self, section: impl Into<String>) -> Self {`\n- **Line 140:** `pub fn build(&self) -> Vec<String> {`\n- **"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Line 165:** `pub fn render(&self) -> String {`\n- **Line 195:** `pub fn prepend_bullets(items"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": Vec<String>) -> Vec<String> {`\n- **Line 412:** `pub fn load_system_prompt(`\n\n### recovery"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_recipes.rs (8 functions)\n- **Line 30:** `pub fn all() -> &"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"'static [FailureScenario] {`\n- **Line 45:** `pub fn from_worker_failure"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_kind(kind: WorkerFailureKind) -> Self {`\n- **Line 148:** `pub fn new() -> Self {`\n- **Line 154"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn with_fail_at_step(mut self, index: usize) -> Self {`\n- **Line 161:** `pub fn events(&self) -> &[Rec"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"overyEvent] {`\n- **Line 167:** `pub fn attempt_count(&self, scenario: &FailureScenario) -> u32 {`"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 174:** `pub fn recipe_for(scenario: &FailureScenario) -> Recov"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"eryRecipe {`\n- **Line 231:** `pub fn attempt_recovery(scenario: &FailureScenario, ctx: &mut"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" RecoveryContext) -> RecoveryResult {`\n\n### permissions.rs (10 functions)\n- **Line 19:** `pub fn as_str(self) -> &'"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"static str {`\n- **Line 47:** `pub fn new(`\n- **Line 58:** `pub fn override_decision(&"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"self) -> Option<PermissionOverride> {`\n- **Line 63:** `pub fn override_reason(&self) -> Option<&"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"str> {`\n- **Line 109:** `pub fn new(active_mode: PermissionMode) -> Self {`\n- **Line 120"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn with_tool_requirement(`\n- **Line 131:** `pub fn with_permission_rules(mut self, config: &"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"RuntimePermissionRuleConfig) -> Self {`\n- **Line 151:** `pub fn active_mode(&self) -> PermissionMode {`\n- **Line"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 156:** `pub fn required_mode_for(&self, tool_name: &str) -> PermissionMode {`\n- **Line 164:** `pub fn authorize"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(`\n- **Line 175:** `pub fn authorize_with_context(`\n\n### stale_branch"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs (2 functions)\n- **Line 52:** `pub fn check_freshness(branch: &str, main_ref"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": &str) -> BranchFreshness {`\n- **Line 56:** `pub fn apply_policy(freshness: &BranchFreshness, policy"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": StaleBranchPolicy) -> StaleBranchAction {`\n\n### policy_engine.rs (8 functions)\n- **Line 17"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn new(`\n- **Line 32:** `pub fn matches(&self, context: &LaneContext) -> bool {`\n- **Line 53"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn matches(&self, context: &LaneContext) -> bool {`\n- **Line 147:** `pub fn new(`\n- **Line 170:** `pub fn reconc"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"iled(lane_id: impl Into<String>) -> Self {`\n- **Line"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 191:** `pub fn new(mut rules: Vec<PolicyRule>) -> Self {`\n- **Line 197:** `pub fn rules(&self) -> &[PolicyRule"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"] {`\n- **Line 202:** `pub fn evaluate(&self, context: &LaneContext) -> Vec<PolicyAction> {`\n- **Line 208:** `pub fn evaluate("}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"engine: &PolicyEngine, context: &LaneContext) -> Vec<PolicyAction> {`\n\n### task_registry.rs (13 functions)\n- **Line "}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"74:** `pub fn new() -> Self {`\n- **Line 78:** `pub fn create(&self, prompt: &str, description"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": Option<&str>) -> Task {`\n- **Line 86:** `pub fn create_from_packet(`\n- **Line 124:** `pub fn get"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self, task_id: &str) -> Option<Task> {`\n- **Line 129:** `pub fn list(&self, status_filter: Option<Task"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Status>) -> Vec<Task> {`\n- **Line 139:** `pub fn stop(&self, task_id: &str) -> Result<Task, String> {`\n- **Line "}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"161:** `pub fn update(&self, task_id: &str, message: &str) -> Result<Task, String> {`\n- **Line 177:** `pub fn output"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self, task_id: &str) -> Result<String, String> {`\n- **Line 186:** `pub fn append_output(&self, task_id: &str, output: &str)"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" -> Result<(), String> {`\n- **Line 197:** `pub fn set_status(&self, task_id: &str, status: TaskStatus) -> Result<(), String> {`\n- **Line 208"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn assign_team(&self, task_id: &str, team_id: &str) -> Result<(), String> {`\n- **Line 219:** `pub fn remove(&"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"self, task_id: &str) -> Option<Task> {`\n- **Line 225:** `pub fn len(&self) -> usize {`\n- **Line 231:** `pub fn is_empty(&"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"self) -> bool {`\n\n### session.rs (21 functions)\n- **Line 134:** `pub fn new() -> Self {`\n- **Line 149"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn with_persistence_path(mut self, path: impl Into<PathBuf>) -> Self {`\n- **Line 155"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn persistence_path(&self) -> Option<&Path> {`\n- **Line 159:** `pub fn save_to_path"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self, path: impl AsRef<Path>) -> Result<(), SessionError> {`\n- **Line 168:** `pub fn load_from_path(path: impl AsRef<Path>)"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" -> Result<Self, SessionError> {`\n- **Line 184:** `pub fn push_message(&mut self, message: ConversationMessage) -> Result<(), SessionError> {`\n- **"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Line 200:** `pub fn push_user_text(&mut self, text: impl Into<String>) -> Result<(), SessionError> {`\n- **Line 204"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn record_compaction(&mut self, summary: impl Into<String>, removed_message"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_count: usize) {`\n- **Line 215:** `pub fn fork(&self, branch_name: Option"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<String>) -> Self {`\n- **Line 232:** `pub fn to_json(&self) -> Result<JsonValue"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", SessionError> {`\n- **Line 268:** `pub fn from_json(value: &JsonValue) -> Result<Self, SessionError> {`\n- **Line 468:** `pub fn user"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_text(text: impl Into<String>) -> Self {`\n- **Line 477:** `pub fn assistant("}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"blocks: Vec<ContentBlock>) -> Self {`\n- **Line 486:** `pub fn assistant_with_usage(blocks: Vec<ContentBlock>, usage: Option"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<TokenUsage>) -> Self {`\n- **Line 495:** `pub fn tool_result(`\n- **Line 514:** `pub fn to"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_json(&self) -> JsonValue {`\n- **Line 575:** `pub fn to_json(&self) -> JsonValue {`\n- **Line 650:** `pub fn to_json(&self) -> Result"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<JsonValue, SessionError> {`\n- **Line 670:** `pub fn to_jsonl_record(&self) -> Result<JsonValue, SessionError> {`\n- **Line 708"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn to_json(&self) -> JsonValue {`\n\n### session_control.rs (19 functions)\n- **Line 79"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn sessions_dir() -> Result<PathBuf, SessionControlError> {`\n- **Line 83:** `pub fn managed"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_sessions_dir_for(`\n- **Line 91:** `pub fn create_managed_session_handle"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(`\n- **Line 97:** `pub fn create_managed_session_handle_for(`\n- **Line 107:** `pub fn resolve_session_reference("} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"reference: &str) -> Result<SessionHandle, SessionControlError> {`\n- **Line 111:** `pub fn resolve_session_reference_for(`\n- **Line 147"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn resolve_managed_session_path(session_id: &str) -> Result<PathBuf, SessionControlError> {`\n- **Line 151"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn resolve_managed_session_path_for(`\n- **Line 168:** `pub fn is_managed_session_file(path: &Path) -> bool {`\n- **Line 176"}            }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn list_managed_sessions() -> Result<Vec<ManagedSessionSummary>, SessionControlError> {`\n- **Line 180:** `pub fn list_managed_sessions_for(`\n- **Line 243"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn latest_managed_session() -> Result<ManagedSessionSummary, SessionControlError> {`\n- **Line 247:** `pub fn latest_managed_session_for(`"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 256:** `pub fn load_managed_session(reference: &str) -> Result<LoadedManagedSession, SessionControlError> {`\n- **Line 260"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn load_managed_session_for(`\n- **Line 275:** `pub fn fork_managed_session(`\n- **Line 282:** `pub fn fork_managed_session_for(`\n- **Line 305"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn is_session_reference_alias(reference: &str) -> bool {`\n\n### lane"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_events.rs (10 functions)\n- **Line 95:** `pub fn new(`\n- **Line 111:** `pub fn started"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(emitted_at: impl Into<String>) -> Self {`\n- **Line 116:** `pub fn finished(emitted_at: impl Into"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<String>, detail: Option<String>) -> Self {`\n- **Line 122:** `pub fn blocked(emitted_at: impl Into"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<String>, blocker: &LaneEventBlocker) -> Self {`\n- **Line 129"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn failed(emitted_at: impl Into<String>, blocker: &LaneEventBlocker) -> Self {`\n- **Line 136:** `pub fn with_failure_class"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(mut self, failure_class: LaneFailureClass) -> Self {`\n- **Line 142:** `pub fn with_detail(mut self, detail: impl Into<String>) -> Self {`\n- **Line 148:** `pub"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" fn with_optional_detail(mut self, detail: Option<String>) -> Self {`\n- **Line 154:** `pub fn with_data(mut self, data: Value) -> Self {`"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n### worker_boot.rs (11 functions)\n- **Line 150:** `pub fn new() -> Self {`\n- **Line 155"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn create(`\n- **Line 196:** `pub fn get(&self, worker_id: &str) -> Option<Worker"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"> {`\n- **Line 201:** `pub fn observe(&self, worker_id: &str, screen_text: &str) -> Result"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<Worker, String> {`\n- **Line 336:** `pub fn resolve_trust(&self, worker_id: &str) -> Result"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<Worker, String> {`\n- **Line 366:** `pub fn send_prompt(&self, worker_id: &str, prompt: Option"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<&str>) -> Result<Worker, String> {`\n- **Line 406:** `pub fn await_ready(&self, worker_id: &str) -> Result<WorkerRead"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ySnapshot, String> {`\n- **Line 421:** `pub fn restart(&self, worker_id: &str) -> Result<Worker, String> {`\n- **Line 444"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn terminate(&self, worker_id: &str) -> Result<Worker, String> {`\n- **Line 464:** `pub fn observe_completion(`"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n### lsp_client.rs (12 functions)\n- **Line 22:** `pub fn from_str(s"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": &str) -> Option<Self> {`\n- **Line 120:** `pub fn new() -> Self {`\n- **Line 124:** `pub fn register"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(`\n- **Line 144:** `pub fn get(&self, language: &str) -> Option<LspServerState> {`\n- **Line 150"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn find_server_for_path(&self, path: &str) ->"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Option<LspServerState> {`\n- **Line 174:** `pub fn list_servers(&self) -> Vec<LspServerState> {`\n- **Line 180:** `pub fn add_diagnost"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ics(`\n- **Line 195:** `pub fn get_diagnostics(&self, path: &str) -> Vec<LspDiagnostic> {`\n- **Line 207:** `pub fn clear"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_diagnostics(&self, language: &str) -> Result<(), String> {`\n- **Line 218:** `pub fn disconnect(&self, language: &str) -> Option<LspServerState> {`"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 224:** `pub fn len(&self) -> usize {`\n- **Line 230:** `pub fn is_empty(&self) -> bool {`\n- **Line 235:** `pub fn dispatch(`"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n### team_cron_registry.rs (16 functions)\n- **Line 62"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn new() -> Self {`\n- **Line 66:** `pub fn create(&self, name: &str, task_ids: Vec<String>) -> Team"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" {`\n- **Line 83:** `pub fn get(&self, team_id: &str) -> Option<Team> {`\n- **Line 88:** `pub fn list(&self) -> Vec<Team> {`\n- **Line 93"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn delete(&self, team_id: &str) -> Result<Team, String> {`\n- **Line 104:** `pub fn remove(&self, team_id: &str) -> Option"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<Team> {`\n- **Line 110:** `pub fn len(&self) -> usize {`\n- **Line 116:** `pub fn is_empty(&self) -> bool {`\n- **Line 147"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn new() -> Self {`\n- **Line 151:** `pub fn create(&self, schedule: &str, prompt: &str,"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" description: Option<&str>) -> CronEntry {`\n- **Line 171:** `pub fn get(&self, cron_id: &str) -> Option<CronEntry> {`"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 176:** `pub fn list(&self, enabled_only: bool) -> Vec<CronEntry> {`\n- **Line 186:** `pub fn delete(&self,"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" cron_id: &str) -> Result<CronEntry, String> {`\n- **Line 195:** `pub fn disable(&self, cron_id: &str) -> Result<(), String> {`\n- **Line"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 207:** `pub fn record_run(&self, cron_id: &str) -> Result<(), String> {`\n- **Line 220"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn len(&self) -> usize {`\n- **Line 226:** `pub fn is_empty(&self) -> bool {`\n\n### permission_enforcer.rs (5"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" functions)\n- **Line 28:** `pub fn new(policy: PermissionPolicy) -> Self {`\n- **Line 34:** `pub fn check"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self, tool_name: &str, input: &str) -> EnforcementResult {`\n- **Line 59:** `pub fn is_allowed(&self, tool_name"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": &str, input: &str) -> bool {`\n- **Line 64:** `pub fn active_mode(&self) -> PermissionMode {`\n- **Line 69:** `pub fn check_file_write"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self, path: &str, workspace_root: &str) -> EnforcementResult {`\n- **Line 106:** `pub fn check_bash(&"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"self, command: &str) -> EnforcementResult {`\n\n### trust_resolver.rs (11 functions)\n- **Line 33:** `pub fn new()"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" -> Self {`\n- **Line 38:** `pub fn with_allowlisted(mut self, path: impl Into<PathBuf>) -> Self {`"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 44:** `pub fn with_denied(mut self, path: impl Into<PathBuf>) -> Self {`\n- **Line 61:** `pub fn policy(&self) -> Option<T"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rustPolicy> {`\n- **Line 69:** `pub fn events(&self) -> &[TrustEvent] {`\n- **Line 84:** `pub fn new(config"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": TrustConfig) -> Self {`\n- **Line 89:** `pub fn resolve(&self, cwd: &str, screen_text: &str) -> T"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rustDecision {`\n- **Line 138:** `pub fn trusts(&self, cwd: &str) -> bool {`\n- **Line 153:** `pub fn detect"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_trust_prompt(screen_text: &str) -> bool {`\n- **Line 161:** `pub fn path_matches_"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"trusted_root(cwd: &str, trusted_root: &str) -> bool {`\n\n### json"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs (8 functions)\n- **Line 21:** `pub fn new(message: impl Into<String>) -> Self {`\n- **Line 38"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn render(&self) -> String {`\n- **Line 63:** `pub fn parse(source: &str) -> Result<Self, Json"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Error> {`\n- **Line 75:** `pub fn as_object(&self) -> Option<&BTreeMap<String, JsonValue>> {`\n- **Line"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 83:** `pub fn as_array(&self) -> Option<&[JsonValue]> {`\n- **Line 91:** `pub fn as_str(&self) -> Option<&str> {`\n-"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Line 99:** `pub fn as_bool(&self) -> Option<bool> {`\n- **Line 107:** `pub fn as_i64(&self) -> Option<i64> {`\n\n### hooks"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".rs (27 functions)\n- **Line 27:** `pub fn as_str(self) -> &'static str {`\n- **Line 66:** `pub fn new() -> Self"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" {`\n- **Line 70:** `pub fn abort(&self) {`\n- **Line 75:** `pub fn is_aborted(&self) -> bool {`\n- **Line 93"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn allow(messages: Vec<String>) -> Self {`\n- **Line 106:** `pub fn is_denied"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self) -> bool {`\n- **Line 111:** `pub fn is_failed(&self) -> bool {`\n- **Line 116:** `pub fn is_cancelled"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(&self) -> bool {`\n- **Line 121:** `pub fn messages(&self) -> &[String] {`\n- **Line 126:** `pub fn permission_override(&self) -> Option<Perm"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"issionOverride> {`\n- **Line 131:** `pub fn permission_decision(&self) -> Option<HookPermissionDecision> {`\n- **Line 136:** `pub fn"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" permission_reason(&self) -> Option<&str> {`\n- **Line 141:** `pub fn updated_input(&self) -> Option<&str> {`\n- **Line 146:** `pub fn updated_"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"input_json(&self) -> Option<&str> {`\n- **Line 158:** `pub fn new(config: Runtime"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"HookConfig) -> Self {`\n- **Line 163:** `pub fn from_feature_config(feature_config: &Runtime"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"FeatureConfig) -> Self {`\n- **Line 168:** `pub fn run_pre_tool_use(&self, tool_name: &"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"str, tool_input: &str) -> HookRunResult {`\n- **Line 173:** `pub fn run_pre_tool_use_with_context(`\n- **Line 193"}       }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn run_pre_tool_use_with_signal(`\n- **Line 203:** `pub fn run_post_tool_use(`\n- **Line 221:** `pub fn run_post_tool_use_with_context(`"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 243:** `pub fn run_post_tool_use_with_signal(`\n- **Line 262:** `pub fn run_post_tool_use_failure(`\n- **Line 272:** `pub fn run_post_"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"tool_use_failure_with_context(`\n- **Line 293:** `pub fn run_post_tool_use_failure_with_signal(`\n\n### sse.rs (3"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" functions)\n- **Line 22:** `pub fn new() -> Self {`\n- **Line 26:** `pub fn push_chunk(&mut self, chunk: &"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"str) -> Vec<SseEvent> {`\n- **Line 44:** `pub fn finish(&mut self)"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" -> Vec<SseEvent> {`\n\n### bash.rs (1 function)\n- **Line 70:** `pub fn execute_"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"bash(input: BashCommandInput) -> io::Result<BashCommand"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Output> {`\n\n### green_contract.rs (5 functions)\n- **Line 14:** `pub fn as_str(self) -> &'static str {`\n- **Line"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 37:** `pub fn new(required_level: GreenLevel) -> Self {`\n- **Line 42:** `pub fn evaluate("}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"self, observed_level: Option<GreenLevel>) -> GreenContractOutcome {`\n- **Line 56:** `pub fn is"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_satisfied_by(self, observed_level: GreenLevel) -> bool {`\n- **Line 76:** `pub fn is_satisfied(&self)"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" -> bool {`\n\n### oauth.rs (17 functions)\n- **Line 122:** `pub fn from_config(`"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 141:** `pub fn with_extra_param(mut self, key: impl Into<String>, value: impl Into<String>) -> Self {`"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 147:** `pub fn build_url(&self) -> String {`\n- **Line 185:** `pub fn from_config(`\n- **Line 203"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** `pub fn form_params(&self) -> BTreeMap<&str, String> {`\n- **Line 217:** `pub fn from_config(`\n- **Line "}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"231:** `pub fn form_params(&self) -> BTreeMap<&str, String> {`\n- **Line 241:** `pub fn generate_pkce_pair"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"() -> io::Result<PkceCodePair> {`\n- **Line 250:** `pub fn generate_state"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"() -> io::Result<String> {`\n- **Line 255:** `pub fn code_challenge_s256("}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"verifier: &str) -> String {`\n- **Line 261:** `pub fn loopback_redirect_uri(port: u16) -> String {`"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Line 265:** `pub fn credentials_path() -> io::Result<PathBuf> {`\n- **Line 269:** `pub fn load_oauth"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_credentials() -> io::Result<Option<OAuthTokenSet>> {`\n- **Line 283:** `pub fn save_oauth_"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"credentials(token_set: &OAuthTokenSet) -> io::Result<()> {`\n- **Line 294:** `pub fn clear_oauth_credentials() -> io::Result<()> {`\n-"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Line 301:** `pub fn parse_oauth_callback_request_target"}}
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0               }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"max_tokens","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":224,"cache_read_input_tokens":61165,"output_tokens":8000},"context_management":{"applied_edits":[]}       }
+
+event: message_stop
+data: {"type":"message_stop"       }
+

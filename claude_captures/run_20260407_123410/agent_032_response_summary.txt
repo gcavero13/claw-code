@@ -1,0 +1,19 @@
+======================================================================
+AGENT_032 — RESPONSE
+======================================================================
+
+SSE events: 57
+Model: claude-opus-4-6
+Message ID: msg_018g8xrYwhFC5zGwXPf4EdUq
+
+Tool calls (1):
+  - Grep (id=toolu_01SKEX7KCXtUZmZiwWtsvrL6)
+    input: {"pattern": "upstream_proxy_ws_url|no_proxy_list|inherited_upstream_proxy_env|prepend_bullets|code_challenge_s256|parse_oauth_callback_query|credentials_path|detect_container_environment", "path": "/U...
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 591
+  cache_read_input_tokens: 73298
+  output_tokens: 177

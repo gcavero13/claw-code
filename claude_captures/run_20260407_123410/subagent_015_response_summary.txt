@@ -1,0 +1,36 @@
+======================================================================
+SUBAGENT_015 — RESPONSE
+======================================================================
+
+SSE events: 120
+Model: claude-opus-4-6
+Message ID: msg_01LNX7aycyA28kLG6PZbnCRF
+
+Text output (9340 chars):
+  Here is the comprehensive analysis of how the runtime crate's public API is consumed across the workspace.
+
+---
+
+## Runtime Crate Public API (`lib.rs`)
+
+The file at `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/lib.rs` publicly exports items from 26+ modules via `pub use` re-exports and 14 `pub mod` declarations (for sub-module access like `runtime::green_contract::...`).
+
+---
+
+## External Consumers (crates that import from `runtime::`)
+
+### 1. `tools` crate (`/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs`)
+
+**Lines 13-29** -- The heaviest consumer. Imports:
+- File ops: `edit_file`, `glob_search`, `grep_search`, `read_file`, `write_file`
+- Bash: `execute_bash`, `BashCommandInput`, `BashCommandOutput`
+- Conversation: `ApiClient`, `ApiRequest`, `AssistantEvent`, `ConversationRuntime`, `RuntimeError`, `ToolError`, `ToolExecutor`, `PromptCacheEvent`
+- Session: `ContentBlock`, `ConversationMessage`, `MessageRole`, `Session`...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 3088
+  cache_read_input_tokens: 56184
+  output_tokens: 3186

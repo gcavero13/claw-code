@@ -1,0 +1,34 @@
+======================================================================
+AGENT_034 — RESPONSE
+======================================================================
+
+SSE events: 53
+Model: claude-opus-4-6
+Message ID: msg_01QgJ7f5TLVmbSHP98JEXHqp
+
+Text output (4994 chars):
+  Now I have the complete picture. Here's the analysis:
+
+---
+
+## Public functions in `runtime` with no external callers
+
+### Truly module-internal (never called outside their defining file)
+
+| # | Function | File:Line | Verdict |
+|---|----------|-----------|---------|
+| 1 | `validate_read_only` | `bash_validation.rs:103` | **Internal helper** — only called by `validate_mode` in the same file. Could be `pub(crate)` or private. |
+| 2 | `check_destructive` | `bash_validation.rs:241` | **Internal helper** — only called by `validate_command`. |
+| 3 | `validate_mode` | `bash_validation.rs:284` | **Internal helper** — only called by `validate_command`. |
+| 4 | `validate_sed` | `bash_validation.rs:336` | **Internal helper** — only called by `validate_command`. |
+| 5 | `validate_paths` | `bash_validation.rs:360` | **Internal helper** — only called by `validate_command`. |
+| 6 | `classify_command` | `bash_validation.rs:533` | **Dead code** — no callers at all besides in-file tests. |
+| 7 | `valida...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 695
+  cache_read_input_tokens: 75625
+  output_tokens: 1564

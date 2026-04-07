@@ -1,0 +1,159 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01QgJ7f5TLVmbSHP98JEXHqp","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":695,"cache_read_input_tokens":75625,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":695},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}           }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}      }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Now"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" I have the complete picture. Here's the analysis:\n\n---"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n## Public functions in `runtime` with no external cal"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"lers\n\n### Truly module-internal (never called outside their defining file)\n\n| # | Function | File:"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Line | Verdict |\n|---|----------|-----------|---------|\n| 1 | `validate_read_only` | `bash_validation.rs:103` | **Internal"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" helper** — only called by `validate_mode` in the same file. Could"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" be `pub(crate)` or private. |\n| 2 | `check_destructive` | `bash_validation.rs:241` | **Internal helper** — only"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" called by `validate_command`. |\n| 3 | `validate_mode` | `bash_validation.rs:284` | **Internal helper** — only called by `validate_command`. |"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n| 4 | `validate_sed` | `bash_validation.rs:336` | **Internal helper** — only called by `validate_command`. |\n| 5 | `validate_paths` | `bash_validation.rs:360"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` | **Internal helper** — only called by `validate_command`. |\n| 6 | `classify_command` | `bash_validation.rs:533` | **Dead code** — no callers at"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" all besides in-file tests. |\n| 7 | `validate_command` | `bash_validation.rs:594` | **Dead code** — the top"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-level entry point has no callers outside in-file tests. Not re-exported in `lib.rs`, not called from any"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" other module. |\n| 8 | `read_file_in_workspace` | `file_ops.rs:560` | **Dead code** — zero callers outside in-file tests."}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" The non-workspace `read_file` is used instead"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". |\n| 9 | `write_file_in_workspace` | `file_ops.rs:575` | **Dead code** — literally zero callers anywhere (not"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" even tests). |\n| 10 | `edit_file_in_workspace` | `file_ops.rs:589` | **Dead code** — literally zero callers anywhere (not even tests). |\n| "}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"11 | `is_symlink_escape` | `file_ops.rs:605` | **Dead code** — only in-file tests. Likely intended"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" for future sandbox hardening. |\n| 12 | `compress_summary` | `summary_compression.rs:37` | **Internal helper** — called"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" only by `compress_summary_text` in the same file. The `_text` variant is the one"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" used externally. |\n| 13 | `should_enable` | `remote.rs:123` | **Internal method** — called only by `state_for_port` in the same"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" struct. |\n| 14 | `state_for_port` | `remote.rs:136` | **Internal method** — called only in in-file tests. |\n| "}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"15 | `subprocess_env` | `remote.rs:161` | **Internal method** — called only in in-file tests. |\n| 16 | `fork_managed_session` | `session_control.rs:275"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` | **Convenience wrapper** — delegates to `fork_managed_session_for`. No external"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" callers use this variant. |\n| 17 | `is_session_reference_alias` | `session_control.rs:305` | **Internal helper"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** — called only by `resolve_session_reference_for` in the same file. |\n| 18 | `managed_sessions_dir_for` | `session_control.rs:83` | **Internal helper** — called"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" only by other functions in `session_control.rs`. |\n| 19 | `load_managed_session` | `session_control.rs:256` | **"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Convenience wrapper** — delegates to `load_managed_session_for`. No external callers. |\n\n### Re-exported in `lib.rs` but no external call"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" sites found\n\nThese are part of the crate's public API surface but currently unc"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"alled from any other crate:\n\n| # | Function | File:Line | Verdict |\n|---|----------|-----------|---------|\n| 20 | `upstream"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_proxy_ws_url` | `remote.rs:201` | **API surface, unused** — re-exported,"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" only called by `ws_url()` method internally. Likely kept public for CLI extens"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ibility. |\n| 21 | `no_proxy_list` | `remote.rs:214` | **API surface, unused** — re-exported, only called internally by `state_for_port` and `disabled`."}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" |\n| 22 | `inherited_upstream_proxy_env` | `remote.rs:221` | **API surface, unused** — re-exported, only called in in-file tests. |\n| 23 | `read"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_token` | `remote.rs:185` | **API surface, unused** — re-exported, only called internally by `from_env_map`. |\n| 24 | `"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"code_challenge_s256` | `oauth.rs:255` | **API surface, unused** — re-exported, only called by `generate_pkce_pair` internally."}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Useful as a standalone utility. |\n| 25 | `parse_oauth_callback_query` | `oauth.rs:311` | **API surface, unused**"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" — re-exported, only called by `parse_oauth_callback_request_target` internally. |\n| 26 | `credentials_path` | `oauth.rs:265` | **API surface, unused** — re-exported, only called by `load/"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"save/clear_oauth_credentials` internally. |\n| 27 | `detect_container_environment` | `sandbox.rs:109` | **API surface, unused** — re-exported, only called by `resolve_sandbox_status`"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" internally. The `_from` variant is the testable one. |\n| 28 | `prepend_bullets` | `prompt.rs:195` | **API surface, unused** — re-exported,"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" only called within `prompt.rs` itself. |\n\n### Summary\n\n- **Items 1-19**:"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Truly dead or internal-only. These could safely be made"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `pub(crate)` or private. Items 9 and 10 (`write"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_file_in_workspace`, `edit_file_in_workspace`) have zero callers anywhere — they're the most"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" clearly dead code.\n- **Items 20-28**: Re-exported in `lib.rs` as public API but with no current"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" external consumers. These are \"unused-but-intentional\" — they decompose internal"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" logic into independently useful building blocks. Whether to keep them public depends on whether you want a"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" stable utility API or a minimal surface area."}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0           }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":695,"cache_read_input_tokens":75625,"output_tokens":1564},"context_management":{"applied_edits":[]}      }
+
+event: message_stop
+data: {"type":"message_stop"  }
+

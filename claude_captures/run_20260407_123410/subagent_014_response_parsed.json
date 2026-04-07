@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01KRg4osqjgJ2qDrNBVpakxF",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/.claude/projects/-Users-gladyscavero-Documents-PEOPL-GitHub-claw-code/4ae20e8e-c552-44aa-a3b3-8d532ed1abc2/tool-results/toolu_01NLCQ1kBhkZY58sF7niqkha.txt\", \"offset\": 1, \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 214,
+    "cache_read_input_tokens": 44549,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 214,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 173,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

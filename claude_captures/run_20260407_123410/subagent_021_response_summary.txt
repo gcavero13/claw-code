@@ -1,0 +1,42 @@
+======================================================================
+SUBAGENT_021 — RESPONSE
+======================================================================
+
+SSE events: 286
+Model: claude-opus-4-6
+Message ID: msg_01XnJFEPjP8ozppafwhwkZcS
+
+Text output (26644 chars):
+  Here is the complete list of every `pub fn` and `pub async fn` found in `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/`, organized by file. There are **429 total public functions** across **30 .rs files**.
+
+---
+
+### `mcp.rs`
+```
+:7   pub fn normalize_name_for_mcp(name: &str) -> String {
+:26  pub fn mcp_tool_prefix(server_name: &str) -> String {
+:31  pub fn mcp_tool_name(server_name: &str, tool_name: &str) -> String {
+:40  pub fn unwrap_ccr_proxy_url(url: &str) -> String {
+:65  pub fn mcp_server_signature(config: &McpServerConfig) -> Option<String> {
+:84  pub fn scoped_mcp_config_hash(config: &ScopedMcpServerConfig) -> String {
+```
+
+### `bootstrap.rs`
+```
+:24  pub fn claude_code_default() -> Self {
+:42  pub fn from_phases(phases: Vec<BootstrapPhase>) -> Self {
+:53  pub fn phases(&self) -> &[BootstrapPhase] {
+```
+
+### `task_packet.rs`
+```
+:23  pub fn new(errors: Vec<String>) -> Self {
+:28  pub fn errors(&self) -> &[String] {
+:46  pub fn packet(&self) -> &T...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_read_input_tokens: 61389
+  output_tokens: 9631
