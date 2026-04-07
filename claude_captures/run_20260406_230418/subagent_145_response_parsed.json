@@ -1,0 +1,24 @@
+{
+  "text": "Perfect! Now I have the analysis. Let me get more detail on the top 3 and verify their descriptions:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01FqHoWHRXsfQKVqcjKTLR6o",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\", \"offset\": 1162, \"limit\": 90}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1407,
+    "cache_read_input_tokens": 81388,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1407,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 145,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Proxy Visualizer</title>
+<style>
+:root {
+  --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9;
+  --text-dim: #8b949e; --link: #58a6ff; --green: #238636; --red: #f85149;
+  --orange: #d29922; --purple: #8957e5; --blue: #1f6feb; --gray: #484f58;
+  --yellow-bg: #2d2a1e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif; font-size:14px; }
+a { color:var(--link); text-decoration:none; }
+button { background:var(--card); color:var(--text); border:1px solid var(--border); padding:6px 12px; border-radius:6px; cursor:pointer; font-size:13px; }
+button:hover { border-color:var(--text-dim); }
+button.active { border-color:var(--link); color:var(--link); }
+pre, code { font-family:'SF Mono',SFMono-Regular,Consolas,monospace; font-size:12px; }
+pre { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:12px; overflow-x:auto; white-space:pre-wrap; word-break:break-word; }
+
+/* Top bar */
+#topbar { background:var(--card); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; flex-wrap:wrap; gap:16px; align-items:center; position:sticky; top:0; z-index:100; }
+#topbar .stat { display:flex; flex-direction:column; }
+#topbar .stat .label { font-size:11px; color:var(--text-dim); text-transform:uppercase; }
+#topbar .stat .value { font-size:15px; font-weight:600; }
+
+/* Tabs */
+#tabs { background:var(--card); border-bottom:1px solid var(--border); padding:0 20px; display:flex; gap:0; position:sticky; top:49px; z-index:99; }
+.tab { padding:10px 16px; cursor:pointer; border-bottom:2px solid transparent; color:var(--text-dim); font-size:13px; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--link); border-bottom-color:var(--link); }
+
+/* Search bar */
+#searchbar { background:var(--bg); border-bottom:1px solid var(--border); padding:8px 20px; display:flex; gap:12px; align-items:center; }
+#searchbar input { background:var(--card); border:1px solid var(--border); color:var(--text); padding:6px 10px; border-radius:6px; width:300px; font-size:13px; }
+#searchbar label { font-size:12px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; gap:4px; }
+#searchbar input[type=checkbox] { accent-color:var(--link); }
+
+/* Main layout */
+#main { display:flex; height:calc(100vh - 140px); }
+#content { flex:1; overflow-y:auto; padding:20px; }
+#detail { width:0; overflow:hidden; transition:width 0.3s ease; border-left:1px solid var(--border); background:var(--card); }
+#detail.open { width:45%; min-width:400px; overflow-y:auto; }
+#detail-inner { padding:20px; }
+#detail .close-btn { position:sticky; top:0; float:right; background:var(--card); border:1px solid var(--border); color:var(--text); width:28px; height:28px; border-radius:4px; cursor:pointer; font-size:16px; z-index:10; }
+
+/* Tab content */
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+/* Timeline */
+.timeline-card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:6px; cursor:pointer; display:flex; align-items:center; gap:12px; transition:border-color 0.15s; }
+.timeline-card:hover { border-color:var(--text-dim); }
+.timeline-card.selected { border-color:var(--link); }
+.timeline-card.has-error { border-left:3px solid var(--red); }
+.timeline-card .num { font-weight:600; font-size:13px; min-width:40px; }
+.timeline-card .type-badge { font-size:11px; padding:2px 8px; border-radius:10px; font-weight:600; }
+.timeline-card .tools { color:var(--text-dim); font-size:12px; flex:1; }
+.timeline-card .duration { color:var(--text-dim); font-size:12px; }
+.type-agent { background:rgba(31,111,235,0.2); color:var(--blue); }
+.type-subagent { background:rgba(35,134,54,0.2); color:var(--green); }
+.type-internal { background:rgba(72,79,88,0.2); color:var(--gray); }
+
+/* Parallel lanes */
+.parallel-section { display:grid; gap:8px; margin:12px 0; padding:12px; background:rgba(255,255,255,0.02); border:1px dashed var(--border); border-radius:8px; }
+.lane-header { font-size:12px; color:var(--text-dim); font-weight:600; margin-bottom:4px; }
+
+/* Agent view */
+.agent-section { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:16px; }
+.agent-section h3 { margin-bottom:8px; font-size:15px; }
+.agent-section .task { color:var(--text-dim); font-size:12px; margin-bottom:12px; }
+.tool-chain { display:flex; flex-wrap:wrap; gap:4px; margin:8px 0; }
+.tool-pill { font-size:11px; padding:3px 8px; border-radius:12px; background:rgba(88,166,255,0.15); color:var(--link); }
+.tool-pill.error { background:rgba(248,81,73,0.15); color:var(--red); }
+.msg-bar { display:inline-block; height:16px; background:var(--blue); border-radius:2px; margin-right:2px; vertical-align:middle; opacity:0.6; }
+
+/* Detail panel */
+.detail-section { margin-bottom:16px; }
+.detail-section h4 { font-size:13px; color:var(--text-dim); text-transform:uppercase; margin-bottom:6px; border-bottom:1px solid var(--border); padding-bottom:4px; }
+.msg-block { background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:8px; margin-bottom:4px; font-size:12px; }
+.msg-block .role { font-weight:600; margin-bottom:4px; }
+.msg-block .role-user { color:var(--blue); }
+.msg-block .role-assistant { color:var(--green); }
+.msg-block .role-tool { color:var(--orange); }
+.block-badge { display:inline-block; font-size:10px; padding:1px 6px; border-radius:8px; margin:2px; }
+.badge-reminder { background:rgba(88,166,255,0.15); color:var(--link); }
+.badge-tool-use { background:rgba(35,134,54,0.15); color:var(--green); }
+.badge-tool-result { background:rgba(210,153,34,0.15); color:var(--orange); }
+.badge-error { background:rgba(248,81,73,0.15); color:var(--red); }
+.badge-thinking { background:rgba(210,153,34,0.1); color:var(--orange); }
+.thinking-block { background:var(--yellow-bg); border:1px solid rgba(210,153,34,0.3); border-radius:6px; padding:8px; margin-bottom:8px; font-size:12px; }
+.expand-btn { background:none; border:none; color:var(--link); cursor:pointer; font-size:11px; padding:2px 4px; }
+.expand-btn:hover { text-decoration:underline; }
+.hidden { display:none; }
+
+/* Raw data tabs */
+.raw-tab { padding:6px 12px; cursor:pointer; font-size:11px; color:var(--text-dim); border-bottom:2px solid transparent; white-space:nowrap; }
+.raw-tab:hover { color:var(--text); }
+.raw-tab.active { color:var(--link); border-bottom-color:var(--link); }
+.raw-panel { margin:0; }
+
+/* Tokens tab */
+.token-bar-row { display:flex; align-items:center; gap:8px; margin-bottom:4px; font-size:12px; }
+.token-bar-row .label { min-width:60px; color:var(--text-dim); }
+.token-bar { height:18px; border-radius:3px; min-width:1px; }
+.bar-input { background:var(--blue); }
+.bar-output { background:var(--green); }
+.bar-cache-create { background:var(--orange); }
+.bar-cache-read { background:var(--purple); }
+
+/* System prompt */
+.prompt-viewer { max-height:500px; overflow-y:auto; }
+.prompt-diff-add { background:rgba(35,134,54,0.15); }
+.prompt-diff-remove { background:rgba(248,81,73,0.15); }
+
+/* Flow Map */
+#flowmap { position:relative; overflow:auto; padding:20px; }
+#flowmap svg { display:block; }
+.flow-node { cursor:pointer; }
+.flow-node rect { rx:6; ry:6; stroke-width:1.5; transition:stroke-width 0.15s; }
+.flow-node:hover rect { stroke-width:3; }
+.flow-node.selected rect { stroke-width:3; stroke-dasharray:4,2; }
+.flow-node text { fill:var(--text); font-size:11px; font-family:-apple-system,sans-serif; }
+.flow-node .node-label { font-weight:600; font-size:12px; }
+.flow-line { fill:none; stroke-width:2; opacity:0.5; }
+.flow-merge-line { stroke-dasharray:6,3; }
+.flow-legend { font-size:11px; fill:var(--text-dim); }
+
+/* Loading */
+#loading { display:flex; flex-direction:column; align-items:center; justify-content:center; height:80vh; gap:16px; }
+#loading label { background:var(--card); border:2px dashed var(--border); border-radius:12px; padding:60px 80px; cursor:pointer; text-align:center; transition:border-color 0.2s; }
+#loading label:hover { border-color:var(--link); }
+#loading input { display:none; }
+</style>
+</head>
+<body>
+
+<div id="loading">
+  <h2>Claude Proxy Visualizer</h2>
+  <label>
+    <div style="font-size:32px;margin-bottom:12px">Drop viz_data.json here</div>
+    <div style="color:var(--text-dim)">or click to browse</div>
+    <input type="file" id="file-input" accept=".json">
+  </label>
+</div>
+
+<div id="app" class="hidden">
+  <div id="topbar"></div>
+  <div id="tabs">
+    <div class="tab active" data-tab="timeline">Timeline</div>
+    <div class="tab" data-tab="flowmap">Flow Map</div>
+    <div class="tab" data-tab="agents">Agents</div>
+    <div class="tab" data-tab="system-prompt">System Prompt</div>
+    <div class="tab" data-tab="tokens">Tokens</div>
+    <div class="tab" data-tab="thinking">Thinking Chain</div>
+  </div>
+  <div id="searchbar">
+    <input type="text" id="search-input" placeholder="Search tools, messages, errors...">
+    <label><input type="checkbox" id="filter-agent" checked> Agent</label>
+    <label><input type="checkbox" id="filter-subagent" checked> Subagent</label>
+    <label><input type="checkbox" id="filter-internal" checked> Internal</label>
+    <label><input type="checkbox" id="filter-errors"> Errors only</label>
+  </div>
+  <div id="main">
+    <div id="content">
+      <div id="tab-timeline" class="tab-content active"></div>
+      <div id="tab-flowmap" class="tab-content"><div id="flowmap"></div></div>
+      <div id="tab-agents" class="tab-content"></div>
+      <div id="tab-system-prompt" class="tab-content"></div>
+      <div id="tab-tokens" class="tab-content"></div>
+      <div id="tab-thinking" class="tab-content"></div>
+    </div>
+    <div id="detail">
+      <div id="detail-inner"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let DATA = null;
+let selectedIteration = null;
+const AGENT_COLORS = ['#1f6feb','#238636','#d29922','#8957e5','#f78166','#3fb950','#d2a8ff','#79c0ff'];
+
+function fmt(n) { return n == null ? '0' : n.toLocaleString(); }
+function fmtDuration(ms) { return ms >= 1000 ? (ms/1000).toFixed(1)+'s' : ms+'ms'; }
+function fmtCost(tokens, rate) { return (tokens / 1_000_000 * rate); }
+function fmtUSD(n) { return '$'+n.toFixed(4); }
+function esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function getAgentColor(agentId) {
+  if (agentId === 'parent') return AGENT_COLORS[0];
+  if (agentId === 'internal') return '#484f58';
+  const agents = DATA.agents.filter(a=>a.type==='subagent');
+  const idx = agents.findIndex(a=>a.id===agentId);
+  return AGENT_COLORS[(idx % (AGENT_COLORS.length-1)) + 1];
+}
+
+function getIterationData(num) {
+  for (const agent of DATA.agents) {
+    for (const it of agent.iterations) {
+      if (it.number === num) return { agent, iteration: it };
+    }
+  }
+  for (const ic of DATA.internal_calls) {
+    if (ic.number === num) return { agent: null, iteration: ic };
+  }
+  return null;
+}
+
+function renderTopbar() {
+  const s = DATA.summary;
+  const costInput = fmtCost(s.total_input_tokens, 15);
+  const costOutput = fmtCost(s.total_output_tokens, 75);
+  const costCacheCreate = fmtCost(s.total_cache_creation_tokens, 18.75);
+  const costCacheRead = fmtCost(s.total_cache_read_tokens, 1.5);
+  const totalCost = costInput + costOutput + costCacheCreate + costCacheRead;
+  document.getElementById('topbar').innerHTML = `
+    <div class="stat"><span class="label">Run</span><span class="value">${esc(DATA.run_id)}</span></div>
+    <div class="stat"><span class="label">API Calls</span><span class="value">${s.total_calls} <span style="font-size:11px;color:var(--text-dim)">(${s.agent_calls}A ${s.subagent_calls}S ${s.internal_calls}I)</span></span></div>
+    <div class="stat"><span class="label">Duration</span><span class="value">${fmtDuration(s.wall_clock_ms||s.total_duration_ms)}</span></div>
+    <div class="stat"><span class="label">Input</span><span class="value">${fmt(s.total_input_tokens)}</span></div>
+    <div class="stat"><span class="label">Output</span><span class="value">${fmt(s.total_output_tokens)}</span></div>
+    <div class="stat"><span class="label">Cache Read</span><span class="value">${fmt(s.total_cache_read_tokens)}</span></div>
+    <div class="stat"><span class="label">Cache Create</span><span class="value">${fmt(s.total_cache_creation_tokens)}</span></div>
+    <div class="stat"><span class="label">Est. Cost</span><span class="value">${fmtUSD(totalCost)}</span></div>
+  `;
+}
+
+function renderTimeline() {
+  const container = document.getElementById('tab-timeline');
+  let html = '';
+  const search = document.getElementById('search-input').value.toLowerCase();
+  const showAgent = document.getElementById('filter-agent').checked;
+  const showSubagent = document.getElementById('filter-subagent').checked;
+  const showInternal = document.getElementById('filter-internal').checked;
+  const errorsOnly = document.getElementById('filter-errors').checked;
+
+  // Find parallel sections (subagent runs between parent iterations)
+  const parentNums = DATA.agents.find(a=>a.id==='parent')?.iterations.map(i=>i.number) || [];
+  let inParallel = false;
+  let parallelAgents = new Set();
+  let parallelCards = [];
+
+  for (const t of DATA.timeline) {
+    // Filter
+    if (t.type === 'agent' && !showAgent) continue;
+    if (t.type === 'subagent' && !showSubagent) continue;
+    if (t.type === 'internal' && !showInternal) continue;
+
+    const data = getIterationData(t.number);
+    if (!data) continue;
+    const it = data.iteration;
+    const hasError = (it.errors && it.errors.length > 0);
+    if (errorsOnly && !hasError) continue;
+
+    // Search filter
+    if (search) {
+      const haystack = JSON.stringify(it).toLowerCase();
+      if (!haystack.includes(search)) continue;
+    }
+
+    const color = getAgentColor(t.agent_id);
+    const tools = it.response?.tool_uses?.map(t=>t.name).join(', ') || it.response?.tool_uses ? '' : '';
+    const toolStr = it.response?.tool_uses?.map(t=>t.name).join(', ') || '';
+    const text = it.response?.text ? esc(it.response.text.substring(0,80)) : '';
+    const label = toolStr || text || (t.type === 'internal' ? 'token count' : '');
+    const dur = it.duration_ms ? fmtDuration(it.duration_ms) : '';
+    const errorClass = hasError ? ' has-error' : '';
+    const selectedClass = selectedIteration === t.number ? ' selected' : '';
+
+    html += `<div class="timeline-card${errorClass}${selectedClass}" data-num="${t.number}" style="border-left-color:${hasError?'':color}">
+      <span class="num" style="color:${color}">#${String(t.number).padStart(3,'0')}</span>
+      <span class="type-badge type-${t.type}">${t.type}</span>
+      <span class="tools">${esc(label)}</span>
+      <span class="duration">${dur}</span>
+    </div>`;
+  }
+  container.innerHTML = html;
+  container.querySelectorAll('.timeline-card').forEach(el => {
+    el.addEventListener('click', () => openDetail(parseInt(el.dataset.num)));
+  });
+}
+
+function renderAgents() {
+  const container = document.getElementById('tab-agents');
+  let html = '';
+  for (const agent of DATA.agents) {
+    const color = getAgentColor(agent.id);
+    const iters = agent.iterations.length;
+    let totalTokens = 0;
+    agent.iterations.forEach(it => {
+      const u = it.usage || {};
+      totalTokens += (u.input_tokens||0) + (u.output_tokens||0);
+    });
+
+    // Tool chain
+    let chainHtml = '<div class="tool-chain">';
+    for (const tc of agent.tool_chain || []) {
+      for (const tool of tc.tools || []) {
+        chainHtml += `<span class="tool-pill" data-num="${tc.iteration}" style="cursor:pointer">${esc(tool)}</span>`;
+      }
+      if (!tc.tools || tc.tools.length === 0) {
+        chainHtml += `<span class="tool-pill" data-num="${tc.iteration}" style="cursor:pointer;opacity:0.5">text</span>`;
+      }
+    }
+    chainHtml += '</div>';
+
+    // Message growth bars
+    const maxMsgs = Math.max(...agent.iterations.map(i=>i.messages_count||1));
+    let barsHtml = '<div style="display:flex;align-items:end;gap:2px;height:30px;margin:8px 0">';
+    for (const it of agent.iterations) {
+      const h = Math.max(4, (it.messages_count / maxMsgs) * 28);
+      barsHtml += `<div class="msg-bar" style="width:${Math.max(6,200/agent.iterations.length)}px;height:${h}px;background:${color}" title="#${it.number}: ${it.messages_count} msgs"></div>`;
+    }
+    barsHtml += '</div>';
+
+    html += `<div class="agent-section">
+      <h3 style="color:${color}">${esc(agent.id)} <span style="font-size:12px;color:var(--text-dim)">${agent.type} &middot; ${iters} iterations &middot; ${fmt(totalTokens)} tokens</span></h3>
+      <div class="task">${esc(agent.task||'')}</div>
+      ${chainHtml}
+      <div style="font-size:11px;color:var(--text-dim)">Message growth:</div>
+      ${barsHtml}
+    </div>`;
+  }
+  container.innerHTML = html;
+  container.querySelectorAll('.tool-pill').forEach(el => {
+    el.addEventListener('click', () => openDetail(parseInt(el.dataset.num)));
+  });
+}
+
+function renderSystemPrompt() {
+  const container = document.getElementById('tab-system-prompt');
+  const sp = DATA.system_prompts;
+  let html = `<div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">`;
+  const pChanged = sp.parent_changed;
+  html += `<span style="font-size:12px;padding:4px 10px;border-radius:12px;${pChanged ? 'background:rgba(248,81,73,0.15);color:var(--red)' : 'background:rgba(35,134,54,0.15);color:var(--green)'}">
+    Parent: ${pChanged ? 'CHANGED between iterations' : 'stable'}
+  </span>`;
+  const sChanged = sp.subagent_changed;
+  html += `<span style="font-size:12px;padding:4px 10px;border-radius:12px;${sChanged ? 'background:rgba(248,81,73,0.15);color:var(--red)' : 'background:rgba(35,134,54,0.15);color:var(--green)'}">
+    Subagents: ${sChanged ? 'CHANGED between iterations' : 'stable'}
+  </span>`;
+  html += `</div>`;
+
+  // Show per-agent system prompts
+  const perAgent = sp.per_agent || {};
+  const agentIds = Object.keys(perAgent);
+
+  // Group agents by identical prompt hash
+  const promptGroups = {};
+  for (const [agentId, info] of Object.entries(perAgent)) {
+    const h = info.hash;
+    if (!promptGroups[h]) promptGroups[h] = { info, agents: [] };
+    promptGroups[h].agents.push(agentId);
+  }
+
+  for (const [hash, group] of Object.entries(promptGroups)) {
+    const info = group.info;
+    const agentNames = group.agents;
+    const color = getAgentColor(agentNames[0]);
+    const label = agentNames.length === 1
+      ? agentNames[0]
+      : agentNames.join(', ');
+    const sharedNote = agentNames.length > 1
+      ? ` <span style="font-size:11px;color:var(--text-dim)">(shared by ${agentNames.length} agents)</span>`
+      : '';
+
+    html += `<h3 style="margin:16px 0 8px;color:${color}">${esc(label)}${sharedNote} <span style="color:var(--text-dim);font-size:12px">${fmt(info.length)} chars, hash: ${hash}</span></h3>`;
+
+    // Show block structure
+    if (info.blocks) {
+      html += `<div style="margin-bottom:8px;font-size:11px;color:var(--text-dim)">`;
+      info.blocks.forEach((b, i) => {
+        const cache = b.cache_control ? ` [cache: ${JSON.stringify(b.cache_control)}]` : '';
+        html += `<span style="margin-right:12px">block ${i}: ${fmt(b.length)} chars${cache}</span>`;
+      });
+      html += `</div>`;
+    }
+
+    const promptId = 'prompt-' + hash;
+    html += `<div class="prompt-viewer"><pre id="${promptId}" style="max-height:400px;overflow-y:auto">${esc(info.text)}</pre></div>`;
+  }
+
+  // Diff between unique prompts
+  const uniqueHashes = Object.keys(promptGroups);
+  if (uniqueHashes.length >= 2) {
+    html += `<h3 style="margin:16px 0 8px">Prompt Comparison</h3>`;
+    for (let i = 0; i < uniqueHashes.length; i++) {
+      for (let j = i + 1; j < uniqueHashes.length; j++) {
+        const a = promptGroups[uniqueHashes[i]];
+        const b = promptGroups[uniqueHashes[j]];
+        const aLines = a.info.text.split('\\n');
+        const bLines = b.info.text.split('\\n');
+        const aSet = new Set(aLines);
+        const bSet = new Set(bLines);
+        const onlyA = aLines.filter(l => !bSet.has(l) && l.trim()).length;
+        const onlyB = bLines.filter(l => !aSet.has(l) && l.trim()).length;
+        html += `<p style="font-size:12px;color:var(--text-dim)">`;
+        html += `<strong>${a.agents[0]}</strong> (${fmt(a.info.length)} chars) vs <strong>${b.agents[0]}</strong> (${fmt(b.info.length)} chars): `;
+        html += `${onlyA} unique lines in first, ${onlyB} unique lines in second`;
+        html += `</p>`;
+      }
+    }
+  }
+
+  container.innerHTML = html;
+}
+
+function renderTokens() {
+  const container = document.getElementById('tab-tokens');
+  const s = DATA.summary;
+  const costInput = fmtCost(s.total_input_tokens, 15);
+  const costOutput = fmtCost(s.total_output_tokens, 75);
+  const costCacheCreate = fmtCost(s.total_cache_creation_tokens, 18.75);
+  const costCacheRead = fmtCost(s.total_cache_read_tokens, 1.5);
+  const totalCost = costInput + costOutput + costCacheCreate + costCacheRead;
+  const maxBar = Math.max(s.total_input_tokens, s.total_output_tokens, s.total_cache_creation_tokens, s.total_cache_read_tokens, 1);
+  const barScale = 400 / maxBar;
+
+  let html = `<h3 style="margin-bottom:12px">Cost Breakdown</h3>`;
+  html += `<div style="margin-bottom:20px">`;
+  html += `<div class="token-bar-row"><span class="label">Input</span><div class="token-bar bar-input" style="width:${Math.max(1,s.total_input_tokens*barScale)}px"></div><span>${fmt(s.total_input_tokens)} &middot; ${fmtUSD(costInput)}</span></div>`;
+  html += `<div class="token-bar-row"><span class="label">Output</span><div class="token-bar bar-output" style="width:${Math.max(1,s.total_output_tokens*barScale)}px"></div><span>${fmt(s.total_output_tokens)} &middot; ${fmtUSD(costOutput)}</span></div>`;
+  html += `<div class="token-bar-row"><span class="label">Cache W</span><div class="token-bar bar-cache-create" style="width:${Math.max(1,s.total_cache_creation_tokens*barScale)}px"></div><span>${fmt(s.total_cache_creation_tokens)} &middot; ${fmtUSD(costCacheCreate)}</span></div>`;
+  html += `<div class="token-bar-row"><span class="label">Cache R</span><div class="token-bar bar-cache-read" style="width:${Math.max(1,s.total_cache_read_tokens*barScale)}px"></div><span>${fmt(s.total_cache_read_tokens)} &middot; ${fmtUSD(costCacheRead)}</span></div>`;
+  html += `<div class="token-bar-row" style="margin-top:8px;font-weight:600"><span class="label">Total</span><span>${fmtUSD(totalCost)}</span></div>`;
+  html += `</div>`;
+
+  // Cache efficiency
+  const totalInput = s.total_input_tokens + s.total_cache_read_tokens + s.total_cache_creation_tokens;
+  const cachePercent = totalInput > 0 ? ((s.total_cache_read_tokens / totalInput) * 100).toFixed(1) : 0;
+  html += `<h3 style="margin:16px 0 8px">Cache Efficiency</h3>`;
+  html += `<p style="font-size:13px">${cachePercent}% of input tokens were cache reads (90% cheaper)</p>`;
+
+  // Per-iteration chart
+  html += `<h3 style="margin:16px 0 8px">Tokens Per Iteration</h3>`;
+  html += `<div style="display:flex;align-items:end;gap:1px;height:100px;overflow-x:auto;padding:4px 0">`;
+  const allIters = [];
+  DATA.agents.forEach(a => a.iterations.forEach(it => allIters.push({...it, agent_id: a.id})));
+  allIters.sort((a,b) => a.number - b.number);
+  const maxTokens = Math.max(...allIters.map(it => (it.usage?.input_tokens||0) + (it.usage?.output_tokens||0) + (it.usage?.cache_read_input_tokens||0)), 1);
+  for (const it of allIters) {
+    const total = (it.usage?.input_tokens||0) + (it.usage?.output_tokens||0) + (it.usage?.cache_read_input_tokens||0);
+    const h = Math.max(2, (total / maxTokens) * 90);
+    const color = getAgentColor(it.agent_id);
+    html += `<div style="width:8px;height:${h}px;background:${color};border-radius:1px;opacity:0.7" title="#${it.number}: ${fmt(total)} tokens"></div>`;
+  }
+  html += `</div>`;
+
+  container.innerHTML = html;
+}
+
+function renderThinking() {
+  const container = document.getElementById('tab-thinking');
+  let html = '<h3 style="margin-bottom:12px">Thinking Chain (all agents)</h3>';
+  const entries = [];
+  for (const agent of DATA.agents) {
+    for (const it of agent.iterations) {
+      const thinking = it.response?.thinking;
+      if (thinking && thinking.trim()) {
+        entries.push({ number: it.number, agent_id: agent.id, thinking });
+      }
+      // Also check messages for thinking blocks
+      for (const msg of it.messages || []) {
+        for (const block of msg.blocks || []) {
+          if (block.type === 'thinking' && block.full_text && block.full_text.trim()) {
+            // Avoid duplicates with response thinking
+            if (block.full_text !== thinking) {
+              entries.push({ number: it.number, agent_id: agent.id, thinking: block.full_text, source: 'message' });
+            }
+          }
+        }
+      }
+    }
+  }
+  entries.sort((a,b) => a.number - b.number);
+  if (entries.length === 0) {
+    html += '<p style="color:var(--text-dim)">No thinking blocks found in this run.</p>';
+  }
+  for (const e of entries) {
+    const color = getAgentColor(e.agent_id);
+    html += `<div class="thinking-block" style="cursor:pointer" data-num="${e.number}">
+      <div style="font-size:11px;color:${color};margin-bottom:4px">#${String(e.number).padStart(3,'0')} [${esc(e.agent_id)}]${e.source?' (from message)':''}</div>
+      <div>${esc(e.thinking)}</div>
+    </div>`;
+  }
+  container.innerHTML = html;
+  container.querySelectorAll('.thinking-block').forEach(el => {
+    el.addEventListener('click', () => openDetail(parseInt(el.dataset.num)));
+  });
+}
+
+function renderFlowMap() {
+  const container = document.getElementById('flowmap');
+  const parent = DATA.agents.find(a => a.id === 'parent');
+  if (!parent) { container.innerHTML = '<p style="color:var(--text-dim)">No parent agent found.</p>'; return; }
+  const subagents = DATA.agents.filter(a => a.type === 'subagent');
+
+  // Layout
+  const nodeW = 220, nodeH = 62, gapY = 10, laneGap = 40;
+  const laneWidth = nodeW + laneGap;
+  const headerH = 120; // taller to fit system prompt info
+  const marginL = 50, marginR = 50;
+  const subCount = subagents.length;
+  const forkZoneH = 40 + subCount * 12;  // scale with number of subagents
+  const mergeZoneH = 40 + subCount * 12;
+
+  // Lanes: parent on the left, subagents to the right
+  const lanes = ['parent', ...subagents.map(a => a.id)];
+  const laneX = {};
+  lanes.forEach((id, i) => { laneX[id] = marginL + i * laneWidth; });
+
+  // Separate parent iterations into: before-fork, fork, after-merge
+  const forkIter = parent.iterations.find(it => it.spawned_agents?.length > 0);
+  const forkIdx = forkIter ? parent.iterations.indexOf(forkIter) : -1;
+  const preFork = forkIdx >= 0 ? parent.iterations.slice(0, forkIdx) : parent.iterations;
+  const postFork = forkIdx >= 0 ? parent.iterations.slice(forkIdx + 1) : [];
+
+  // Layout Y positions
+  let y = headerH;
+  const nodes = []; // {num, x, y, w, h, agent_id, iteration, phase}
+
+  // Phase 1: Pre-fork parent iterations
+  for (const it of preFork) {
+    nodes.push({ num: it.number, x: laneX['parent'], y, w: nodeW, h: nodeH, agent_id: 'parent', iteration: it, phase: 'pre' });
+    y += nodeH + gapY;
+  }
+
+  // Phase 2: Fork node
+  let forkY = y;
+  if (forkIter) {
+    nodes.push({ num: forkIter.number, x: laneX['parent'], y, w: nodeW, h: nodeH, agent_id: 'parent', iteration: forkIter, phase: 'fork' });
+    y += nodeH + forkZoneH; // extra space for fork lines
+  }
+
+  // Phase 3: Parallel subagent iterations — each lane stacks independently
+  const subStartY = y;
+  const laneEndY = {};
+  for (const sa of subagents) {
+    let sy = subStartY;
+    for (const it of sa.iterations) {
+      nodes.push({ num: it.number, x: laneX[sa.id], y: sy, w: nodeW, h: nodeH, agent_id: sa.id, iteration: it, phase: 'parallel' });
+      sy += nodeH + gapY;
+    }
+    laneEndY[sa.id] = sy;
+  }
+
+  // Merge Y = after the longest subagent lane
+  const maxSubY = Math.max(...Object.values(laneEndY), subStartY);
+  y = maxSubY + mergeZoneH;
+
+  // Phase 4: Post-fork parent iterations (merge + continue)
+  const mergeY = y;
+  for (const it of postFork) {
+    nodes.push({ num: it.number, x: laneX['parent'], y, w: nodeW, h: nodeH, agent_id: 'parent', iteration: it, phase: 'post' });
+    y += nodeH + gapY;
+  }
+
+  const totalW = marginL + lanes.length * laneWidth + marginR;
+  const totalH = y + 40;
+
+  // Build SVG
+  let svg = `<svg width="${totalW}" height="${totalH}" xmlns="http://www.w3.org/2000/svg">`;
+
+  // Arrow marker defs
+  svg += `<defs>`;
+  for (const lane of lanes) {
+    const color = getAgentColor(lane);
+    svg += `<marker id="arrow-${lane}" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="${color}"/></marker>`;
+  }
+  svg += `<marker id="arrow-merge" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8b949e"/></marker>`;
+  svg += `</defs>`;
+
+  // Lane headers with background + system prompt info
+  const sp = DATA.system_prompts || {};
+  for (const lane of lanes) {
+    const x = laneX[lane];
+    const color = getAgentColor(lane);
+    const sa = subagents.find(a => a.id === lane);
+    const label = lane === 'parent' ? 'Main Agent' : (sa?.parent_description || sa?.task?.substring(0, 22) || lane);
+    const iterCount = lane === 'parent' ? parent.iterations.length : (sa?.iterations.length || 0);
+
+    // System prompt info for this lane
+    const agentObj = lane === 'parent' ? parent : sa;
+    const spHash = agentObj?.system_prompt_hash || '';
+    const spInfo = (lane === 'parent' ? sp.parent : sp.subagent) || {};
+    const spLen = spInfo.length || 0;
+    const spLabel = spLen > 0 ? `${fmt(spLen)} chars` : 'none';
+
+    // Header box (taller to fit prompt info)
+    svg += `<rect x="${x-4}" y="8" width="${nodeW+8}" height="96" rx="8" fill="${color}" opacity="0.06"/>`;
+    svg += `<text x="${x + nodeW/2}" y="28" text-anchor="middle" style="fill:${color};font-weight:700;font-size:13px">${esc(label).substring(0,22)}</text>`;
+    svg += `<text x="${x + nodeW/2}" y="44" text-anchor="middle" style="fill:${color};font-size:10px;opacity:0.7">${iterCount} iterations</text>`;
+
+    // System prompt badge
+    svg += `<rect x="${x+8}" y="52" width="${nodeW-16}" height="22" rx="4" fill="${color}" opacity="0.1" stroke="${color}" stroke-width="0.5" stroke-opacity="0.3"/>`;
+    svg += `<text x="${x+16}" y="66" style="font-size:9px;fill:${color};opacity:0.8">sys prompt: ${spLabel}</text>`;
+    if (spHash) {
+      svg += `<text x="${x+nodeW-16}" y="66" text-anchor="end" style="font-size:8px;fill:${color};opacity:0.5">#${spHash.substring(0,6)}</text>`;
+    }
+
+    // Clickable area for system prompt detail
+    svg += `<rect x="${x+8}" y="52" width="${nodeW-16}" height="22" fill="transparent" style="cursor:pointer" onclick="showSystemPromptDetail('${lane}')"/>`;
+
+    // Prompt changed warning — per agent
+    const laneChanged = lane === 'parent'
+      ? sp.parent_changed
+      : (sp.per_subagent_changed || {})[agentObj?.id];
+    if (laneChanged) {
+      svg += `<text x="${x+nodeW/2}" y="88" text-anchor="middle" style="font-size:9px;fill:#f85149;font-weight:600">prompt changed between iterations</text>`;
+    } else {
+      svg += `<text x="${x+nodeW/2}" y="88" text-anchor="middle" style="font-size:9px;fill:#238636;opacity:0.6">stable across iterations</text>`;
+    }
+
+    // Lane guide line (very subtle)
+    const laneNodes = nodes.filter(n => n.agent_id === lane);
+    if (laneNodes.length > 0) {
+      const firstY = laneNodes[0].y;
+      const lastY = laneNodes[laneNodes.length-1].y + nodeH;
+      svg += `<line x1="${x+nodeW/2}" y1="${firstY-4}" x2="${x+nodeW/2}" y2="${lastY+4}" stroke="${color}" stroke-width="1" opacity="0.08"/>`;
+    }
+  }
+
+  // Sequential lines within each lane (with arrows)
+  for (const lane of lanes) {
+    const laneNodes = nodes.filter(n => n.agent_id === lane);
+    const color = getAgentColor(lane);
+    for (let i = 1; i < laneNodes.length; i++) {
+      const prev = laneNodes[i-1];
+      const curr = laneNodes[i];
+      // Skip the gap between fork and post-merge for parent (waiting line handles this)
+      if (lane === 'parent' && prev.phase === 'fork' && curr.phase === 'post') continue;
+      const x = prev.x + nodeW/2;
+      svg += `<line x1="${x}" y1="${prev.y+nodeH}" x2="${x}" y2="${curr.y}" stroke="${color}" stroke-width="2" opacity="0.5" marker-end="url(#arrow-${lane})"/>`;
+    }
+  }
+
+  // Find fork and merge nodes
+  const forkNode = nodes.find(n => n.phase === 'fork');
+  const mergeNode = nodes.find(n => n.phase === 'post');
+
+  // Fork lines: parent fork node → first subagent iteration
+  if (forkNode) {
+    for (let si = 0; si < subagents.length; si++) {
+      const sa = subagents[si];
+      const firstSub = nodes.find(n => n.agent_id === sa.id);
+      if (!firstSub) continue;
+      const color = getAgentColor(sa.id);
+
+      // Route: exit bottom of fork → go down a bit → curve right to subagent lane → arrive at top of first subagent node
+      const forkCx = forkNode.x + nodeW/2;
+      const forkBot = forkNode.y + nodeH;
+      const subCx = firstSub.x + nodeW/2;
+      const subTop = firstSub.y;
+
+      // Step down from fork, then curve to subagent
+      const dropY = forkBot + 15 + si * 10; // stagger drop points so lines don't overlap
+      svg += `<path d="M${forkCx},${forkBot} L${forkCx},${dropY} Q${forkCx},${dropY+15} ${(forkCx+subCx)/2},${dropY+15} L${subCx},${dropY+15} Q${subCx},${dropY+15} ${subCx},${subTop}" fill="none" stroke="${color}" stroke-width="2.5" opacity="0.7" marker-end="url(#arrow-${sa.id})"/>`;
+
+      // "spawn" label near the subagent end
+      svg += `<text x="${subCx}" y="${dropY+10}" text-anchor="middle" style="font-size:9px;fill:${color};font-weight:600;opacity:0.8">spawn</text>`;
+    }
+
+    // Dashed waiting line from parent fork down to merge
+    if (mergeNode) {
+      const px = forkNode.x + nodeW/2;
+      svg += `<line x1="${px}" y1="${forkNode.y+nodeH}" x2="${px}" y2="${mergeNode.y}" stroke="${getAgentColor('parent')}" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.2"/>`;
+      // Waiting label centered vertically
+      const midWaitY = (forkNode.y + nodeH + mergeNode.y) / 2;
+      svg += `<text x="${px-14}" y="${midWaitY}" text-anchor="middle" style="font-size:10px;fill:${getAgentColor('parent')};opacity:0.35;font-style:italic" transform="rotate(-90,${px-14},${midWaitY})">waiting for agents</text>`;
+    }
+  }
+
+  // Merge lines: last subagent iteration → first post-fork parent node
+  if (mergeNode) {
+    for (let si = 0; si < subagents.length; si++) {
+      const sa = subagents[si];
+      const lastSub = [...nodes].reverse().find(n => n.agent_id === sa.id);
+      if (!lastSub) continue;
+      const color = getAgentColor(sa.id);
+
+      // Route: exit bottom of last subagent → go down → curve left to parent lane → arrive at top of merge node
+      const subCx = lastSub.x + nodeW/2;
+      const subBot = lastSub.y + nodeH;
+      const mergeCx = mergeNode.x + nodeW/2;
+      const mergeTop = mergeNode.y;
+
+      const dropY = subBot + 15 + si * 10; // stagger
+      svg += `<path d="M${subCx},${subBot} L${subCx},${dropY} Q${subCx},${dropY+15} ${(subCx+mergeCx)/2},${dropY+15} L${mergeCx},${dropY+15} Q${mergeCx},${dropY+15} ${mergeCx},${mergeTop}" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="8,4" opacity="0.5" marker-end="url(#arrow-merge)"/>`;
+
+      // "result" label near the parent end
+      svg += `<text x="${(subCx+mergeCx)/2}" y="${dropY+10}" text-anchor="middle" style="font-size:9px;fill:${color};opacity:0.7;font-style:italic">result</text>`;
+    }
+  }
+
+  // Draw nodes (on top of lines)
+  for (const node of nodes) {
+    const color = getAgentColor(node.agent_id);
+    const hasError = node.iteration.errors?.length > 0;
+    const isFork = node.phase === 'fork';
+    const isMerge = node.phase === 'post' && postFork.indexOf(node.iteration) === 0;
+    const strokeColor = hasError ? '#f85149' : color;
+    const strokeW = (isFork || isMerge) ? 2.5 : 1.5;
+    const fillColor = (isFork || isMerge) ? color + '15' : '#161b22';
+
+    const resp = node.iteration.response || {};
+    const tools = resp.tool_uses?.map(t => t.name) || [];
+    const hasText = resp.text && resp.text.trim().length > 0;
+    const hasThinking = resp.thinking && resp.thinking.trim().length > 0;
+    const stopReason = resp.stop_reason;
+    const dur = node.iteration.duration_ms ? fmtDuration(node.iteration.duration_ms) : '';
+    const msgCount = node.iteration.messages_count || 0;
+
+    // Row 1: action label
+    let actionLabel = '';
+    if (isFork) actionLabel = 'spawns ' + (forkIter.spawned_agents?.length || subagents.length) + ' agents';
+    else if (isMerge) actionLabel = 'receives results';
+    else if (tools.length > 0) actionLabel = tools.join(', ');
+    else if (hasText) actionLabel = 'final text';
+    else if (stopReason === 'end_turn') actionLabel = 'end turn';
+
+    // Row 2: response preview (thinking or text output)
+    let responsePreview = '';
+    if (hasThinking) {
+      responsePreview = '\u{1F4AD} ' + resp.thinking.substring(0, 30).replace(/\n/g, ' ');
+    }
+    if (hasText && !isFork && !isMerge) {
+      const textPreview = resp.text.substring(0, 35).replace(/\n/g, ' ');
+      responsePreview = responsePreview ? responsePreview : ('\u{1F4AC} ' + textPreview);
+    }
+
+    // Row 3: input summary (messages count + what was received)
+    let inputSummary = msgCount + ' msgs';
+    if (msgCount > 0 && node.iteration.messages) {
+      const lastMsg = node.iteration.messages[node.iteration.messages.length - 1];
+      if (lastMsg) {
+        const lastBlock = lastMsg.blocks?.[lastMsg.blocks.length - 1];
+        if (lastBlock?.type === 'tool_result') {
+          const errTag = lastBlock.is_error ? ' ERR' : '';
+          inputSummary += ` \u{2190} result${errTag}`;
+        }
+      }
+    }
+
+    // Output indicator icons
+    let outputIcons = '';
+    if (hasThinking) outputIcons += '\u{1F9E0}'; // brain for thinking
+    if (tools.length > 0) outputIcons += '\u{1F527}'.repeat(Math.min(tools.length, 3)); // wrench per tool
+    if (hasText) outputIcons += '\u{1F4DD}'; // memo for text
+    if (hasError) outputIcons += '\u{26A0}\u{FE0F}'; // warning
+
+    const selClass = selectedIteration === node.num ? ' selected' : '';
+
+    svg += `<g class="flow-node${selClass}" onclick="openDetail(${node.num})">`;
+    svg += `<rect x="${node.x}" y="${node.y}" width="${nodeW}" height="${nodeH}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="${strokeW}"/>`;
+
+    // Row 1: number + action label + icons
+    svg += `<text x="${node.x+10}" y="${node.y+15}" class="node-label" style="fill:${color}">#${String(node.num).padStart(3,'0')}</text>`;
+    svg += `<text x="${node.x+52}" y="${node.y+15}" style="font-size:10px;fill:#c9d1d9">${esc(actionLabel).substring(0, 20)}</text>`;
+    svg += `<text x="${node.x+nodeW-8}" y="${node.y+15}" text-anchor="end" style="font-size:11px">${outputIcons}</text>`;
+
+    // Row 2: response preview
+    if (responsePreview) {
+      svg += `<text x="${node.x+10}" y="${node.y+30}" style="font-size:9px;fill:#8b949e">${esc(responsePreview).substring(0, 30)}</text>`;
+    }
+
+    // Row 3: input summary + duration
+    svg += `<text x="${node.x+10}" y="${node.y+46}" style="font-size:9px;fill:#484f58">${esc(inputSummary)}</text>`;
+    if (dur) svg += `<text x="${node.x+nodeW-8}" y="${node.y+46}" text-anchor="end" style="font-size:9px;fill:#484f58">${dur}</text>`;
+
+    // Stop reason indicator at bottom
+    if (stopReason === 'end_turn') {
+      svg += `<rect x="${node.x}" y="${node.y+nodeH-3}" width="${nodeW}" height="3" fill="${color}" opacity="0.5" rx="1"/>`;
+    }
+
+    // Error indicator
+    if (hasError) {
+      svg += `<rect x="${node.x}" y="${node.y}" width="3" height="${nodeH}" fill="#f85149" rx="1"/>`;
+      svg += `<circle cx="${node.x+nodeW-14}" cy="${node.y+nodeH-14}" r="5" fill="#f85149" opacity="0.8"/>`;
+      svg += `<text x="${node.x+nodeW-14}" y="${node.y+nodeH-11}" text-anchor="middle" style="font-size:8px;fill:white;font-weight:700">!</text>`;
+    }
+    svg += `</g>`;
+  }
+
+  svg += `</svg>`;
+
+  // Legend
+  let legend = '<div style="padding:12px 0;display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--text-dim);align-items:center">';
+  legend += `<span style="font-weight:600;color:var(--text)">Flow Map</span>`;
+  legend += `<span><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${getAgentColor('parent')};vertical-align:middle;margin-right:4px"></span>Main Agent</span>`;
+  for (const sa of subagents) {
+    const color = getAgentColor(sa.id);
+    const label = sa.parent_description || sa.task?.substring(0, 20) || sa.id;
+    legend += `<span><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:${color};vertical-align:middle;margin-right:4px"></span>${esc(label)}...</span>`;
+  }
+  legend += `<span style="margin-left:auto;display:flex;gap:12px">`;
+  legend += `<span><svg width="24" height="12"><line x1="0" y1="6" x2="24" y2="6" stroke="var(--text-dim)" stroke-width="2"/></svg> flow</span>`;
+  legend += `<span><svg width="24" height="12"><line x1="0" y1="6" x2="24" y2="6" stroke="var(--text-dim)" stroke-width="2" stroke-dasharray="6,3"/></svg> result/wait</span>`;
+  legend += `<span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f85149;vertical-align:middle;margin-right:4px"></span>error</span>`;
+  legend += `</span></div>`;
+
+  container.innerHTML = legend + svg;
+}
+
+function showSystemPromptDetail(lane) {
+  const panel = document.getElementById('detail');
+  const inner = document.getElementById('detail-inner');
+  panel.classList.add('open');
+  selectedIteration = null;
+
+  const sp = DATA.system_prompts || {};
+  const info = (lane === 'parent' ? sp.parent : sp.subagent) || {};
+  const color = getAgentColor(lane === 'parent' ? 'parent' : lane);
+  const label = lane === 'parent' ? 'Main Agent' : lane;
+
+  let html = `<button class="close-btn" onclick="closeDetail()">×</button>`;
+  html += `<h3 style="color:${color};margin-bottom:12px">System Prompt — ${esc(label)}</h3>`;
+
+  if (info.length) {
+    html += `<div style="margin-bottom:12px;font-size:12px;color:var(--text-dim)">`;
+    html += `${fmt(info.length)} chars &middot; hash: ${info.hash || '?'}`;
+    const thisChanged = lane === 'parent' ? sp.parent_changed : (sp.per_subagent_changed || {})[lane];
+    if (thisChanged) {
+      html += ` &middot; <span style="color:var(--red)">changed between iterations of this agent</span>`;
+    } else {
+      html += ` &middot; <span style="color:var(--green)">stable across all iterations of this agent</span>`;
+    }
+    html += `</div>`;
+    html += `<pre style="max-height:calc(100vh - 250px);overflow-y:auto">${esc(info.text || '')}</pre>`;
+  } else {
+    html += `<p style="color:var(--text-dim)">No system prompt data available for this agent.</p>`;
+  }
+
+  // Show diff if both exist
+  if (sp.parent && sp.subagent && lane !== 'parent') {
+    html += `<h4 style="margin-top:16px;font-size:12px;color:var(--text-dim)">Difference from parent prompt</h4>`;
+    const pLen = sp.parent.length || 0;
+    const sLen = sp.subagent.length || 0;
+    html += `<p style="font-size:12px;color:var(--text-dim)">Parent: ${fmt(pLen)} chars &middot; This agent: ${fmt(sLen)} chars &middot; Difference: ${fmt(Math.abs(pLen - sLen))} chars</p>`;
+  }
+
+  inner.innerHTML = html;
+}
+
+function openDetail(num) {
+  selectedIteration = num;
+  const panel = document.getElementById('detail');
+  const inner = document.getElementById('detail-inner');
+  const data = getIterationData(num);
+  if (!data) { panel.classList.remove('open'); return; }
+  panel.classList.add('open');
+
+  const it = data.iteration;
+  const agent = data.agent;
+  const color = agent ? getAgentColor(agent.id) : '#484f58';
+  const type = agent ? agent.type : 'internal';
+
+  let html = `<button class="close-btn" onclick="closeDetail()">×</button>`;
+  html += `<h3 style="color:${color};margin-bottom:4px">#${String(num).padStart(3,'0')} [${type}] ${agent ? esc(agent.id) : 'internal'}</h3>`;
+  if (it.duration_ms) html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">${fmtDuration(it.duration_ms)}</div>`;
+
+  // System prompt info
+  if (agent) {
+    const sp = DATA.system_prompts || {};
+    const spHash = agent.system_prompt_hash || '';
+    const spInfo = (agent.type === 'agent' ? sp.parent : sp.subagent) || {};
+    if (spInfo.length) {
+      const spId = 'sp-detail-'+num;
+      html += `<div class="detail-section"><h4>System Prompt</h4>`;
+      html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">${fmt(spInfo.length)} chars &middot; hash: ${spHash || '?'}</div>`;
+      html += `<button class="expand-btn" onclick="toggle('${spId}')">show full system prompt</button>`;
+      html += `<pre id="${spId}" class="hidden" style="max-height:400px;overflow-y:auto;margin-top:4px">${esc(spInfo.text || '')}</pre>`;
+      html += `</div>`;
+    }
+  }
+
+  // Messages
+  if (it.messages && it.messages.length > 0) {
+    html += `<div class="detail-section"><h4>Messages (${it.messages.length})</h4>`;
+    for (const msg of it.messages) {
+      const roleClass = 'role-' + msg.role;
+      html += `<div class="msg-block"><div class="role ${roleClass}">${msg.role}</div>`;
+      for (const block of msg.blocks || []) {
+        if (block.type === 'system-reminder') {
+          html += `<span class="block-badge badge-reminder">${block.category} (${fmt(block.length)} chars)</span>`;
+        } else if (block.type === 'text') {
+          const id = 'txt-'+num+'-'+Math.random().toString(36).substr(2,6);
+          html += `<div style="margin:4px 0"><span class="block-badge" style="background:rgba(201,209,217,0.1);color:var(--text)">text (${fmt(block.length)} chars)</span>`;
+          html += ` <button class="expand-btn" onclick="toggle('${id}')">expand</button>`;
+          html += `<pre id="${id}" class="hidden" style="margin-top:4px;max-height:300px;overflow-y:auto">${esc(block.full_text||block.preview||'')}</pre></div>`;
+        } else if (block.type === 'tool_use') {
+          const id = 'tu-'+num+'-'+Math.random().toString(36).substr(2,6);
+          html += `<div style="margin:4px 0"><span class="block-badge badge-tool-use">${esc(block.name)}</span>`;
+          html += ` <button class="expand-btn" onclick="toggle('${id}')">expand</button>`;
+          html += `<pre id="${id}" class="hidden" style="margin-top:4px">${esc(block.input_full||block.input_preview||'')}</pre></div>`;
+        } else if (block.type === 'tool_result') {
+          const errClass = block.is_error ? ' badge-error' : '';
+          html += `<div style="margin:4px 0"><span class="block-badge badge-tool-result${errClass}">result${block.is_error?' ERROR':''} (${fmt(block.length)} chars)</span>`;
+          if (block.has_system_reminder) html += ` <span class="block-badge badge-reminder">+reminder</span>`;
+          const id = 'tr-'+num+'-'+Math.random().toString(36).substr(2,6);
+          html += ` <button class="expand-btn" onclick="toggle('${id}')">expand</button>`;
+          html += `<pre id="${id}" class="hidden" style="margin-top:4px;max-height:300px;overflow-y:auto">${esc(block.preview||'')}</pre></div>`;
+        } else if (block.type === 'thinking') {
+          html += `<div class="thinking-block" style="margin:4px 0">${esc(block.full_text||block.preview||'')}</div>`;
+        }
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Response (OUTPUT from the model)
+  if (it.response) {
+    const resp = it.response;
+    const hasAnyOutput = resp.thinking || resp.text || (resp.tool_uses && resp.tool_uses.length > 0);
+    html += `<div class="detail-section"><h4>Model Output (Response)</h4>`;
+
+    if (!hasAnyOutput) {
+      html += `<div style="color:var(--text-dim);font-size:12px;padding:8px;background:var(--bg);border-radius:6px">Response data unavailable (gzip encoding issue during capture)</div>`;
+    }
+
+    if (resp.thinking) {
+      html += `<div class="thinking-block"><div style="font-size:11px;color:var(--orange);margin-bottom:4px">Thinking (${fmt(resp.thinking.length)} chars)</div>${esc(resp.thinking)}</div>`;
+    }
+
+    if (resp.tool_uses && resp.tool_uses.length > 0) {
+      html += `<div style="margin:8px 0;font-size:12px;font-weight:600;color:var(--green)">Tool Calls (${resp.tool_uses.length}):</div>`;
+      for (const tu of resp.tool_uses) {
+        const tuId = 'tu-resp-'+num+'-'+Math.random().toString(36).substr(2,6);
+        html += `<div style="margin:4px 0;padding:6px;background:var(--bg);border:1px solid var(--border);border-radius:6px">`;
+        html += `<span class="block-badge badge-tool-use">${esc(tu.name)}</span> <span style="font-size:10px;color:var(--text-dim)">id: ${esc(tu.id||'')}</span>`;
+        html += ` <button class="expand-btn" onclick="toggle('${tuId}')">show input</button>`;
+        const inputStr = typeof tu.input === 'object' ? JSON.stringify(tu.input, null, 2) : (tu.input_preview || tu.input || '');
+        html += `<pre id="${tuId}" class="hidden" style="margin-top:4px">${esc(inputStr)}</pre>`;
+        html += `</div>`;
+      }
+    }
+
+    if (resp.text) {
+      const respTextId = 'resp-text-'+num;
+      const preview = resp.text.substring(0, 200);
+      const isTruncated = resp.text.length > 200;
+      html += `<div style="margin:8px 0;font-size:12px;font-weight:600;color:var(--link)">Text Output (${fmt(resp.text.length)} chars):</div>`;
+      html += `<div style="padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:12px">`;
+      html += `<div>${esc(preview)}${isTruncated ? '...' : ''}</div>`;
+      if (isTruncated) {
+        html += `<button class="expand-btn" onclick="toggle('${respTextId}')" style="margin-top:4px">show full text</button>`;
+        html += `<pre id="${respTextId}" class="hidden" style="margin-top:4px;max-height:400px;overflow-y:auto">${esc(resp.text)}</pre>`;
+      }
+      html += `</div>`;
+    }
+
+    html += `<div style="font-size:11px;color:var(--text-dim);margin-top:8px;display:flex;gap:12px">`;
+    html += `<span>stop_reason: <strong>${resp.stop_reason||'?'}</strong></span>`;
+    if (resp.stop_reason === 'tool_use') html += `<span style="color:var(--green)">→ will execute tools and loop back</span>`;
+    if (resp.stop_reason === 'end_turn') html += `<span style="color:var(--blue)">→ final response, turn ends</span>`;
+    html += `</div>`;
+    html += `</div>`;
+  }
+
+  // Usage
+  if (it.usage) {
+    html += `<div class="detail-section"><h4>Usage</h4><pre>${JSON.stringify(it.usage, null, 2)}</pre></div>`;
+  }
+
+  // Errors
+  if (it.errors && it.errors.length > 0) {
+    html += `<div class="detail-section"><h4 style="color:var(--red)">Errors</h4>`;
+    for (const err of it.errors) {
+      html += `<div style="background:rgba(248,81,73,0.1);border:1px solid rgba(248,81,73,0.3);border-radius:6px;padding:8px;margin-bottom:4px;font-size:12px">${esc(err.preview)}</div>`;
+    }
+    html += `</div>`;
+  }
+
+  // Raw API tabs
+  if (it.raw_request || it.raw_messages) {
+    const tabGroupId = 'raw-tabs-'+num;
+    html += `<div class="detail-section"><h4>Raw API Data</h4>`;
+
+    // Tab buttons
+    html += `<div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:8px" id="${tabGroupId}">`;
+    html += `<div class="raw-tab active" data-panel="raw-full-${num}" onclick="switchRawTab(this)">Full API Request</div>`;
+    html += `<div class="raw-tab" data-panel="raw-msgs-${num}" onclick="switchRawTab(this)">Messages Only</div>`;
+    html += `<div class="raw-tab" data-panel="raw-sys-${num}" onclick="switchRawTab(this)">System Prompt</div>`;
+    html += `<div class="raw-tab" data-panel="raw-tools-${num}" onclick="switchRawTab(this)">Tools</div>`;
+    html += `<div class="raw-tab" data-panel="raw-resp-${num}" onclick="switchRawTab(this)">Response</div>`;
+    html += `</div>`;
+
+    // Full API request (everything: system, messages, model, tools, metadata)
+    const fullReq = it.raw_request || {};
+    // Build a clean version without the massive tool schemas for readability
+    const fullReqDisplay = {...fullReq};
+    if (fullReqDisplay.tools) {
+      fullReqDisplay._tools_summary = fullReqDisplay.tools.length + ' tools (expand Tools tab for details)';
+      fullReqDisplay.tools = fullReqDisplay.tools.map(t => ({name: t.name, description: (t.description||'').substring(0,60)+'...'}));
+    }
+    html += `<pre class="raw-panel" id="raw-full-${num}" style="max-height:600px;overflow-y:auto">${esc(JSON.stringify(fullReqDisplay, null, 2))}</pre>`;
+
+    // Messages only
+    html += `<pre class="raw-panel hidden" id="raw-msgs-${num}" style="max-height:600px;overflow-y:auto">${esc(JSON.stringify(it.raw_messages || it.raw_request?.messages || [], null, 2))}</pre>`;
+
+    // System prompt
+    const sysPrompt = fullReq.system || '';
+    let sysDisplay;
+    if (Array.isArray(sysPrompt)) {
+      sysDisplay = sysPrompt.map((b,i) => {
+        const text = b.text || '';
+        const cache = b.cache_control ? ' [cache: '+JSON.stringify(b.cache_control)+']' : '';
+        return '--- block '+i+' ('+text.length+' chars)'+cache+' ---\n'+text;
+      }).join('\n\n');
+    } else if (typeof sysPrompt === 'string') {
+      sysDisplay = sysPrompt;
+    } else {
+      sysDisplay = JSON.stringify(sysPrompt, null, 2);
+    }
+    html += `<pre class="raw-panel hidden" id="raw-sys-${num}" style="max-height:600px;overflow-y:auto">${esc(sysDisplay || '(no system prompt)')}</pre>`;
+
+    // Tools
+    const tools = fullReq.tools || [];
+    html += `<pre class="raw-panel hidden" id="raw-tools-${num}" style="max-height:600px;overflow-y:auto">${esc(JSON.stringify(tools, null, 2))}</pre>`;
+
+    // Response
+    html += `<pre class="raw-panel hidden" id="raw-resp-${num}" style="max-height:600px;overflow-y:auto">${esc(JSON.stringify(it.raw_response, null, 2))}</pre>`;
+
+    html += `</div>`;
+  }
+
+  inner.innerHTML = html;
+  // Re-render timeline to update selection
+  renderTimeline();
+}
+
+function closeDetail() {
+  selectedIteration = null;
+  document.getElementById('detail').classList.remove('open');
+  renderTimeline();
+}
+
+function switchRawTab(el) {
+  const parent = el.parentElement;
+  const panelId = el.dataset.panel;
+  // Deactivate all tabs in this group
+  parent.querySelectorAll('.raw-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  // Hide all panels that are siblings of this tab group
+  const section = parent.parentElement;
+  section.querySelectorAll('.raw-panel').forEach(p => p.classList.add('hidden'));
+  const panel = document.getElementById(panelId);
+  if (panel) panel.classList.remove('hidden');
+}
+
+function toggle(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('hidden');
+}
+
+function loadData(data) {
+  DATA = data;
+  document.getElementById('loading').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+  renderTopbar();
+  renderTimeline();
+  renderFlowMap();
+  renderAgents();
+  renderSystemPrompt();
+  renderTokens();
+  renderThinking();
+}
+
+// Tab switching
+document.getElementById('tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (!tab) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+});
+
+// Search and filters
+document.getElementById('search-input').addEventListener('input', renderTimeline);
+document.querySelectorAll('#searchbar input[type=checkbox]').forEach(cb => cb.addEventListener('change', renderTimeline));
+
+// File loading
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { try { loadData(JSON.parse(ev.target.result)); } catch(e) { alert('Invalid JSON: '+e.message); }};
+  reader.readAsText(file);
+});
+
+// Drag and drop
+document.getElementById('loading').addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect='copy'; });
+document.getElementById('loading').addEventListener('drop', e => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => { try { loadData(JSON.parse(ev.target.result)); } catch(e) { alert('Invalid JSON: '+e.message); }};
+  reader.readAsText(file);
+});
+
+// URL param loading
+const params = new URLSearchParams(window.location.search);
+const dataUrl = params.get('data');
+if (dataUrl) {
+  fetch(dataUrl).then(r=>r.json()).then(loadData).catch(e=>console.error('Failed to load:',e));
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDetail();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "text": "Let me check the call_tool function and spawn_tool_call function which seem significant:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01HY1RTFBDtbMud6ng2Fanbv",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/mcp_tool_bridge.rs\", \"offset\": 169, \"limit\": 150}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 875,
+    "cache_read_input_tokens": 86564,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 875,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 144,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

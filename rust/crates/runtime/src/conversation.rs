@@ -319,10 +319,39 @@ where
                 return Err(error);
             }
 
+            if std::env::var("CLAW_LOG_API").is_ok() {
+                eprintln!(
+                    "\n########## ITERATION {iterations} (messages so far: {}) ##########",
+                    self.session.messages.len()
+                );
+                for (i, msg) in self.session.messages.iter().enumerate() {
+                    let role = match msg.role {
+                        crate::session::MessageRole::System => "system",
+                        crate::session::MessageRole::User => "user",
+                        crate::session::MessageRole::Assistant => "assistant",
+                        crate::session::MessageRole::Tool => "tool",
+                    };
+                    let blocks: Vec<String> = msg.blocks.iter().map(|b| match b {
+                        ContentBlock::Text { text } => {
+                            let t = if text.len() > 100 { format!("{}...", &text[..100]) } else { text.clone() };
+                            format!("Text({t})")
+                        }
+                        ContentBlock::ToolUse { name, .. } => format!("ToolUse({name})"),
+                        ContentBlock::ToolResult { tool_name, is_error, .. } => {
+                            format!("ToolResult({tool_name}{})", if *is_error { " ERROR" } else { "" })
+                        }
+                    }).collect();
+                    eprintln!("  [{i}] {role:<10} {}", blocks.join(" | "));
+                }
+                eprintln!("  system_prompt: {} segment(s)", self.system_prompt.len());
+            }
             let request = ApiRequest {
                 system_prompt: self.system_prompt.clone(),
                 messages: self.session.messages.clone(),
             };
+            if std::env::var("CLAW_LOG_INPUTS").is_ok() {
+                self.append_api_input_log(iterations, &request);
+            }
             let events = match self.api_client.stream(request) {
                 Ok(events) => events,
                 Err(error) => {
@@ -633,6 +662,82 @@ where
             Value::from(summary.prompt_cache_events.len() as u64),
         );
         session_tracer.record("turn_completed", attributes);
+    }
+
+    fn append_api_input_log(&self, iteration: usize, request: &ApiRequest) {
+        use std::io::Write;
+
+        let path = if let Some(session_path) = self.session.persistence_path() {
+            let stem = session_path
+                .file_stem()
+                .and_then(|s| s.to_str())
+                .unwrap_or("session");
+            session_path.with_file_name(format!("{stem}-inputs.jsonl"))
+        } else {
+            std::path::PathBuf::from(".claw/sessions/api-inputs.jsonl")
+        };
+
+        let messages: Vec<Value> = request
+            .messages
+            .iter()
+            .enumerate()
+            .map(|(i, msg)| {
+                let role = match msg.role {
+                    crate::session::MessageRole::System => "system",
+                    crate::session::MessageRole::User => "user",
+                    crate::session::MessageRole::Assistant => "assistant",
+                    crate::session::MessageRole::Tool => "tool",
+                };
+                let blocks: Vec<Value> = msg
+                    .blocks
+                    .iter()
+                    .map(|b| match b {
+                        ContentBlock::Text { text } => {
+                            let truncated = if text.len() > 300 {
+                                format!("{}... [{} chars total]", &text[..300], text.len())
+                            } else {
+                                text.clone()
+                            };
+                            serde_json::json!({"type": "text", "text": truncated})
+                        }
+                        ContentBlock::ToolUse { id, name, input } => {
+                            serde_json::json!({"type": "tool_use", "id": id, "name": name, "input": input})
+                        }
+                        ContentBlock::ToolResult { tool_use_id, tool_name, output, is_error } => {
+                            let truncated = if output.len() > 500 {
+                                format!("{}... [{} chars total]", &output[..500], output.len())
+                            } else {
+                                output.clone()
+                            };
+                            serde_json::json!({"type": "tool_result", "tool_use_id": tool_use_id, "tool_name": tool_name, "output": truncated, "is_error": is_error})
+                        }
+                    })
+                    .collect();
+                serde_json::json!({"index": i, "role": role, "blocks": blocks})
+            })
+            .collect();
+
+        let record = serde_json::json!({
+            "type": "api_input",
+            "iteration": iteration,
+            "system_prompt_segments": request.system_prompt.len(),
+            "system_prompt_total_chars": request.system_prompt.iter().map(|s| s.len()).sum::<usize>(),
+            "message_count": request.messages.len(),
+            "messages": messages,
+        });
+
+        if let Ok(line) = serde_json::to_string(&record) {
+            if let Some(parent) = path.parent() {
+                let _ = std::fs::create_dir_all(parent);
+            }
+            if let Ok(mut file) = std::fs::OpenOptions::new()
+                .create(true)
+                .append(true)
+                .open(&path)
+            {
+                let _ = writeln!(file, "{line}");
+            }
+        }
     }
 
     fn record_turn_failed(&self, iteration: usize, error: &RuntimeError) {

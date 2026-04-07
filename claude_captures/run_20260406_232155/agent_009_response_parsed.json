@@ -1,0 +1,18 @@
+{
+  "text": "All 360 tests pass, including both new tests:\n- `compaction_summary_stats_returns_zeros_when_no_compaction` \n- `compaction_summary_stats_returns_counts_after_compaction`\n\nThe function `compaction_summary_stats` is at `rust/crates/runtime/src/compact.rs:144`. It extracts `(count, removed_message_count)` from `session.compaction`, returning `(0, 0)` when no compaction has occurred.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 8691,
+    "cache_read_input_tokens": 66960,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 8691
+    },
+    "output_tokens": 122,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

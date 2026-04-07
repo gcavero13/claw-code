@@ -1,0 +1,24 @@
+{
+  "text": "Let me continue reading to find the rest of ensure_server_ready and other large functions:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_0177GQB3Geh6ngzNH1zUim1b",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/mcp_stdio.rs\", \"offset\": 1100, \"limit\": 300}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 4710,
+    "cache_read_input_tokens": 64115,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 4710,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 143,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

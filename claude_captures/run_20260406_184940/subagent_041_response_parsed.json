@@ -1,0 +1,24 @@
+{
+  "text": "Perfect! Now let me create a comprehensive report based on all the information I've gathered. Let me also quickly check for any test examples that show the approval/denial flow:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_012T2zCdjr8xNeCc1JZkSpYs",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/permissions.rs\", \"offset\": \"[471, 683]\", \"limit\": 300}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 4878,
+    "cache_read_input_tokens": 78665,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 4878,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 160,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

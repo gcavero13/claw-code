@@ -1,0 +1,28 @@
+======================================================================
+ITERATION 9
+======================================================================
+
+System prompt: 3 blocks, 3782 chars total
+  [0] 80 chars (cache=None)
+  [1] 62 chars (cache={'type': 'ephemeral'})
+  [2] 3640 chars (cache={'type': 'ephemeral'})
+
+Model: claude-opus-4-6
+Max tokens: 8000
+Stream: True
+Tools: 48 defined
+
+Messages: 3 total
+--------------------------------------------------
+  [0] role=user (2 blocks)
+       [0] text: <system-reminder> CLAUDE.md + context (1732 chars)
+       [1] text: Search the web for the latest Anthropic API pricing for all Claude models (Opus, Sonnet, Haiku) as of April 2026. I need... (447 chars)
+
+  [1] role=assistant (3 blocks)
+       [0] text:   I'll search for the latest Anthropic API pricing information. (63 chars)
+       [1] tool_use: WebSearch({"query": "Anthropic Claude API pricing per million tokens 2026"})
+       [2] tool_use: WebSearch({"query": "Anthropic Claude Opus 4 Sonnet 4 Haiku pricing API 2026"})
+
+  [2] role=user (2 blocks)
+       [0] tool_result: id=toolu_011LhSGi1wGiun7gD1RcnXsF (2959 chars)
+       [1] tool_result: id=toolu_012138v9i9xSU3pbN1WT6AuY (6828 chars) +[SYSTEM-REMINDER]

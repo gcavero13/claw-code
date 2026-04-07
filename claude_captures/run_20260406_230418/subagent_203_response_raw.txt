@@ -1,0 +1,90 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_017LvrhbTGdPGachhn7N6dMz","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":2,"cache_creation_input_tokens":1127,"cache_read_input_tokens":108449,"cache_creation":{"ephemeral_5m_input_tokens":1127,"ephemeral_1h_input_tokens":0},"output_tokens":5,"service_tier":"standard","inference_geo":"not_available"}}   }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}             }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Perfect! Let me fin"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"alize the analysis with the corrected branch counts:\n\n**Recalculated Complexity Scores:**\n1. **StreamState::ingest"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_chunk**: 90 lines × 15 branches = **1350**\n2. **AnthropicClient::send_with_retry**: 63"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" lines × 17 branches = **1071**\n3. **detect_cache_break**: 68 lines × 12 branches = **816**\n\nNow let me prepare"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" a concise summary with the complete details:\n\n## Summary: Top"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 3 Most Complex Functions in rust/crates/api/src/\n\n### 1. StreamState::ingest_chunk\n- **File"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**: `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/providers/openai_compat.rs`\n- **Lines**: 331-420 (90 lines)\n- **"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Cyclomatic Complexity**: 15 branches (9 `if`, 2"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `for`, 1 `match`, 2 `?`, 1 `=>`)\n- **Complexity Score**: 1350\n- **Description"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**: Processes incoming chat completion chunks from OpenAI-compatible API, managing stream state for multiple"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" concurrent tool calls. Handles text content, tool call deltas"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", and finish reasons while tracking message, text, and tool call states across partial"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" chunks with nested conditions.\n\n### 2. AnthropicClient::send_with_retry\n- **File**: `/Users/gladyscavero/Documents/"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PEOPL/GitHub/claw-code/rust/crates/api/src/providers/anthropic.rs`\n- **Lines**: 397-459 (63 lines)\n- **Cyclomatic Complexity**: 17 branches (7"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `if`, 1 `loop`, 2 `match`, 4 `?`, 3 `=>`)\n- **Complexity Score**: 1071\n- **Description**: Implements expon"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ential backoff retry logic for HTTP requests to the Anthropic API. Manages multiple nested error handling"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" paths for retryable vs non-retryable errors, tracks retry attempts, records"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" telemetry at each step, and returns appropriate error types based on retry exhaustion.\n\n### 3. detect_cache_break\n- **File**: `/Users/gladyscavero"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/prompt_cache.rs`\n- **Lines**: 314-381 (68 lines)\n- **Cyclomatic Complexity**: 12 branches (7"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `if`, 1 `match`, 1 `for`, 2 `?`, 1 `=>`)\n- **Complexity Score**: 816\n- **Description**: Analyzes prompt cache state"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" transitions to detect when cached prompts become invalid (cache breaks). Evaluates four"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" different fingerprint changes (model, system, tools, messages), comp"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ares token usage patterns against configuration thresholds, and determines whether cache breaks"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" are expected (intentional) or unexpected (anomalous)."}       }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0   }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":2,"cache_creation_input_tokens":1127,"cache_read_input_tokens":108449,"output_tokens":709},"context_management":{"applied_edits":[]}            }
+
+event: message_stop
+data: {"type":"message_stop"       }
+

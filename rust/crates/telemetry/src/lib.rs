@@ -115,12 +115,6 @@ impl AnthropicRequestProfile {
         for (key, value) in &self.extra_body {
             object.insert(key.clone(), value.clone());
         }
-        if !self.betas.is_empty() {
-            object.insert(
-                "betas".to_string(),
-                Value::Array(self.betas.iter().cloned().map(Value::String).collect()),
-            );
-        }
         Ok(body)
     }
 }

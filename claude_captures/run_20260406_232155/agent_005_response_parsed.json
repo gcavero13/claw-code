@@ -1,0 +1,24 @@
+{
+  "text": "Now add the test:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01GBtEdDVs4KVg1ZBDEUQChF",
+      "name": "Edit",
+      "input": "{\"replace_all\": false, \"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/compact.rs\", \"old_string\": \"    use super::{\\n        collect_key_files, compact_session, estimate_session_tokens, format_compact_summary,\\n        get_compact_continuation_message, infer_pending_work, should_compact, CompactionConfig,\\n    };\", \"new_string\": \"    use super::{\\n        collect_key_files, compact_session, compaction_summary_stats, estimate_session_tokens,\\n        format_compact_summary, get_compact_continuation_message, infer_pending_work,\\n        should_compact, CompactionConfig,\\n    };\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 406,
+    "cache_read_input_tokens": 63788,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 406
+    },
+    "output_tokens": 269,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

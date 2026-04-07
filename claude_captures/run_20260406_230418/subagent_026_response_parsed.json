@@ -1,0 +1,24 @@
+{
+  "text": "Let me check the directory structure to understand this better:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01UBeQyDrtZ7RWV3DgBQgnXW",
+      "name": "Bash",
+      "input": "{\"command\": \"ls -la /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 194,
+    "cache_read_input_tokens": 42018,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 194,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 96,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

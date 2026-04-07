@@ -1,0 +1,34 @@
+======================================================================
+SUBAGENT_203 — RESPONSE
+======================================================================
+
+SSE events: 30
+Model: claude-haiku-4-5-20251001
+Message ID: msg_017LvrhbTGdPGachhn7N6dMz
+
+Text output (2269 chars):
+  Perfect! Let me finalize the analysis with the corrected branch counts:
+
+**Recalculated Complexity Scores:**
+1. **StreamState::ingest_chunk**: 90 lines × 15 branches = **1350**
+2. **AnthropicClient::send_with_retry**: 63 lines × 17 branches = **1071**
+3. **detect_cache_break**: 68 lines × 12 branches = **816**
+
+Now let me prepare a concise summary with the complete details:
+
+## Summary: Top 3 Most Complex Functions in rust/crates/api/src/
+
+### 1. StreamState::ingest_chunk
+- **File**: `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/providers/openai_compat.rs`
+- **Lines**: 331-420 (90 lines)
+- **Cyclomatic Complexity**: 15 branches (9 `if`, 2 `for`, 1 `match`, 2 `?`, 1 `=>`)
+- **Complexity Score**: 1350
+- **Description**: Processes incoming chat completion chunks from OpenAI-compatible API, managing stream state for multiple concurrent tool calls. Handles text content, tool call deltas, and finish reasons while tracking message, text, and tool call states across...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 2
+  cache_creation_input_tokens: 1127
+  cache_read_input_tokens: 108449
+  output_tokens: 709

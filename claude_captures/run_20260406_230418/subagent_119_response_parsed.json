@@ -1,0 +1,24 @@
+{
+  "text": "Let me analyze the execute_config and execute_repl functions:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01VFYoJjehFWZwfdqryjj3CS",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\", \"offset\": 4116, \"limit\": 100}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1509,
+    "cache_read_input_tokens": 74194,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1509,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 135,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

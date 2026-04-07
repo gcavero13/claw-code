@@ -1,0 +1,19 @@
+======================================================================
+ITERATION 2
+======================================================================
+
+System prompt: 3 blocks, 3782 chars total
+  [0] 80 chars (cache=None)
+  [1] 62 chars (cache={'type': 'ephemeral'})
+  [2] 3640 chars (cache={'type': 'ephemeral'})
+
+Model: claude-opus-4-6
+Max tokens: 8000
+Stream: True
+Tools: 48 defined
+
+Messages: 1 total
+--------------------------------------------------
+  [0] role=user (2 blocks)
+       [0] text: <system-reminder> CLAUDE.md + context (1732 chars)
+       [1] text: Search the web for the latest Anthropic API pricing for all Claude models (Opus, Sonnet, Haiku) as of April 2026. I need... (447 chars)

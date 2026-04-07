@@ -1,0 +1,3 @@
+{"created_at_ms":1775334210622,"session_id":"session-1775334210622-0","type":"session_meta","updated_at_ms":1775334212810,"version":1}
+{"message":{"blocks":[{"text":"how much is 2+2","type":"text"}],"role":"user"},"type":"message"}
+{"message":{"blocks":[{"text":"2 + 2 = **4**.","type":"text"}],"role":"assistant","usage":{"cache_creation_input_tokens":0,"cache_read_input_tokens":0,"input_tokens":6104,"output_tokens":14}},"type":"message"}

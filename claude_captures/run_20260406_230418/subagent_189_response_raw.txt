@@ -1,0 +1,168 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_01NHYJ13hHqzdk2DWW1Tmw5G","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":2,"cache_creation_input_tokens":1404,"cache_read_input_tokens":98045,"cache_creation":{"ephemeral_5m_input_tokens":1404,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}            }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}             }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Perfect"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"! Now let me compile my final analysis with exact line numbers and accurate"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" descriptions:\n\n## Summary\n\nBased on my thorough analysis of all Rust files in `/Users"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/gladyscavero/Documents/PEOPL/GitHub"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/claw-code/rust/crates/rus"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ty-claude-cli/src/`, here are the **3 most complex functions** ranked"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" by combined line count and cyclomatic complexity:\n\n---\n\n### 1. **parse_args**\n- **File:**"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs`\n- **Lines:** 212-389 (178 lines total)\n- **Cyc"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"lomatic Complexity:** 48 branches\n  - 1 while loop over arguments\n  - 18 match arms for different"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" CLI flags\n  - 3 guard patterns with conditional logic\n  - 6 if-let patterns\n  - 2 "}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"plain if statements\n  - 4 error handling paths with ?\n  - Pattern-"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"matching guards on flags\n  \n- **Description:** This is the command-line argument parser."}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" It iterates through CLI arguments in a while loop and uses an extensive match statement to handle "}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"18+ different flags (--help, --version, --model, --output-format, --permission"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-mode, --resume, --allowedTools, etc.). Each"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" flag can be provided in multiple formats (e.g., --model"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"=value or --model value), requiring complex pattern guards. The function performs early"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" returns for help/version and dispatches to different CLI actions (RE"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PL, Prompt, Login, etc.) based on the parsed arguments.\n\n---\n\n### 2. **render_event**\n- **File:**"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/render.rs`\n- **Lines:** 278-427 (150 lines total)\n- **Cyc"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"lomatic Complexity:** 50+ branches\n  - 1 master match with 35+ event type arms\n  - Multiple nested if-let statements ("}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"8 total) for optional value extraction\n  - 2 nested match expressions (for ListKind and CodeBlockK"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ind)\n  - Complex pattern matching on Tag and TagEnd variants\n  - Conditional logic within arms"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (if statements on state)\n  - Multiple ternary operators"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" for rendering decisions\n  \n- **Description:** This is the core markdown event renderer that processes pull"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"down_cmark markdown parsing events into ANSI-colored"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" terminal output. It handles 35+ different markdown event types (headings, emphasis, code blocks, tables, links"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", lists, etc.). Each event type requires different rendering logic. The function maintains complex"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" state (RenderState with emphasis/strong levels, heading levels, quote"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" depth, list stack, table state, and link stack) and updates"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" it based on event type. Nested match expressions determine list kind"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" and code block language. Table rendering involves conditional logic to check if currently in"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" a table context.\n\n---\n\n### 3. **stream**\n- **File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs`"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Lines:** 4525-4664 (140 lines total)\n- **Cyclomatic Complexity:** 32 branches\n  - 1 if-let for optional progress reporter"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n  - 1 async block with tokio runtime execution\n  - 1 while-let loop processing streaming"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" events\n  - 1 match with 5 API stream event variants\n  -"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Nested match inside ContentBlockDelta for delta types (3"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" arms: TextDelta, InputJsonDelta, ThinkingDelta)\n  - 5 if-let patterns for optional state"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" extraction (pending_tool, markdown_stream"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", progress_reporter)\n  - Multiple error handling paths with map_err\n  - Complex conditional logic for"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" checking saw_stop and event presence\n  \n- **Description:** This function implements"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the streaming API client that consumes events from the Claude API"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" in real-time. It wraps the async streaming operation in a tokio runtime block and processes each stream"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" event through a complex match statement handling MessageStart, Content"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"BlockStart, ContentBlockDelta, ContentBlockStop, MessageDelta, and MessageStop variants"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". The ContentBlockDelta arm contains another match for TextDelta (rendering markdown"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"), InputJsonDelta (accumulating tool input), and other deltas. The function manages state for pending"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tool calls, markdown streaming state, and progress reporting. It accumulates events, handles markdown"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rendering on-the-fly, and performs fallback non-streaming behavior if needed"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"."}        }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0        }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":2,"cache_creation_input_tokens":1404,"cache_read_input_tokens":98045,"output_tokens":1065},"context_management":{"applied_edits":[]}   }
+
+event: message_stop
+data: {"type":"message_stop"  }
+

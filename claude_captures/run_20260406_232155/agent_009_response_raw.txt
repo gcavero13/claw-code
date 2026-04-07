@@ -1,0 +1,39 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01KDGgmhBAw4yNPTxkMrEMLC","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":8691,"cache_read_input_tokens":66960,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":8691},"output_tokens":2,"service_tier":"standard","inference_geo":"not_available"}}    }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}              }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"All "}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"360 tests pass, including both new tests:\n- `compaction_summary"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_stats_returns_zeros_when_no_compaction` \n- `compaction_summary_stats_returns_counts"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_after_compaction`\n\nThe function `compaction_summary_stats` is at `rust"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/crates/runtime/src/compact.rs:144`. It extracts `"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"(count, removed_message_count)` from `session."}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"compaction`, returning `(0, 0)` when no compaction has occurred."}        }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0}
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":8691,"cache_read_input_tokens":66960,"output_tokens":122},"context_management":{"applied_edits":[]}  }
+
+event: message_stop
+data: {"type":"message_stop"  }
+

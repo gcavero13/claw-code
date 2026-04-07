@@ -1,0 +1,40 @@
+======================================================================
+SUBAGENT_012 — RESPONSE
+======================================================================
+
+SSE events: 45
+Model: claude-opus-4-6
+Message ID: msg_01335fd4MxGuTaCV1PUKPnNv
+
+Text output (2764 chars):
+  Here is the complete Anthropic Claude API pricing as of April 2026, sourced directly from the official documentation.
+
+---
+
+## Standard Model Pricing (per million tokens)
+
+| Model | Input | Output | 5-min Cache Write | 1-hour Cache Write | Cache Read/Hit |
+|---|---|---|---|---|---|
+| **Claude Opus 4.6** | $5.00 | $25.00 | $6.25 | $10.00 | $0.50 |
+| **Claude Opus 4.5** | $5.00 | $25.00 | $6.25 | $10.00 | $0.50 |
+| **Claude Opus 4.1** | $15.00 | $75.00 | $18.75 | $30.00 | $1.50 |
+| **Claude Opus 4** | $15.00 | $75.00 | $18.75 | $30.00 | $1.50 |
+| **Claude Sonnet 4.6** | $3.00 | $15.00 | $3.75 | $6.00 | $0.30 |
+| **Claude Sonnet 4.5** | $3.00 | $15.00 | $3.75 | $6.00 | $0.30 |
+| **Claude Sonnet 4** | $3.00 | $15.00 | $3.75 | $6.00 | $0.30 |
+| **Claude Haiku 4.5** | $1.00 | $5.00 | $1.25 | $2.00 | $0.10 |
+| **Claude Haiku 3.5** | $0.80 | $4.00 | $1.00 | $1.60 | $0.08 |
+
+## Cache Pricing Multipliers
+
+The cache costs follow simple multipliers relative to the base input price:
+
+- **5-minute c...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 6002
+  cache_read_input_tokens: 45635
+  output_tokens: 1174

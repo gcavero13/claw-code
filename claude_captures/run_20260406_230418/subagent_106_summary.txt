@@ -1,0 +1,26 @@
+======================================================================
+ITERATION 106
+======================================================================
+
+System prompt: 3 blocks, 3283 chars total
+  [0] 80 chars (cache=None)
+  [1] 62 chars (cache={'type': 'ephemeral'})
+  [2] 3141 chars (cache={'type': 'ephemeral'})
+
+Model: claude-haiku-4-5-20251001
+Max tokens: 8000
+Stream: True
+Tools: 45 defined
+
+Messages: 3 total
+--------------------------------------------------
+  [0] role=user (2 blocks)
+       [0] text: <system-reminder> (306 chars)
+       [1] text: In the directory rust/crates/rusty-claude-cli/src/, find the 3 most complex functions by analyzing line count and cyclom... (511 chars)
+
+  [1] role=assistant (2 blocks)
+       [0] text: I'll analyze the Rust files in the specified directory to find the 3 most complex functions by line count and cyclomatic... (132 chars)
+       [1] tool_use: Glob({"pattern": "rust/crates/rusty-claude-cli/src/**/*.rs"})
+
+  [2] role=user (1 blocks)
+       [0] tool_result: id=toolu_01VxjHpwcXmDaewRba5pP1V4 (3994 chars) +[SYSTEM-REMINDER]

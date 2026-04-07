@@ -1,0 +1,30 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01PTuZnRVBYbW6C4sxKDSAd9","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":8336,"cache_read_input_tokens":54313,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":8336},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}}
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}          }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"There"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" are **5 public functions** in `compact.rs`:\n\n1. `estimate_session_tokens"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` (line 35)\n2. `should_compact` (line 41)\n3. `format_compact_summary` (line 55)\n4. `get"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_compact_continuation_message` (line 71)\n5. `compact_session` (line 96)"}       }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0        }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":8336,"cache_read_input_tokens":54313,"output_tokens":90},"context_management":{"applied_edits":[]}               }
+
+event: message_stop
+data: {"type":"message_stop"        }
+

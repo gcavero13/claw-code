@@ -1,0 +1,24 @@
+{
+  "text": "Good! Now let me get more details on the run_turn function and other large functions:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01HrTEWyHDzpSAEfDZNB8UVm",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/conversation.rs\", \"offset\": 296, \"limit\": 250}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 691,
+    "cache_read_input_tokens": 73110,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 691,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 139,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

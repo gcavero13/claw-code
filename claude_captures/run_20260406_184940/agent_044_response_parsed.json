@@ -1,0 +1,18 @@
+{
+  "text": "## Permission System + Hooks Integration\n\nHere's a combined view of how these two systems work together.\n\n### Permission System (`permissions.rs`)\n\nThe permission system implements **layered access control**:\n\n- **Permission Modes** (escalating privilege): `ReadOnly` → `WorkspaceWrite` → `DangerFullAccess`, plus special `Prompt` and `Allow` modes\n- **Per-tool requirements**: Each tool declares a required mode (e.g., `bash` requires `DangerFullAccess`, `read_file` only needs `ReadOnly`)\n- **Fine-grained rules**: Three rule lists — `allow`, `deny`, and `ask` — match on tool name + input pattern (e.g., `bash(git:*)`)\n- **Interactive prompting**: When escalation is needed, a `PermissionPrompter` trait asks the user; without one, access is denied by default\n\n### Hooks System (`hooks.rs`)\n\nThe hooks system provides **external interception points** around tool execution:\n\n- **Three events**: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`\n- **Shell commands** configured per event, executed sequentially with fail-fast\n- **Rich context** passed via environment variables and JSON on stdin (tool name, input, output)\n- **Hook output** can include messages, block execution (exit code 2 or `\"decision\": \"block\"`), modify tool input, or issue a **permission override**\n\n### How They Integrate (in `conversation.rs`)\n\nThe critical integration happens during tool execution in the conversation runtime:\n\n```\n1. Pre-tool hook runs\n   ├─ Hook denied/failed/cancelled? → Stop, return error\n   ├─ Extract PermissionOverride (allow/deny/ask) from hook output\n   └─ Extract updated_input if hook modified it\n\n2. Permission check (authorize_with_context)\n   ├─ Deny rules checked first → hard block\n   ├─ Hook override processed:\n   │   ├─ Hook says Deny  → immediate denial (highest priority)\n   │   ├─ Hook says Ask   → force interactive prompt\n   │   └─ Hook says Allow → still checked against ask rules\n   ├─ Standard mode/rule evaluation\n   └─ Result: Allow or Deny\n\n3. If allowed → execute tool (with potentially modified input)\n\n4. Post-tool hook runs (success or failure variant)\n   └─ Hook messages merged into output shown to model\n```\n\n### Key Design Insight\n\nThe two systems are **complementary but asymmetric**:\n\n- **Hooks can escalate** permission requirements (override to `Ask` or `Deny`) but **cannot bypass** deny rules — those are checked first and always win\n- **Hook `Allow` is advisory**, not absolute — ask rules still apply on top of it\n- **Hook `Deny` is authoritative** — it short-circuits the entire permission flow\n- **Input modification** happens only through hooks, not through the permission system\n\nThis means hooks act as a **policy enforcement layer on top of permissions**: external scripts can tighten security (block dangerous commands, force prompts) but cannot weaken the base permission policy's deny rules.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 2348,
+    "cache_creation_input_tokens": 2643,
+    "cache_read_input_tokens": 54391,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2643
+    },
+    "output_tokens": 737,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

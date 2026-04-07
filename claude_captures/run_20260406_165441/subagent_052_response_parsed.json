@@ -1,0 +1,24 @@
+{
+  "text": "Great! Let me search for how the request profile handles prompt caching:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01CNyc9awV8Xed3NVfnNHqSg",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -rn \\\"system_prompt_cache\\\\|cache_control\\\\|prompt_cache\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/providers/ 2>/dev/null | head -30\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 354,
+    "cache_read_input_tokens": 82474,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 354,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 130,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

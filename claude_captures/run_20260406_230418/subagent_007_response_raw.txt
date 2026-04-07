@@ -1,0 +1,99 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_01DbZmkQMYkiGvJJyyNH3uVa","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":5,"cache_creation_input_tokens":160,"cache_read_input_tokens":55946,"cache_creation":{"ephemeral_5m_input_tokens":160,"ephemeral_1h_input_tokens":0},"output_tokens":5,"service_tier":"standard","inference_geo":"not_available"}}}
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}}
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Based on my exploration of"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the rust/crates/ directory, here's the structured list of all c"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"rates:\n\n## Rust Crates Catalog\n\n### 1. **api**\n- **Directory name:**"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" api\n- **Package name:** api\n- **Description:** Provides HTTP client abstra"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ctions for Anthropic and OpenAI-compatible API providers,"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" supporting OAuth, prompt caching, and server-sent events (SSE) streaming"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".\n\n### 2. **commands**\n- **Directory name:** commands\n- **Package name:** commands\n- **Description:** Manages slash command registry"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" and specifications for CLI commands like /help, /status, /model"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", /permissions, /clear, /compact, and other interactive RE"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PL commands.\n\n### 3. **compat-harness**\n- **Directory name:** compat-harness\n- **Package name:** compat-harness\n- **Description:** Extracts command and"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tool manifests from the upstream TypeScript source code and resol"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ves the upstream repository root to maintain compatibility with the main claw-code project"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".\n\n### 4. **mock-anthropic-service**\n- **Directory name:** mock-anthropic-service\n- **Package name:** mock-anthropic-service\n- **Description:** Standalone binary that spaw"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ns a mock Anthropic API service for testing purposes, supporting configurable bind addresses.\n\n### 5. **plugins**\n- **Directory name:** plugins"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Package name:** plugins\n- **Description:** Manages plugin lifecycle, hooks (PreToolU"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"se, PostToolUse, PostToolUseFailure), plugin metadata, and plugin discovery"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" from builtin, bundled, and external marketplaces.\n\n### 6. **runtime**\n- **Directory name"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** runtime\n- **Package name:** runtime\n- **Description:** Core runtime engine providing session persistence, permission evaluation"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", prompt assembly, MCP client plumbing, tool execution, file"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" operations, and the conversation loop driving interactive turns.\n\n### 7. **rus"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ty-claude-cli**\n- **Directory name:** rusty-claude-cli\n- **Package name:** rusty-claude-cli\n- **Description:** Main CLI binary (c"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"law) implementing the interactive REPL interface with terminal rendering, markdown"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" support, syntax highlighting, and integration of all other crates.\n\n### 8. **telemetry**\n- **Directory name:** telemetry\n- **Package name:** telemetry"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Description:** Provides telemetry and analytics infrastructure including ClientIdent"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ity, SessionTracer, and telemetry sink implementations for usage"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tracking and request profiling.\n\n### 9. **tools**\n- **Directory name:** tools\n- **Package name:** tools\n- **Description:** Manages tool registry and specifications for available tools,"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" providing tool manifests and runtime definitions for execution within the CLI environment."}       }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0               }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":5,"cache_creation_input_tokens":160,"cache_read_input_tokens":55946,"output_tokens":621},"context_management":{"applied_edits":[]}             }
+
+event: message_stop
+data: {"type":"message_stop"         }
+

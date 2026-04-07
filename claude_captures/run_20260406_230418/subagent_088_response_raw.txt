@@ -1,0 +1,141 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_01NiEr5RsKg7nvkQcPWY683s","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":3,"cache_creation_input_tokens":579,"cache_read_input_tokens":64637,"cache_creation":{"ephemeral_5m_input_tokens":579,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}} }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}              }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Perfect"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"! Now I have all the information I need to analyze complexity. Let me create a comprehensive analysis of the three most"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" complex functions:\n\n## Analysis Summary\n\nBased on my thorough examination of all 28"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Rust functions in the crate, here are the **3 most complex functions** ranked"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" by combined line count and cyclomatic complexity (branch count):\n\n### 1. **`build"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_message_response`**\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/mock-anthropic-"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"service/src/lib.rs`\n**Lines:** 471-638 (168 lines)\n**Cyclomatic Complexity:** 26"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" branches\n\n**Branch Count Breakdown:**\n- 1 outer match statement on"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `scenario` with 12 arms\n- 9 nested"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" match statements on `latest_tool_result(request)`, each"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" with 2 arms (Some/None)\n- 1 nested if statement for `B"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ashPermissionPromptApproved` error handling\n- 1 tuple"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" match pattern in `MultiToolTurnR"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"oundtrip` with 2 outcomes\n\n**Description:** This function generates non-streaming API"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" message responses for 12 different test scenarios. It uses deeply nested match expressions to handle different scenario"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" types and their respective tool result states. For most scenarios, it checks whether"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" a tool result exists and either generates a final message with extracted tool"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" output or initiates a new tool request. This creates significant branching complexity through"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the combination of outer scenario matching and inner tool-result"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" matching at multiple levels.\n\n---\n\n### 2. **`build_stream_body`**\n**File:** `/Users"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/mock-anthropic-service/src/lib.rs`\n**Lines:** 333-468 (136"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" lines)\n**Cyclomatic Complexity:** 24 branches\n\n**Branch Count Breakdown:**\n- 1 outer match statement on `scenario` with 12 arms\n- 9 nested match statements on `latest_tool_result(request)`,"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" each with 2 arms (Some/None)\n- 1 nested if statement for `BashPermissionPromptApproved` error handling\n- 1 tuple match pattern in `MultiToolTurnRoundtrip` with 2 outcomes\n\n**Description:** This function generates"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" streaming Server-Sent Events (SSE) responses for the same 12 test scenarios. It mirrors the structure of `build_message_response` but produces"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" chunked SSE event data instead of JSON messages. The high complexity comes from the same pattern of nested scenario"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" matching combined with tool-result existence checks, where each branch produces different event streams"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (some with multiple chunks for JSON assembly simulation)."}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n---\n\n### 3. **`read_http_request`**\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/mock-anthropic-service/src/lib.rs"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"`\n**Lines:** 166-238 (73 lines)\n**Cyclomatic Complexity:** 12 branches\n\n**Branch Count Breakdown:**\n- 1 loop with"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 1 if condition (read == 0) +"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 1 nested if-let\n- 1 error handling with `ok"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_or_else` \n- Multiple `ok_or_else` error handlers (6"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" total: for header_end, UTF-8, request_line"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", method, path, content-length parsing)\n- 1 while loop with 1 if condition\n- 2"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `?` operators for error propagation\n\n**Description:** This async function parses incoming HTTP requests from a TCP socket. It reads"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" and buffers socket data until the HTTP header boundary"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" is detected (`\\r\\n\\r\\n`), then parses the request line and headers. It includes"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" a secondary loop to read the body based on the Content-Length header. The complexity derives"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" from multiple fallible operations (UTF-8 conversion, header parsing, integer parsing) each"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" requiring error handling, combined with loop control flow for"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" reading variable-length socket data."}    }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0         }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":3,"cache_creation_input_tokens":579,"cache_read_input_tokens":64637,"output_tokens":935},"context_management":{"applied_edits":[]}}
+
+event: message_stop
+data: {"type":"message_stop"          }
+

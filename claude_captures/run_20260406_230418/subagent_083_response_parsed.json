@@ -1,0 +1,18 @@
+{
+  "text": "Perfect! Now I have analyzed all the functions. Let me compile my findings with cyclomatic complexity counts:\n\n## Analysis of Functions by Complexity\n\nBased on my thorough review of all functions in `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/compat-harness/src/lib.rs`, here are the **3 most complex functions**:\n\n---\n\n### 1. **extract_commands**\n- **File path:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/compat-harness/src/lib.rs`\n- **Line count:** 102-148 (47 lines)\n- **Cyclomatic complexity:** 11 branches\n  - Line 106: `for` loop (1)\n  - Line 109: `if` statement (2)\n  - Line 114: `if` statement (3)\n  - Line 115: `if` statement (4)\n  - Line 119: `if let` (5)\n  - Line 128: `if` statement (6)\n  - Line 129: `for` loop (7)\n  - Line 137: `if` statement with `&&` (8)\n  - Line 138: `if let` (9)\n- **Description:** Parses a TypeScript source file to extract command definitions from three different sources: internal-only commands (within an exported array block), builtin commands (from import statements), and feature-gated commands (from feature() calls). Maintains a stateful parser that tracks whether it's inside the internal commands block, then processes each line with multiple conditional checks to categorize and store command entries.\n\n---\n\n### 2. **extract_bootstrap_plan**\n- **File path:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/compat-harness/src/lib.rs`\n- **Line count:** 183-219 (37 lines)\n- **Cyclomatic complexity:** 10 branches\n  - Lines 186, 189, 192, 195, 198, 201, 204, 207, 210, 213: 10 independent `if` statements\n- **Description:** Extracts bootstrap phases from TypeScript CLI source code by searching for specific string patterns that indicate which bootstrap optimizations are available. Each pattern match (--version, startupProfiler, --dump-system-prompt, etc.) adds a corresponding BootstrapPhase to the plan. Ends with always-present MainRuntime phase.\n\n---\n\n### 3. **imported_symbols**\n- **File path:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/compat-harness/src/lib.rs`\n- **Line count:** 221-251 (31 lines)\n- **Cyclomatic complexity:** 7 branches\n  - Line 222: `let Some() else` (1)\n  - Line 231: `if` statement (2)\n  - Line 235: `filter_map` closure with branch (3)\n  - Line 237: `if` statement (4)\n  - Line 246: `if` statement (5)\n- **Description:** Parses a TypeScript import statement string and extracts the imported symbol names. Handles three import styles: default imports, destructured named imports (with braces), and comma-separated lists. Uses string splitting and pattern matching to identify and return the names of imported symbols.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 446,
+    "cache_read_input_tokens": 50977,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 446,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 822,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

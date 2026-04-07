@@ -1,0 +1,18 @@
+{
+  "text": "Based on my exploration of the rust/crates/ directory, here's the structured list of all crates:\n\n## Rust Crates Catalog\n\n### 1. **api**\n- **Directory name:** api\n- **Package name:** api\n- **Description:** Provides HTTP client abstractions for Anthropic and OpenAI-compatible API providers, supporting OAuth, prompt caching, and server-sent events (SSE) streaming.\n\n### 2. **commands**\n- **Directory name:** commands\n- **Package name:** commands\n- **Description:** Manages slash command registry and specifications for CLI commands like /help, /status, /model, /permissions, /clear, /compact, and other interactive REPL commands.\n\n### 3. **compat-harness**\n- **Directory name:** compat-harness\n- **Package name:** compat-harness\n- **Description:** Extracts command and tool manifests from the upstream TypeScript source code and resolves the upstream repository root to maintain compatibility with the main claw-code project.\n\n### 4. **mock-anthropic-service**\n- **Directory name:** mock-anthropic-service\n- **Package name:** mock-anthropic-service\n- **Description:** Standalone binary that spawns a mock Anthropic API service for testing purposes, supporting configurable bind addresses.\n\n### 5. **plugins**\n- **Directory name:** plugins\n- **Package name:** plugins\n- **Description:** Manages plugin lifecycle, hooks (PreToolUse, PostToolUse, PostToolUseFailure), plugin metadata, and plugin discovery from builtin, bundled, and external marketplaces.\n\n### 6. **runtime**\n- **Directory name:** runtime\n- **Package name:** runtime\n- **Description:** Core runtime engine providing session persistence, permission evaluation, prompt assembly, MCP client plumbing, tool execution, file operations, and the conversation loop driving interactive turns.\n\n### 7. **rusty-claude-cli**\n- **Directory name:** rusty-claude-cli\n- **Package name:** rusty-claude-cli\n- **Description:** Main CLI binary (claw) implementing the interactive REPL interface with terminal rendering, markdown support, syntax highlighting, and integration of all other crates.\n\n### 8. **telemetry**\n- **Directory name:** telemetry\n- **Package name:** telemetry\n- **Description:** Provides telemetry and analytics infrastructure including ClientIdentity, SessionTracer, and telemetry sink implementations for usage tracking and request profiling.\n\n### 9. **tools**\n- **Directory name:** tools\n- **Package name:** tools\n- **Description:** Manages tool registry and specifications for available tools, providing tool manifests and runtime definitions for execution within the CLI environment.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 160,
+    "cache_read_input_tokens": 55946,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 160,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 621,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

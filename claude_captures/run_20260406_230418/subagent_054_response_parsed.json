@@ -1,0 +1,24 @@
+{
+  "text": "Let me continue reading to get all functions:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01GVjxmL3wMG3KNoZyCcSPCn",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/mock-anthropic-service/src/lib.rs\", \"offset\": 1000, \"limit\": 500}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 5845,
+    "cache_read_input_tokens": 49302,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 5845,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 135,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

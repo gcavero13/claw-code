@@ -1,0 +1,22 @@
+======================================================================
+AGENT_009 — RESPONSE
+======================================================================
+
+SSE events: 13
+Model: claude-opus-4-6
+Message ID: msg_01KDGgmhBAw4yNPTxkMrEMLC
+
+Text output (382 chars):
+  All 360 tests pass, including both new tests:
+- `compaction_summary_stats_returns_zeros_when_no_compaction` 
+- `compaction_summary_stats_returns_counts_after_compaction`
+
+The function `compaction_summary_stats` is at `rust/crates/runtime/src/compact.rs:144`. It extracts `(count, removed_message_count)` from `session.compaction`, returning `(0, 0)` when no compaction has occurred.
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 8691
+  cache_read_input_tokens: 66960
+  output_tokens: 122

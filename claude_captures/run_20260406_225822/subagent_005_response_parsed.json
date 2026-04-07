@@ -1,0 +1,22 @@
+{
+  "text": "Based on the search results, here is the Anthropic Claude API pricing per million tokens for 2026:\n\n## Current Generation Models (2026)\n\nAnthropic offers three recommended tiers in 2026: Haiku 4.5 ($1/$5), Sonnet 4.6 ($3/$15), and Opus 4.6 ($5/$25) per million input/output tokens.\n\n**Breakdown:**\n- **Claude Opus 4.6**: $5.00 per million input tokens, $25.00 per million output tokens\n- **Claude Sonnet 4.6**: $3 input / $15 output per MTok\n- **Claude Haiku 4.5**: $1.00 input / $5.00 output\n\n## Key Pricing Features\n\n**1M Context Window**: Claude Opus 4.6 and Sonnet 4.6 include the full 1M token context window at standard pricing.\n\n**Fast Mode**: Fast Mode (Opus 4.6 only): $30 input / $150 output per million tokens (6x standard).\n\n**Cost Optimization**:\n- The Batch API allows asynchronous processing of large volumes of requests with a 50% discount on both input and output tokens.\n- A cache hit costs 10% of the standard input price, which means caching pays off after just one cache read for the 5-minute duration (1.25x write), or after two cache reads for the 1-hour duration (2x write).\n\nFor the most current pricing information, please visit claude.com/pricing.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 2366,
+    "cache_creation_input_tokens": 18031,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 558,
+    "service_tier": "standard",
+    "inference_geo": "not_available",
+    "server_tool_use": {
+      "web_search_requests": 1,
+      "web_fetch_requests": 0
+    }
+  }
+}

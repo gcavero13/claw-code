@@ -1,0 +1,24 @@
+{
+  "text": "Let me look at convert_messages and response_to_events which might be more complex:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01QpqPYGkV4YPp5yfj6b6xE2",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\", \"offset\": 3572, \"limit\": 100}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2125,
+    "cache_read_input_tokens": 72069,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2125,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 140,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

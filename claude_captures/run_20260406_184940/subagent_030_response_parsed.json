@@ -1,0 +1,29 @@
+{
+  "text": "Now let me get a comprehensive view of the hook output parsing to understand what hook scripts can return:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_0112C82xre51FCXAk5QUyX1Z",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/hooks.rs\", \"offset\": 535, \"limit\": 70}"
+    },
+    {
+      "id": "toolu_01FfF9wraKHqAvUCNGAV5Hfz",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"systemMessage\\\\|permissionDecision\\\\|updatedInput\\\\|continue\\\\|decision.*block\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/hooks.rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 2851,
+    "cache_read_input_tokens": 82337,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2851,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 233,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

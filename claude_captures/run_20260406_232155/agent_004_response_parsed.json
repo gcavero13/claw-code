@@ -1,0 +1,24 @@
+{
+  "text": "Now I have the full picture. `Session.compaction` is an `Option<SessionCompaction>` with `count: u32` and `removed_message_count: usize`.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_011pQEgJBkBda4zLdwnaR14j",
+      "name": "Edit",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/compact.rs\", \"old_string\": \"fn compacted_summary_prefix_len(session: &Session) -> usize {\", \"new_string\": \"/// Returns `(total_compactions, total_removed_messages)` extracted from the\\n/// session's compaction metadata, or `(0, 0)` if no compaction has occurred.\\n#[must_use]\\npub fn compaction_summary_stats(session: &Session) -> (u32, usize) {\\n    match &session.compaction {\\n        Some(c) => (c.count, c.removed_message_count),\\n        None => (0, 0),\\n    }\\n}\\n\\nfn compacted_summary_prefix_len(session: &Session) -> usize {\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 909,
+    "cache_read_input_tokens": 62879,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 909
+    },
+    "output_tokens": 320,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

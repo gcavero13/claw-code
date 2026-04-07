@@ -1,0 +1,135 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01335fd4MxGuTaCV1PUKPnNv","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":6002,"cache_read_input_tokens":45635,"cache_creation":{"ephemeral_5m_input_tokens":6002,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}           }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}  }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Here"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" is the complete Anthropic Claude API pricing as of April 2026"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", sourced directly from the official documentation.\n\n---\n\n## Standard"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Model Pricing (per million tokens)\n\n| Model | Input | Output | 5"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-min Cache Write | 1-hour Cache Write |"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Cache Read/Hit |\n|---|---|---|---|---|---|\n| **Claude Opus 4.6** | $5"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".00 | $25.00 | $6.25 | $10.00 | $0.50 |\n| **Claude Opus 4.5** | $5.00 | $25"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".00 | $6.25 | $10.00 | $0.50 |\n| **Claude Opus 4.1** | $15.00 | $75.00 | $18.75 | $30"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".00 | $1.50 |\n| **Claude Opus 4** | $15.00 | $75.00 | $18.75 | $30.00 | $1.50 |\n| **Claude Son"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"net 4.6** | $3.00 | $15.00 | $3.75 | $6.00 | $0.30 |\n| **Claude Son"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"net 4.5** | $3.00 | $15.00 | $3.75 | $6.00 | $0.30 |\n| **Claude Sonnet 4** | $3.00 | $15.00 | $3.75"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" | $6.00 | $0.30 |\n| **Claude Haiku 4.5** | $1.00 | $5.00 | $1.25 | $2.00"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" | $0.10 |\n| **Claude Haiku 3.5** | $0.80 | $4.00 | $1.00 | $1.60 |"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" $0.08 |\n\n## Cache Pricing Multipliers\n\nThe cache costs follow simple multipliers relative"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" to the base input price:\n\n- **5-minute cache write**: 1.25"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"x base input price\n- **1-hour cache write**: 2x base input price\n- **Cache read ("}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"hit)**: 0.1x base input price (90% savings)\n\nCaching pays"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" off after just **one read** for "}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"5-minute caches, or **two reads** for 1-hour caches.\n\n## Batch API Pricing (50"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"% discount)\n\n| Model | Batch Input | Batch Output |\n|---|---|---|\n| **Claude Opus 4.6** | $2.50 | $12.50"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" |\n| **Claude Opus 4.5** | $2.50 | $12.50 |\n| **Claude Opus 4.1** | $7.50 | $37.50 |\n| **Claude Opus 4** | $7.50"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" | $37.50 |\n| **Claude Sonnet 4.6** | $1.50 | $7.50 |\n| **Claude Sonnet 4.5** | $1.50 | $7.50 "}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"|\n| **Claude Sonnet 4** | $1.50 | $7.50 |\n| **Claude Haiku 4.5** | $0.50 | $2.50 |\n| **Claude Haiku 3.5** |"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" $0.40 | $2.00 |\n\n## Fast Mode (Opus 4.6 only)\n\n- **Input**:"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" $30/MTok\n- **Output**: $150/MTok\n- This is 6x the standard"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rate, designed for latency-sensitive workloads.\n\n## Key Notes"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n- **Long context**: Opus 4.6 and Sonnet 4.6 include the full 1M token context window at standard pricing -- no"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" surcharge for large requests.\n- **Discount stacking**: Batch ("}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"50% off) and prompt caching (90% off reads) can be combined for up to ~95% savings.\n- **Data"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" residency**: Specifying US-only inference via `inference_geo` adds a 1.1x multiplier on all token categories ("}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Opus 4.6 and newer only).\n- **Notable price drop**: Opus 4.5"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/4.6 are 3x cheaper than Opus 4/4"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".1 ($5 vs $15 input, $25 vs $75 output) while"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" being newer models.\n\nSources:\n- [Pricing - Claude API"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Docs (Official)](https://platform.claude.com/docs/en/about-claude/pricing"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")\n- [Claude API Pricing 2026: Full Anthropic Cost Breakdown](https://www.metac"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"to.com/blogs/anthropic-api-pricing-a-full-breakdown-of-costs-and-integration"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")\n- [DevTk.AI Claude API"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Pricing Guide 2026](https://devtk.ai/en/blog/claude-api-pricing-guide-2026/)"}}
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0              }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":6002,"cache_read_input_tokens":45635,"output_tokens":1174},"context_management":{"applied_edits":[]}    }
+
+event: message_stop
+data: {"type":"message_stop"              }
+

@@ -1,0 +1,29 @@
+{
+  "text": "Now let me read the specific hook execution methods:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_018ctJEppEJYhsqYFRyXG9Dv",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/conversation.rs\", \"offset\": 220, \"limit\": 60}"
+    },
+    {
+      "id": "toolu_01EQTrYa1VveWoKiceLYERqU",
+      "name": "Grep",
+      "input": "{\"pattern\": \"run_pre_tool_use_hook|run_post_tool_use_hook|run_post_tool_use_failure_hook\", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/conversation.rs\", \"output_mode\": \"content\", \"context\": 10}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 2909,
+    "cache_read_input_tokens": 71234,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2909,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 280,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

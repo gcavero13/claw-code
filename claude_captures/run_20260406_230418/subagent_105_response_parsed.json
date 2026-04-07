@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_016SU85sZaN4TZ4rcbV5PZLx",
+      "name": "Grep",
+      "input": "{\"pattern\": \"^(pub\\\\s+)?(?:async\\\\s+)?fn\\\\s+\\\\w+\\\\s*\\\\(\", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/mcp_stdio.rs\", \"output_mode\": \"content\", \"-n\": true}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 239,
+    "cache_read_input_tokens": 57235,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 239,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 166,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

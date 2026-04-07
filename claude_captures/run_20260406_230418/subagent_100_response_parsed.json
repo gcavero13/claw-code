@@ -1,0 +1,24 @@
+{
+  "text": "Let me search for function definitions and their line numbers in the largest files:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01HxSsj5C8dzzPwFZxD2PeCF",
+      "name": "Grep",
+      "input": "{\"pattern\": \"^(pub\\\\s+)?(?:async\\\\s+)?fn\\\\s+\\\\w+\\\\s*\\\\(\", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/mcp_stdio.rs\", \"output_mode\": \"content\", \"line_numbers\": true}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 1430,
+    "cache_read_input_tokens": 55805,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1430,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 183,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

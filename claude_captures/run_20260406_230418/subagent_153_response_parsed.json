@@ -1,0 +1,24 @@
+{
+  "text": "Let me continue reading run_repl:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01D18xQcKFDgYQUNnDRAwNbS",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs\", \"offset\": 1527, \"limit\": 100}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 3057,
+    "cache_read_input_tokens": 78779,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3057,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 135,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

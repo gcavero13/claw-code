@@ -1,0 +1,126 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01YYFTh1wNVaFFn6LMtULivE","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":2348,"cache_creation_input_tokens":2643,"cache_read_input_tokens":54391,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":2643},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}           }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}     }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"##"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Permission System + Hooks Integration\n\nHere's a combined view of how"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" these two systems work together.\n\n### Permission System (`permissions.rs`)\n\nThe permission system implements **lay"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ered access control**:\n\n- **Permission Modes** (escalating privilege): `ReadOnly`"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" → `WorkspaceWrite` → `DangerFullAccess`, plus special `Prompt` and `Allow` modes\n- **Per"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-tool requirements**: Each tool declares a required mode (e.g., `bash`"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" requires `DangerFullAccess`, `read_file` only needs `ReadOnly`)\n- **Fine-grained rules**: Three"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rule lists — `allow`, `deny`, and `ask` — match on tool name + input pattern (e.g., `bash(git"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":*)`)\n- **Interactive prompting**: When escalation is needed, a `PermissionPrompter` trait asks the user; without"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" one, access is denied by default\n\n### Hooks System (`hooks.rs`)\n\nThe hooks system provides **external interception points** around"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tool execution:\n\n- **Three events**: `PreToolUse`, `PostToolUse`, `PostToolUseFailure`\n- **Shell commands**"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" configured per event, executed sequentially with fail-fast\n- **Rich context** passed via environment"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" variables and JSON on stdin (tool name, input, output)"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Hook output** can include messages, block execution (exit code 2 or"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `\"decision\": \"block\"`), modify tool input, or issue a **"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"permission override**\n\n### How They Integrate (in `conversation.rs`)\n\nThe critical integration happens during"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" tool execution in the conversation runtime:\n\n```\n1. Pre-tool hook"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" runs\n   ├─ Hook denied/failed/cancelled? → Stop"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", return error\n   ├─ Extract PermissionOverride (allow/deny/ask) from hook output"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n   └─ Extract updated_input if hook modified it\n\n2. Permission check (authorize"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_with_context)\n   ├─ Deny rules checked first → hard block"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n   ├─ Hook override processed:\n   │   ├─ Hook says Deny  → immediate"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" denial (highest priority)\n   │   ├─ Hook says Ask   → force interactive prompt\n   │   └─ Hook says Allow → still"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" checked against ask rules\n   ├─ Standard mode/rule evaluation\n   └─ Result"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": Allow or Deny\n\n3. If allowed → execute tool (with potentially"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" modified input)\n\n4. Post-tool hook runs (success or failure variant)\n   └─ Hook messages merged into output"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" shown to model\n```\n\n### Key Design Insight\n\nThe two systems are **complementary but asymmetric**:"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n- **Hooks can escalate** permission requirements (override to"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `Ask` or `Deny`) but **cannot bypass** deny rules —"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" those are checked first and always win\n- **Hook `Allow` is advisory"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"**, not absolute — ask rules still apply on top of it\n- **Hook"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `Deny` is authoritative** — it short-circuits the entire permission flow\n- **Input"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" modification** happens only through hooks, not through the permission system\n\nThis means hooks"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" act as a **policy enforcement layer on top of permissions**: external scripts"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" can tighten security (block dangerous commands, force prompts) but cannot weaken the"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" base permission policy's deny rules."}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0             }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":2348,"cache_creation_input_tokens":2643,"cache_read_input_tokens":54391,"output_tokens":737},"context_management":{"applied_edits":[]} }
+
+event: message_stop
+data: {"type":"message_stop"              }
+

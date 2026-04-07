@@ -1,0 +1,24 @@
+{
+  "text": "The main.rs file is very large (7749 lines). Let me search for function definitions to identify the complex ones:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01KLtShTNtrTdLTrKMSztDCQ",
+      "name": "Grep",
+      "input": "{\"pattern\": \"^fn |^    fn |^        fn \", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs\", \"output_mode\": \"content\", \"head_limit\": 80}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 169,
+    "cache_read_input_tokens": 70465,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 169,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 180,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

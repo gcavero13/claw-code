@@ -1,0 +1,24 @@
+{
+  "text": "Let me check more of the tools/lib.rs to see how permissions are enforced:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01Uj5N398ebqCQjS6n9u5c29",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"check\\\\|enforcer\\\\|EnforcementResult\\\" rust/crates/tools/src/lib.rs | head -50\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 3125,
+    "cache_read_input_tokens": 71621,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3125,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 104,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

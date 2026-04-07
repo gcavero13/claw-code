@@ -1,0 +1,29 @@
+{
+  "text": "Perfect! Let me also look at how the config parses hook commands:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01KuRVhg4Sc8VZXNbveFQ4bz",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"parse_optional_hooks_config\\\\|validate_optional_hooks_config\\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/config.rs | head -10\"}"
+    },
+    {
+      "id": "toolu_01VzZXRXa3Ty17wVh7GmSRgN",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/config.rs\", \"offset\": 500, \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 3649,
+    "cache_read_input_tokens": 78688,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 3649,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 227,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

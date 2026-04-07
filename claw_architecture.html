@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claw Code Architecture</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent-api: #58a6ff;
+    --accent-runtime: #3fb950;
+    --accent-tools: #d2a8ff;
+    --accent-telemetry: #f0883e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent-api), var(--accent-runtime), var(--accent-tools));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+
+  /* Tab navigation */
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 0.6rem 1.4rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { border-color: var(--accent-api); color: var(--text); }
+  .tab-btn.active { border-color: var(--accent-api); color: var(--accent-api); background: rgba(88,166,255,0.1); }
+  .tab-btn[data-tab="runtime"].active { border-color: var(--accent-runtime); color: var(--accent-runtime); background: rgba(63,185,80,0.1); }
+  .tab-btn[data-tab="tools"].active { border-color: var(--accent-tools); color: var(--accent-tools); background: rgba(210,168,255,0.1); }
+  .tab-btn[data-tab="api"].active { border-color: var(--accent-api); color: var(--accent-api); background: rgba(88,166,255,0.1); }
+  .tab-btn[data-tab="telemetry"].active { border-color: var(--accent-telemetry); color: var(--accent-telemetry); background: rgba(240,136,62,0.1); }
+
+  /* Tab panels */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Diagram containers */
+  .diagram-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+  .diagram-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Expandable sections */
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  summary {
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+  }
+  summary:hover { background: rgba(255,255,255,0.03); }
+  summary::marker { content: ''; }
+  summary::before {
+    content: '\25B6';
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+  details[open] summary::before { transform: rotate(90deg); }
+  .detail-body {
+    padding: 0.5rem 1.2rem 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Info grid */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .info-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .info-card h4 {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .info-card code {
+    background: rgba(255,255,255,0.06);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--accent-api);
+  }
+  .info-card ul { list-style: none; padding: 0; }
+  .info-card li { padding: 0.15rem 0; font-size: 0.9rem; }
+  .info-card li::before { content: '\2022 '; color: var(--muted); }
+
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-api { background: rgba(88,166,255,0.15); color: var(--accent-api); }
+  .badge-runtime { background: rgba(63,185,80,0.15); color: var(--accent-runtime); }
+  .badge-tools { background: rgba(210,168,255,0.15); color: var(--accent-tools); }
+  .badge-telemetry { background: rgba(240,136,62,0.15); color: var(--accent-telemetry); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.5rem; }
+  th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+
+  .mermaid { display: flex; justify-content: center; }
+  .mermaid svg { max-width: 100%; }
+</style>
+</head>
+<body>
+
+<h1>Claw Code Architecture</h1>
+<p class="subtitle">Rust workspace &mdash; interactive architecture diagram with expandable crate details</p>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="overview">Overview</button>
+  <button class="tab-btn" data-tab="runtime">Runtime Crate</button>
+  <button class="tab-btn" data-tab="tools">Tools Crate</button>
+  <button class="tab-btn" data-tab="api">API Crate</button>
+  <button class="tab-btn" data-tab="dataflow">Data Flow</button>
+</div>
+
+<!-- ===== OVERVIEW ===== -->
+<div id="overview" class="tab-panel active">
+  <div class="diagram-container">
+    <h2>Workspace Dependency Graph</h2>
+    <pre class="mermaid">
+graph TB
+  subgraph workspace["Claw Code Rust Workspace"]
+    direction TB
+    CLI["CLI Binary<br/><i>Entry point</i>"]
+    TOOLS["crates/tools<br/><span class='badge badge-tools'>Tool Dispatch</span>"]
+    RUNTIME["crates/runtime<br/><span class='badge badge-runtime'>Conversation Engine</span>"]
+    API["crates/api<br/><span class='badge badge-api'>Provider Clients</span>"]
+    TELEMETRY["crates/telemetry<br/><span class='badge badge-telemetry'>Observability</span>"]
+    PLUGINS["crates/plugins<br/><i>Plugin System</i>"]
+  end
+
+  CLI --> TOOLS
+  CLI --> RUNTIME
+  TOOLS --> API
+  TOOLS --> RUNTIME
+  TOOLS --> PLUGINS
+  API --> RUNTIME
+  API --> TELEMETRY
+  RUNTIME --> TELEMETRY
+  RUNTIME --> PLUGINS
+
+  style CLI fill:#1f6feb,stroke:#58a6ff,color:#fff
+  style TOOLS fill:#8957e5,stroke:#d2a8ff,color:#fff
+  style RUNTIME fill:#238636,stroke:#3fb950,color:#fff
+  style API fill:#1158c7,stroke:#58a6ff,color:#fff
+  style TELEMETRY fill:#9e6a03,stroke:#f0883e,color:#fff
+  style PLUGINS fill:#30363d,stroke:#8b949e,color:#e6edf3
+    </pre>
+  </div>
+
+  <div class="diagram-container">
+    <h2>High-Level Data Flow</h2>
+    <pre class="mermaid">
+sequenceDiagram
+  participant User
+  participant CLI
+  participant Runtime as ConversationRuntime
+  participant Session
+  participant API as ProviderClient
+  participant Tools as ToolExecutor
+  participant Disk as .claw/sessions/
+
+  User->>CLI: Input message
+  CLI->>Runtime: run_turn(user_input)
+  Runtime->>Session: push_user_text()
+  Session->>Disk: Append JSONL record
+
+  loop Until no tool uses or max iterations
+    Runtime->>API: stream(ApiRequest)
+    API-->>Runtime: AssistantEvent stream
+    Runtime->>Session: push_message(assistant)
+
+    opt Tool uses present
+      loop For each tool use
+        Runtime->>Tools: execute(tool_name, input)
+        Tools-->>Runtime: Result or Error
+        Runtime->>Session: push_message(tool_result)
+      end
+    end
+  end
+
+  Runtime->>Runtime: maybe_auto_compact()
+  Runtime-->>CLI: TurnSummary
+  CLI-->>User: Display response
+    </pre>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h4>Key Traits</h4>
+      <ul>
+        <li><code>ApiClient</code> &mdash; stream model requests</li>
+        <li><code>ToolExecutor</code> &mdash; dispatch tool calls</li>
+        <li><code>Provider</code> &mdash; send/stream messages</li>
+        <li><code>PermissionPrompter</code> &mdash; interactive auth</li>
+        <li><code>HookProgressReporter</code> &mdash; hook events</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>Persistence</h4>
+      <ul>
+        <li>Sessions stored as JSONL in <code>.claw/sessions/</code></li>
+        <li>Prompt cache in <code>~/.claude/cache/prompt-cache/</code></li>
+        <li>File rotation at 256KB (max 3 backups)</li>
+        <li>Atomic writes prevent corruption</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>Providers</h4>
+      <ul>
+        <li><code>Anthropic</code> &mdash; Claude models</li>
+        <li><code>Xai</code> &mdash; Grok models</li>
+        <li><code>OpenAi</code> &mdash; OpenAI-compatible</li>
+        <li>Auto-detected from model name + env vars</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h4>Tool Count: 40+</h4>
+      <ul>
+        <li>File ops: bash, read, write, edit, glob, grep</li>
+        <li>Web: fetch, search</li>
+        <li>Agent/Task: spawn, manage, observe</li>
+        <li>Worker/Team/Cron management</li>
+        <li>LSP, MCP, Plugins</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RUNTIME CRATE ===== -->
+<div id="runtime" class="tab-panel">
+  <div class="diagram-container">
+    <h2>Runtime Crate &mdash; Core Architecture</h2>
+    <pre class="mermaid">
+graph TB
+  subgraph ConversationRuntime["ConversationRuntime&lt;C: ApiClient, T: ToolExecutor&gt;"]
+    direction TB
+    CR_Session["Session"]
+    CR_ApiClient["api_client: C"]
+    CR_ToolExec["tool_executor: T"]
+    CR_Perms["permission_policy"]
+    CR_Prompt["system_prompt: Vec&lt;String&gt;"]
+    CR_Usage["usage_tracker"]
+    CR_Hooks["hook_runner"]
+    CR_Compact["auto_compaction_threshold"]
+  end
+
+  RT["run_turn()"] --> BUILD["Build ApiRequest"]
+  BUILD --> STREAM["api_client.stream()"]
+  STREAM --> EVENTS["AssistantEvent stream"]
+  EVENTS --> BUILD_MSG["build_assistant_message()"]
+  BUILD_MSG --> TOOL_LOOP{"Tool uses?"}
+  TOOL_LOOP -->|Yes| PRE_HOOK["run_pre_tool_use_hook()"]
+  PRE_HOOK --> PERM["permission_policy.authorize()"]
+  PERM --> EXEC["tool_executor.execute()"]
+  EXEC --> POST_HOOK["run_post_tool_use_hook()"]
+  POST_HOOK --> PUSH_RESULT["session.push_message(result)"]
+  PUSH_RESULT --> TOOL_LOOP
+  TOOL_LOOP -->|No| MAYBE_COMPACT["maybe_auto_compact()"]
+  MAYBE_COMPACT --> SUMMARY["Return TurnSummary"]
+
+  style ConversationRuntime fill:#238636,stroke:#3fb950,color:#fff
+  style RT fill:#1f6feb,stroke:#58a6ff,color:#fff
+  style SUMMARY fill:#1f6feb,stroke:#58a6ff,color:#fff
+    </pre>
+  </div>
+
+  <details>
+    <summary>Session Management</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+classDiagram
+  class Session {
+    +version: u32
+    +session_id: String
+    +created_at_ms: u64
+    +updated_at_ms: u64
+    +messages: Vec~ConversationMessage~
+    +compaction: Option~SessionCompaction~
+    +fork: Option~SessionFork~
+    +push_message(msg)
+    +save_to_path(path)
+    +load_from_path(path) Session
+    +fork(branch_name) Session
+  }
+  class ConversationMessage {
+    +role: MessageRole
+    +blocks: Vec~ContentBlock~
+    +usage: Option~TokenUsage~
+  }
+  class ContentBlock {
+    <<enumeration>>
+    Text
+    ToolUse
+    ToolResult
+  }
+  class SessionCompaction {
+    +count: u32
+    +removed_message_count: usize
+    +summary: String
+  }
+  class SessionFork {
+    +parent_session_id: String
+    +branch_name: Option~String~
+  }
+  Session --> "many" ConversationMessage
+  ConversationMessage --> "many" ContentBlock
+  Session --> "0..1" SessionCompaction
+  Session --> "0..1" SessionFork
+        </pre>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>Persistence Format</h4>
+          <ul>
+            <li>JSONL (JSON Lines) in <code>.claw/sessions/{id}.jsonl</code></li>
+            <li>Record types: <code>session_meta</code>, <code>message</code>, <code>compaction</code></li>
+            <li>Append-only with atomic full-snapshot on rotation</li>
+            <li>Rotation threshold: 256KB, keeps max 3 backups</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Session Control</h4>
+          <ul>
+            <li><code>create_managed_session_handle(id)</code></li>
+            <li><code>resolve_session_reference("latest")</code></li>
+            <li>Fork creates new session preserving messages</li>
+            <li><code>ManagedSessionSummary</code> for metadata-only loads</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Compaction System</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+flowchart LR
+  CHECK{"messages > preserve_recent<br/>AND tokens >= max_estimated?"}
+  CHECK -->|No| SKIP["Skip compaction"]
+  CHECK -->|Yes| SUMMARIZE["summarize_messages()"]
+  SUMMARIZE --> MERGE{"Prior summary<br/>exists?"}
+  MERGE -->|Yes| COMBINE["merge_compact_summaries()"]
+  MERGE -->|No| USE["Use new summary"]
+  COMBINE --> CONTINUATION["Build continuation message"]
+  USE --> CONTINUATION
+  CONTINUATION --> NEW_SESSION["New Session with<br/>summary + recent messages"]
+
+  style CHECK fill:#9e6a03,stroke:#f0883e,color:#fff
+  style NEW_SESSION fill:#238636,stroke:#3fb950,color:#fff
+        </pre>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>Configuration</h4>
+          <ul>
+            <li><code>preserve_recent_messages</code>: default 4</li>
+            <li><code>max_estimated_tokens</code>: default 10,000</li>
+            <li>Auto-compact threshold: 100K input tokens</li>
+            <li>Env: <code>CLAUDE_CODE_AUTO_COMPACT_INPUT_TOKENS</code></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Summary Generation</h4>
+          <ul>
+            <li>Counts messages by role</li>
+            <li>Extracts unique tool names used</li>
+            <li>Collects recent user requests (max 3, 160 chars)</li>
+            <li>Wraps output in <code>&lt;summary&gt;</code> XML tags</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Key Module Files</summary>
+    <div class="detail-body">
+      <table>
+        <tr><th>File</th><th>Lines</th><th>Purpose</th></tr>
+        <tr><td><code>conversation.rs</code></td><td>1795</td><td>Main turn loop, tool dispatch, message building</td></tr>
+        <tr><td><code>session.rs</code></td><td>1246</td><td>Session persistence (JSONL), message storage, forking</td></tr>
+        <tr><td><code>compact.rs</code></td><td>696</td><td>Context summarization, auto-compaction</td></tr>
+        <tr><td><code>config.rs</code></td><td>1648</td><td>Runtime configuration, MCP server specs, feature flags</td></tr>
+        <tr><td><code>hooks.rs</code></td><td>987</td><td>Pre/post-tool hook execution</td></tr>
+        <tr><td><code>mcp_stdio.rs</code></td><td>2894</td><td>MCP protocol (JSON-RPC), stdio process mgmt</td></tr>
+        <tr><td><code>permissions.rs</code></td><td>683</td><td>Permission policies, authorization</td></tr>
+        <tr><td><code>prompt.rs</code></td><td>803</td><td>System prompt assembly, project context</td></tr>
+        <tr><td><code>usage.rs</code></td><td>313</td><td>Token tracking, cost estimation</td></tr>
+        <tr><td><code>file_ops.rs</code></td><td>757</td><td>read_file, write_file, edit_file, glob, grep</td></tr>
+      </table>
+    </div>
+  </details>
+</div>
+
+<!-- ===== TOOLS CRATE ===== -->
+<div id="tools" class="tab-panel">
+  <div class="diagram-container">
+    <h2>Tools Crate &mdash; Dispatch Architecture</h2>
+    <pre class="mermaid">
+graph TB
+  subgraph Registry["GlobalToolRegistry"]
+    PLUGIN["plugin_tools: Vec&lt;PluginTool&gt;"]
+    RT_TOOLS["runtime_tools: Vec&lt;RuntimeToolDefinition&gt;"]
+    ENFORCER["enforcer: Option&lt;PermissionEnforcer&gt;"]
+    BUILTIN["mvp_tool_specs() &mdash; 40+ tools"]
+  end
+
+  CALL["execute_tool(name, input)"] --> WITH_ENF["execute_tool_with_enforcer()"]
+  WITH_ENF --> DESER["Deserialize input"]
+  DESER --> PERM_CHECK["Permission enforcement"]
+  PERM_CHECK --> MATCH{"Match tool name"}
+
+  MATCH --> FILE_OPS["bash / read / write<br/>edit / glob / grep"]
+  MATCH --> WEB["WebFetch / WebSearch"]
+  MATCH --> AGENT["Agent spawning"]
+  MATCH --> TASKS["Task / Worker / Team<br/>Cron management"]
+  MATCH --> INFRA["LSP / MCP / Plugins<br/>RemoteTrigger"]
+  MATCH --> UI["SendUserMessage<br/>AskUserQuestion<br/>TodoWrite"]
+
+  style Registry fill:#8957e5,stroke:#d2a8ff,color:#fff
+  style CALL fill:#1f6feb,stroke:#58a6ff,color:#fff
+    </pre>
+  </div>
+
+  <details>
+    <summary>Agent Spawning &amp; Subagent System</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+sequenceDiagram
+  participant Parent as Parent Runtime
+  participant Tools as Tools::run_agent()
+  participant Thread as Spawned Thread
+  participant SubRT as Subagent ConversationRuntime
+  participant SubAPI as ProviderRuntimeClient
+  participant SubTool as SubagentToolExecutor
+
+  Parent->>Tools: execute("Agent", input)
+  Tools->>Tools: Generate agent_id, resolve model
+  Tools->>Tools: Determine allowed_tools by subagent_type
+  Tools->>Thread: spawn_agent_job()
+
+  Thread->>SubRT: build_agent_runtime()
+  SubRT->>SubAPI: stream(request with filtered tools)
+  SubAPI-->>SubRT: AssistantEvent stream
+
+  loop Tool calls
+    SubRT->>SubTool: execute(tool_name, input)
+    SubTool->>SubTool: Check tool in allowed_tools
+    SubTool->>Tools: execute_tool_with_enforcer()
+    Tools-->>SubTool: Result
+    SubTool-->>SubRT: Result
+  end
+
+  Thread->>Thread: Persist output + status
+  Thread-->>Parent: AgentOutput manifest
+        </pre>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>Subagent Types &amp; Tool Access</h4>
+          <ul>
+            <li><b>Explore</b>: read, glob, grep, web, search (read-only)</li>
+            <li><b>Plan</b>: read, glob, grep, web, todo, structured output</li>
+            <li><b>Verification</b>: bash + read + glob + grep + web + todo</li>
+            <li><b>Default (generic)</b>: all tools except Team/Worker/MCP advanced</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Agent Lifecycle</h4>
+          <ul>
+            <li>Thread named <code>clawd-agent-{id}</code></li>
+            <li>Max 32 iterations per turn</li>
+            <li>Panic handler wraps execution</li>
+            <li>Status: running &rarr; completed | failed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Permission Model</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+graph LR
+  RO["ReadOnly<br/><i>read, glob, grep</i>"]
+  WS["WorkspaceWrite<br/><i>write, edit, agent</i>"]
+  DA["DangerFullAccess<br/><i>bash, MCP, web</i>"]
+
+  RO -->|escalate| WS
+  WS -->|escalate| DA
+
+  style RO fill:#238636,stroke:#3fb950,color:#fff
+  style WS fill:#9e6a03,stroke:#f0883e,color:#fff
+  style DA fill:#da3633,stroke:#f85149,color:#fff
+        </pre>
+      </div>
+      <p style="color:var(--muted); font-size:0.9rem; margin-top:0.5rem;">
+        Each tool declares a required <code>PermissionMode</code>. The <code>PermissionEnforcer</code> validates
+        that the current policy permits the tool before execution. Interactive prompting via
+        <code>PermissionPrompter</code> trait escalates when needed.
+      </p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Global Registries</summary>
+    <div class="detail-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>Task Registry</h4>
+          <ul>
+            <li>Background task tracking</li>
+            <li>TaskCreate / TaskGet / TaskList / TaskStop</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Worker Registry</h4>
+          <ul>
+            <li>Worker process lifecycle</li>
+            <li>Create / Get / Observe / SendPrompt / Terminate</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Team Registry</h4>
+          <ul>
+            <li>Multi-agent coordination</li>
+            <li>TeamCreate / TeamDelete</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Cron Registry</h4>
+          <ul>
+            <li>Scheduled agent execution</li>
+            <li>CronCreate / CronDelete / CronList</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>LSP Registry</h4>
+          <ul>
+            <li>Language Server Protocol clients</li>
+            <li>Go-to-definition, references, hover</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>MCP Registry</h4>
+          <ul>
+            <li>Model Context Protocol bridge</li>
+            <li>External tool/resource integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Complete Tool List (40+)</summary>
+    <div class="detail-body">
+      <table>
+        <tr><th>Category</th><th>Tools</th></tr>
+        <tr><td>File Ops</td><td><code>bash</code>, <code>read_file</code>, <code>write_file</code>, <code>edit_file</code>, <code>glob_search</code>, <code>grep_search</code></td></tr>
+        <tr><td>Web</td><td><code>WebFetch</code>, <code>WebSearch</code></td></tr>
+        <tr><td>Agent/Task</td><td><code>Agent</code>, <code>TaskCreate</code>, <code>RunTaskPacket</code>, <code>TaskGet</code>, <code>TaskList</code>, <code>TaskStop</code>, <code>TaskUpdate</code>, <code>TaskOutput</code></td></tr>
+        <tr><td>Worker</td><td><code>WorkerCreate</code>, <code>WorkerGet</code>, <code>WorkerObserve</code>, <code>WorkerResolveTrust</code>, <code>WorkerAwaitReady</code>, <code>WorkerSendPrompt</code>, <code>WorkerRestart</code>, <code>WorkerTerminate</code></td></tr>
+        <tr><td>Team/Cron</td><td><code>TeamCreate</code>, <code>TeamDelete</code>, <code>CronCreate</code>, <code>CronDelete</code>, <code>CronList</code></td></tr>
+        <tr><td>Infrastructure</td><td><code>LSP</code>, <code>ListMcpResources</code>, <code>ReadMcpResource</code>, <code>McpAuth</code>, <code>RemoteTrigger</code>, <code>MCP</code></td></tr>
+        <tr><td>User Interaction</td><td><code>SendUserMessage</code>, <code>AskUserQuestion</code>, <code>TodoWrite</code></td></tr>
+        <tr><td>Other</td><td><code>NotebookEdit</code>, <code>Sleep</code>, <code>Config</code>, <code>EnterPlanMode</code>, <code>ExitPlanMode</code>, <code>StructuredOutput</code>, <code>Skill</code>, <code>ToolSearch</code></td></tr>
+      </table>
+    </div>
+  </details>
+</div>
+
+<!-- ===== API CRATE ===== -->
+<div id="api" class="tab-panel">
+  <div class="diagram-container">
+    <h2>API Crate &mdash; Provider &amp; Streaming Architecture</h2>
+    <pre class="mermaid">
+graph TB
+  subgraph Providers["Provider Abstraction"]
+    direction TB
+    TRAIT["trait Provider<br/>send_message() / stream_message()"]
+    ANTHRO["AnthropicClient<br/><i>Claude models</i>"]
+    XAI["OpenAiCompatClient<br/><i>xAI / Grok</i>"]
+    OPENAI["OpenAiCompatClient<br/><i>OpenAI models</i>"]
+  end
+
+  subgraph Streaming["SSE Streaming Pipeline"]
+    direction LR
+    HTTP["HTTP Response<br/>chunked bytes"]
+    SSE["SseParser<br/>push() / next_frame()"]
+    EVENTS["StreamEvent enum"]
+    MSGSTREAM["MessageStream<br/>next_event()"]
+  end
+
+  subgraph Cache["Prompt Cache"]
+    LOOKUP["lookup_completion()"]
+    RECORD["record_response()"]
+    FINGER["RequestFingerprints<br/>FNV-1a hashing"]
+    STATS["PromptCacheStats"]
+  end
+
+  TRAIT --> ANTHRO
+  TRAIT --> XAI
+  TRAIT --> OPENAI
+
+  ANTHRO --> MSGSTREAM
+  XAI --> MSGSTREAM
+  HTTP --> SSE --> EVENTS --> MSGSTREAM
+
+  ANTHRO --> LOOKUP
+  RECORD --> STATS
+
+  style Providers fill:#1158c7,stroke:#58a6ff,color:#fff
+  style TRAIT fill:#1f6feb,stroke:#58a6ff,color:#fff
+  style Cache fill:#9e6a03,stroke:#f0883e,color:#fff
+    </pre>
+  </div>
+
+  <details>
+    <summary>SSE Streaming Details</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+flowchart LR
+  CHUNK["HTTP chunk<br/>(bytes)"] --> PUSH["SseParser.push()"]
+  PUSH --> BUF["Internal buffer"]
+  BUF --> FRAME["next_frame()<br/>split on \\n\\n"]
+  FRAME --> PARSE["parse_frame()"]
+  PARSE --> MS["MessageStart"]
+  PARSE --> CBS["ContentBlockStart"]
+  PARSE --> CBD["ContentBlockDelta"]
+  PARSE --> CBSTOP["ContentBlockStop"]
+  PARSE --> MD["MessageDelta"]
+  PARSE --> MSTOP["MessageStop"]
+
+  style CHUNK fill:#30363d,stroke:#8b949e,color:#e6edf3
+  style MS fill:#1158c7,stroke:#58a6ff,color:#fff
+  style CBD fill:#1158c7,stroke:#58a6ff,color:#fff
+  style MSTOP fill:#1158c7,stroke:#58a6ff,color:#fff
+        </pre>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>ContentBlockDelta Variants</h4>
+          <ul>
+            <li><code>TextDelta { text }</code></li>
+            <li><code>InputJsonDelta { partial_json }</code></li>
+            <li><code>ThinkingDelta { thinking }</code></li>
+            <li><code>SignatureDelta { signature }</code></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>OpenAI Normalization</h4>
+          <ul>
+            <li><code>ChatCompletionChunk</code> &rarr; <code>StreamEvent</code></li>
+            <li><code>StreamState</code> aggregates tool call fragments</li>
+            <li>Maps finish_reason to stop_reason</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Provider Configuration</summary>
+    <div class="detail-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>Anthropic</h4>
+          <ul>
+            <li>Auth: <code>ANTHROPIC_API_KEY</code> or OAuth</li>
+            <li>Base URL: <code>https://api.anthropic.com</code></li>
+            <li>Retry: 2 retries, exponential backoff 200ms-2s</li>
+            <li>Features: prompt cache, OAuth refresh</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>xAI (Grok)</h4>
+          <ul>
+            <li>Auth: <code>XAI_API_KEY</code></li>
+            <li>Base URL: <code>https://api.x.ai/v1</code></li>
+            <li>OpenAI-compatible protocol</li>
+            <li>Response normalization layer</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>OpenAI</h4>
+          <ul>
+            <li>Auth: <code>OPENAI_API_KEY</code></li>
+            <li>Base URL: <code>https://api.openai.com/v1</code></li>
+            <li>OpenAI-compatible protocol</li>
+            <li>Response normalization layer</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Auth Sources</h4>
+          <ul>
+            <li><code>None</code> &mdash; no auth</li>
+            <li><code>ApiKey(String)</code> &mdash; x-api-key header</li>
+            <li><code>BearerToken(String)</code> &mdash; Bearer header</li>
+            <li><code>ApiKeyAndBearer</code> &mdash; both headers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Prompt Cache System</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+flowchart TB
+  REQ["MessageRequest"] --> FINGER["Compute fingerprints<br/>(FNV-1a hash of model,<br/>system, tools, messages)"]
+  FINGER --> LOOKUP{"Cache hit?"}
+  LOOKUP -->|Hit| RETURN["Return cached<br/>MessageResponse"]
+  LOOKUP -->|Miss| SEND["Send to provider"]
+  SEND --> RESP["MessageResponse"]
+  RESP --> RECORD["record_response()<br/>Write to disk"]
+  RECORD --> STATS["Update PromptCacheStats"]
+
+  subgraph CacheDisk["~/.claude/cache/prompt-cache/{session}/"]
+    COMP["completions/v1-{hash}.json"]
+    STATE["session-state.json"]
+    STAT_FILE["stats.json"]
+  end
+
+  RECORD --> COMP
+  STATS --> STAT_FILE
+
+  style REQ fill:#1f6feb,stroke:#58a6ff,color:#fff
+  style CacheDisk fill:#30363d,stroke:#8b949e,color:#e6edf3
+        </pre>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>TTL Defaults</h4>
+          <ul>
+            <li>Completion TTL: 30 seconds</li>
+            <li>Prompt TTL: 5 minutes</li>
+            <li>Cache break min drop: 2,000 tokens</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Stats Tracked</h4>
+          <ul>
+            <li>Completion cache hits / misses / writes</li>
+            <li>Expected / unexpected invalidations</li>
+            <li>Total cache creation + read tokens</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Error Handling &amp; Retries</summary>
+    <div class="detail-body">
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>ApiError Variants</h4>
+          <ul>
+            <li><code>MissingCredentials</code></li>
+            <li><code>ExpiredOAuthToken</code></li>
+            <li><code>Http(reqwest::Error)</code></li>
+            <li><code>Api { status, error_type, message, retryable }</code></li>
+            <li><code>RetriesExhausted</code></li>
+            <li><code>InvalidSseFrame</code></li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>Retry Policy</h4>
+          <ul>
+            <li>Retryable: 408, 409, 429, 500, 502, 503, 504</li>
+            <li>Max retries: 2</li>
+            <li>Backoff: 200ms &rarr; 400ms &rarr; 800ms (cap 2s)</li>
+            <li>Timeout/connect errors are retryable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Key Types (types.rs)</summary>
+    <div class="detail-body">
+      <div class="diagram-container" style="border:none; padding:0.5rem 0;">
+        <pre class="mermaid">
+classDiagram
+  class MessageRequest {
+    +model: String
+    +max_tokens: u32
+    +messages: Vec~InputMessage~
+    +system: Option~String~
+    +tools: Option~Vec~ToolDefinition~~
+    +tool_choice: Option~ToolChoice~
+    +stream: bool
+  }
+  class MessageResponse {
+    +id: String
+    +role: String
+    +content: Vec~OutputContentBlock~
+    +model: String
+    +stop_reason: Option~String~
+    +usage: Usage
+  }
+  class Usage {
+    +input_tokens: u32
+    +cache_creation_input_tokens: u32
+    +cache_read_input_tokens: u32
+    +output_tokens: u32
+  }
+  class InputContentBlock {
+    <<enumeration>>
+    Text
+    ToolUse
+    ToolResult
+  }
+  class OutputContentBlock {
+    <<enumeration>>
+    Text
+    ToolUse
+    Thinking
+    RedactedThinking
+  }
+  MessageRequest --> InputContentBlock
+  MessageResponse --> OutputContentBlock
+  MessageResponse --> Usage
+        </pre>
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- ===== DATA FLOW ===== -->
+<div id="dataflow" class="tab-panel">
+  <div class="diagram-container">
+    <h2>End-to-End Data Flow</h2>
+    <pre class="mermaid">
+flowchart TB
+  subgraph Input["User Input Layer"]
+    USER["User types message"]
+    CLI_PARSE["CLI parses input"]
+  end
+
+  subgraph RuntimeLayer["Runtime Layer"]
+    PUSH_USER["Session.push_user_text()"]
+    BUILD_REQ["Build ApiRequest<br/>(system_prompt + messages)"]
+    PROCESS["Process AssistantEvents"]
+    BUILD_ASSIST["Build assistant ConversationMessage"]
+    CHECK_TOOLS{"Has tool_use<br/>blocks?"}
+  end
+
+  subgraph ToolLayer["Tool Layer"]
+    PRE_HOOK["Pre-tool-use hook"]
+    PERM["Permission check"]
+    DISPATCH["Tool dispatch<br/>(match on name)"]
+    subgraph ToolTypes["Tool Implementations"]
+      FILE["File ops<br/>read/write/edit"]
+      BASH_T["Bash execution"]
+      WEB["Web fetch/search"]
+      AGENT_T["Agent spawn<br/>(recursive)"]
+      MCP_T["MCP tool call"]
+      LSP_T["LSP query"]
+    end
+    POST_HOOK["Post-tool-use hook"]
+    RESULT["Tool result message"]
+  end
+
+  subgraph ApiLayer["API Layer"]
+    DETECT["detect_provider_kind()"]
+    CACHE_CHECK{"Prompt cache<br/>hit?"}
+    SEND["Provider.stream_message()"]
+    SSE["SseParser processes chunks"]
+    EVENTS_OUT["StreamEvent sequence"]
+    CACHE_STORE["Cache response"]
+  end
+
+  subgraph Persist["Persistence"]
+    SESSION_JSONL[".claw/sessions/{id}.jsonl"]
+    CACHE_DISK["~/.claude/cache/prompt-cache/"]
+    AGENT_STORE["Agent output files"]
+  end
+
+  subgraph Compact["Compaction"]
+    TOKEN_CHECK{"Input tokens ><br/>threshold?"}
+    SUMMARIZE["Summarize older messages"]
+    REPLACE["Replace with continuation msg"]
+  end
+
+  USER --> CLI_PARSE --> PUSH_USER
+  PUSH_USER --> SESSION_JSONL
+  PUSH_USER --> BUILD_REQ
+
+  BUILD_REQ --> DETECT
+  DETECT --> CACHE_CHECK
+  CACHE_CHECK -->|Hit| PROCESS
+  CACHE_CHECK -->|Miss| SEND
+  SEND --> SSE --> EVENTS_OUT --> PROCESS
+  SEND --> CACHE_STORE --> CACHE_DISK
+
+  PROCESS --> BUILD_ASSIST --> CHECK_TOOLS
+  CHECK_TOOLS -->|No| TOKEN_CHECK
+  CHECK_TOOLS -->|Yes| PRE_HOOK --> PERM --> DISPATCH
+
+  DISPATCH --> FILE
+  DISPATCH --> BASH_T
+  DISPATCH --> WEB
+  DISPATCH --> AGENT_T --> AGENT_STORE
+  DISPATCH --> MCP_T
+  DISPATCH --> LSP_T
+
+  FILE --> POST_HOOK
+  BASH_T --> POST_HOOK
+  WEB --> POST_HOOK
+  MCP_T --> POST_HOOK
+  LSP_T --> POST_HOOK
+
+  POST_HOOK --> RESULT
+  RESULT --> SESSION_JSONL
+  RESULT --> BUILD_REQ
+
+  TOKEN_CHECK -->|Yes| SUMMARIZE --> REPLACE --> SESSION_JSONL
+  TOKEN_CHECK -->|No| OUTPUT["Return TurnSummary<br/>to CLI"]
+
+  REPLACE --> OUTPUT
+
+  style Input fill:#1f6feb,stroke:#58a6ff,color:#fff
+  style RuntimeLayer fill:#238636,stroke:#3fb950,color:#fff
+  style ToolLayer fill:#8957e5,stroke:#d2a8ff,color:#fff
+  style ApiLayer fill:#1158c7,stroke:#58a6ff,color:#fff
+  style Persist fill:#30363d,stroke:#8b949e,color:#e6edf3
+  style Compact fill:#9e6a03,stroke:#f0883e,color:#fff
+    </pre>
+  </div>
+
+  <div class="diagram-container">
+    <h2>Cross-Crate Dependencies</h2>
+    <pre class="mermaid">
+graph LR
+  subgraph tools_crate["crates/tools"]
+    T_EXEC["execute_tool()"]
+    T_AGENT["Agent system"]
+    T_REG["GlobalToolRegistry"]
+  end
+
+  subgraph runtime_crate["crates/runtime"]
+    R_CONV["ConversationRuntime"]
+    R_SESS["Session"]
+    R_COMP["Compaction"]
+    R_HOOKS["HookRunner"]
+    R_PERMS["PermissionPolicy"]
+    R_MCP["MCP subsystem"]
+    R_CONFIG["RuntimeConfig"]
+    R_FILEOPS["File ops"]
+  end
+
+  subgraph api_crate["crates/api"]
+    A_PROV["ProviderClient"]
+    A_STREAM["MessageStream"]
+    A_CACHE["PromptCache"]
+    A_TYPES["Types: Request/Response"]
+  end
+
+  subgraph telemetry_crate["crates/telemetry"]
+    TEL["SessionTracer"]
+    ANALYTICS["AnalyticsEvent"]
+  end
+
+  T_EXEC -->|"imports types"| A_TYPES
+  T_EXEC -->|"uses file ops"| R_FILEOPS
+  T_AGENT -->|"creates"| R_CONV
+  T_AGENT -->|"wraps"| A_PROV
+  T_REG -->|"checks"| R_PERMS
+
+  R_CONV -->|"calls"| A_PROV
+  R_CONV -->|"manages"| R_SESS
+  R_CONV -->|"triggers"| R_COMP
+  R_CONV -->|"runs"| R_HOOKS
+  A_PROV -->|"uses"| A_CACHE
+  A_PROV -->|"returns"| A_STREAM
+  A_PROV -->|"records"| TEL
+  R_CONV -->|"records"| TEL
+
+  style tools_crate fill:#8957e5,stroke:#d2a8ff,color:#fff
+  style runtime_crate fill:#238636,stroke:#3fb950,color:#fff
+  style api_crate fill:#1158c7,stroke:#58a6ff,color:#fff
+  style telemetry_crate fill:#9e6a03,stroke:#f0883e,color:#fff
+    </pre>
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      // Re-render mermaid for newly visible panels
+      setTimeout(() => mermaid.run(), 50);
+    });
+  });
+
+  // Initialize mermaid
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#1f6feb',
+      primaryTextColor: '#e6edf3',
+      primaryBorderColor: '#58a6ff',
+      lineColor: '#8b949e',
+      secondaryColor: '#238636',
+      tertiaryColor: '#161b22',
+      background: '#161b22',
+      mainBkg: '#161b22',
+      nodeBorder: '#30363d',
+      clusterBkg: '#0d1117',
+      clusterBorder: '#30363d',
+      titleColor: '#e6edf3',
+      edgeLabelBackground: '#161b22',
+      actorBkg: '#1f6feb',
+      actorBorder: '#58a6ff',
+      actorTextColor: '#fff',
+      signalColor: '#8b949e',
+      signalTextColor: '#e6edf3',
+      noteBkgColor: '#161b22',
+      noteTextColor: '#e6edf3',
+      noteBorderColor: '#30363d',
+    },
+    flowchart: { curve: 'basis', htmlLabels: true },
+    sequence: { mirrorActors: false, messageAlign: 'left' },
+  });
+</script>
+</body>
+</html>

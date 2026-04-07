@@ -1,0 +1,24 @@
+{
+  "text": "Let me check the execute_bash and other potentially large functions:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01EJWa4TVn7MmK3sUnbHYxPV",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\", \"offset\": 1752, \"limit\": 100}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 2276,
+    "cache_read_input_tokens": 60824,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2276,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 134,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

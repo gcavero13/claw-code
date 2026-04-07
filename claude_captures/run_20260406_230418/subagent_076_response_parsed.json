@@ -1,0 +1,24 @@
+{
+  "text": "Now let me check one more complex function to compare - `tool_uses_sse`:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_016PzEbxuGnqeaT4f3uvndy3",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/mock-anthropic-service/src/lib.rs\", \"offset\": 845, \"limit\": 70}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 5892,
+    "cache_read_input_tokens": 57837,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 5892,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 144,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

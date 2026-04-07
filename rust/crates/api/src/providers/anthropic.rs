@@ -473,6 +473,30 @@ impl AnthropicClient {
         }
 
         let request_body = self.request_profile.render_json_body(request)?;
+        if std::env::var("CLAW_LOG_API").is_ok() {
+            let mut log_body = request_body.clone();
+            if let Some(tools) = log_body.get("tools").and_then(|t| t.as_array()) {
+                let names: Vec<String> = tools
+                    .iter()
+                    .filter_map(|t| t.get("name").and_then(|n| n.as_str()).map(String::from))
+                    .collect();
+                let summary = serde_json::json!({
+                    "count": names.len(),
+                    "names": names,
+                });
+                if let Some(obj) = log_body.as_object_mut() {
+                    obj.insert("tools".to_string(), summary);
+                }
+            }
+            eprintln!("\n===== OUTGOING API REQUEST =====");
+            eprintln!("POST {request_url}");
+            eprintln!(
+                "{}",
+                serde_json::to_string_pretty(&log_body)
+                    .unwrap_or_else(|_| "<failed to serialize body>".to_string())
+            );
+            eprintln!("===== END OUTGOING API REQUEST =====\n");
+        }
         request_builder = request_builder.json(&request_body);
         request_builder.send().await.map_err(ApiError::from)
     }
@@ -766,9 +790,30 @@ impl MessageStream {
 
             match self.response.chunk().await? {
                 Some(chunk) => {
+                    if std::env::var("CLAW_LOG_API").is_ok() {
+                        match std::str::from_utf8(&chunk) {
+                            Ok(text) => {
+                                eprintln!("----- RAW SSE CHUNK -----");
+                                eprint!("{text}");
+                                if !text.ends_with('\n') {
+                                    eprintln!();
+                                }
+                                eprintln!("----- END CHUNK -----");
+                            }
+                            Err(_) => {
+                                eprintln!(
+                                    "----- RAW SSE CHUNK (binary, {} bytes) -----",
+                                    chunk.len()
+                                );
+                            }
+                        }
+                    }
                     self.pending.extend(self.parser.push(&chunk)?);
                 }
                 None => {
+                    if std::env::var("CLAW_LOG_API").is_ok() {
+                        eprintln!("----- SSE STREAM CLOSED -----");
+                    }
                     self.done = true;
                 }
             }

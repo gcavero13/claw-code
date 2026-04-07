@@ -1,0 +1,25 @@
+======================================================================
+SUBAGENT_002 — RESPONSE
+======================================================================
+
+SSE events: 31
+Model: claude-opus-4-6
+Message ID: msg_019p4CKGyV5y1evPCPAjGArk
+
+Text output (63 chars):
+  
+
+I'll search for the latest Anthropic API pricing information.
+
+Tool calls (2):
+  - WebSearch (id=toolu_011LhSGi1wGiun7gD1RcnXsF)
+    input: {"query": "Anthropic Claude API pricing per million tokens 2026"}
+  - WebSearch (id=toolu_012138v9i9xSU3pbN1WT6AuY)
+    input: {"query": "Anthropic Claude Opus 4 Sonnet 4 Haiku pricing API 2026"}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 3
+  cache_creation_input_tokens: 42502
+  output_tokens: 135

@@ -1,0 +1,24 @@
+{
+  "text": "Excellent! Now let me verify the hook payload structure once more:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01KRyPJzncbqqmpgVdvkViJM",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/hooks.rs\", \"offset\": 591, \"limit\": 35}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1166,
+    "cache_read_input_tokens": 86663,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1166,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 134,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

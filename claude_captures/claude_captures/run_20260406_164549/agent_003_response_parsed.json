@@ -1,0 +1,18 @@
+{
+  "text": "There are **5 public functions** in `compact.rs`:\n\n1. `estimate_session_tokens` (line 35)\n2. `should_compact` (line 41)\n3. `format_compact_summary` (line 55)\n4. `get_compact_continuation_message` (line 71)\n5. `compact_session` (line 96)",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 8336,
+    "cache_read_input_tokens": 54313,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 8336
+    },
+    "output_tokens": 90,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

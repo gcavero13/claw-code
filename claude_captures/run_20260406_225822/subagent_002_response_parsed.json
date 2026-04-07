@@ -1,0 +1,29 @@
+{
+  "text": "\n\nI'll search for the latest Anthropic API pricing information.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_011LhSGi1wGiun7gD1RcnXsF",
+      "name": "WebSearch",
+      "input": "{\"query\": \"Anthropic Claude API pricing per million tokens 2026\"}"
+    },
+    {
+      "id": "toolu_012138v9i9xSU3pbN1WT6AuY",
+      "name": "WebSearch",
+      "input": "{\"query\": \"Anthropic Claude Opus 4 Sonnet 4 Haiku pricing API 2026\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 42502,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 42502,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 135,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

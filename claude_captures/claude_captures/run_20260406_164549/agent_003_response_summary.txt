@@ -1,0 +1,24 @@
+======================================================================
+AGENT_003 — RESPONSE
+======================================================================
+
+SSE events: 10
+Model: claude-opus-4-6
+Message ID: msg_01PTuZnRVBYbW6C4sxKDSAd9
+
+Text output (236 chars):
+  There are **5 public functions** in `compact.rs`:
+
+1. `estimate_session_tokens` (line 35)
+2. `should_compact` (line 41)
+3. `format_compact_summary` (line 55)
+4. `get_compact_continuation_message` (line 71)
+5. `compact_session` (line 96)
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 8336
+  cache_read_input_tokens: 54313
+  output_tokens: 90

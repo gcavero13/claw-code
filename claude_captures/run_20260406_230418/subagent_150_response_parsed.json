@@ -1,0 +1,18 @@
+{
+  "text": "Perfect. Now let me verify the top 3 by getting a detailed look at what they do. Let me compile the final report:\n\nBased on my thorough analysis of all Rust files in `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/`, I found the 3 most complex functions:\n\n## **Top 3 Most Complex Functions**\n\n### **1. Function: `mvp_tool_specs`**\n- **File Path:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs`\n- **Line Count:** Lines 384-1141 (758 lines)\n- **Estimated Cyclomatic Complexity:** 10 branch points (match constructs, minor if/else)\n- **Complexity Score:** 778 (highest due to massive line count)\n- **Description:** Builds and returns the complete specification vector of all MVP tools with their input schemas and permission requirements. This function defines 40+ tool specifications, each with detailed JSON schema definitions for inputs, parameter validation, and permission modes. It's essentially a large declarative data structure that exhaustively catalogs all available tools and their configurations.\n\n### **2. Function: `execute_tool_with_enforcer`**\n- **File Path:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs`\n- **Line Count:** Lines 1162-1249 (88 lines)\n- **Estimated Cyclomatic Complexity:** 57 branch points (40+ match arms, each potentially with permission checks)\n- **Complexity Score:** 202 (second highest)\n- **Description:** The main tool routing/dispatch engine that determines which implementation function to call based on tool name. It implements a massive match statement with ~40 arms (one for each tool), where each arm validates input, performs optional permission enforcement, deserializes arguments, and calls the appropriate handler function. This is the critical dispatch point that all tool execution flows through, making it a bottleneck for complexity.\n\n### **3. Function: `execute_notebook_edit`**\n- **File Path:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs`\n- **Line Count:** Lines 3885-4005 (121 lines)\n- **Estimated Cyclomatic Complexity:** 35 branch points (nested match statements for edit modes, multiple if/else chains, nested Optional handling with `?` operators)\n- **Complexity Score:** 191\n- **Description:** Implements comprehensive Jupyter notebook cell editing with support for replace, insert, and delete modes. Contains complex branching logic to: (1) validate notebook format, (2) parse JSON structure, (3) resolve target cell indices, (4) handle mode-specific cell type logic, (5) manage output arrays and execution counts, (6) apply source line formatting, and (7) write updated file. The function combines conditional logic, nested pattern matching, and multiple error paths into a single cohesive operation.\n\n---\n\n**Summary:** The codebase has two distinct types of complexity: (1) massive but relatively simple declarative data structures (`mvp_tool_specs`), and (2) legitimate control-flow complexity in dispatch/routing (`execute_tool_with_enforcer`) and domain logic (`execute_notebook_edit`). The real cyclomatic complexity challenge is in the tool dispatcher, which would benefit from refactoring into a routing table or builder pattern.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 2174,
+    "cache_read_input_tokens": 82795,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 2174,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 826,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

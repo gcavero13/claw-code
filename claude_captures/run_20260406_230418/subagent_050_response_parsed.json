@@ -1,0 +1,24 @@
+{
+  "text": "Let me get all functions and identify larger ones by checking the line numbers:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01VzuCZC5foN7GWs52YfXpJs",
+      "name": "Bash",
+      "input": "{\"command\": \"grep -n \\\"^fn \\\\|^pub fn \\\\|^async fn \\\\|^pub async fn \\\" /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/tools/src/lib.rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 1454,
+    "cache_read_input_tokens": 42638,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1454,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 123,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

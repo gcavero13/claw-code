@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01XGBLVEQ2htctM7JFgyMSjw",
+      "name": "Edit",
+      "input": "{\"replace_all\": false, \"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/compact.rs\", \"old_string\": \"    #[test]\\n    fn infers_pending_work_from_recent_messages() {\", \"new_string\": \"    #[test]\\n    fn compaction_summary_stats_returns_zeros_when_no_compaction() {\\n        let session = Session::new();\\n        assert_eq!(compaction_summary_stats(&session), (0, 0));\\n    }\\n\\n    #[test]\\n    fn compaction_summary_stats_returns_counts_after_compaction() {\\n        let mut session = Session::new();\\n        session.messages = vec![\\n            ConversationMessage::user_text(\\\"one \\\".repeat(200)),\\n            ConversationMessage::assistant(vec![ContentBlock::Text {\\n                text: \\\"two \\\".repeat(200),\\n            }]),\\n            ConversationMessage::tool_result(\\\"1\\\", \\\"bash\\\", \\\"ok \\\".repeat(200), false),\\n            ConversationMessage::assistant(vec![ContentBlock::Text {\\n                text: \\\"recent\\\".to_string(),\\n            }]),\\n        ];\\n\\n        let result = compact_session(\\n            &session,\\n            CompactionConfig {\\n                preserve_recent_messages: 2,\\n                max_estimated_tokens: 1,\\n            },\\n        );\\n\\n        let (total_compactions, total_removed) =\\n            compaction_summary_stats(&result.compacted_session);\\n        assert_eq!(total_compactions, 1);\\n        assert_eq!(total_removed, result.removed_message_count);\\n    }\\n\\n    #[test]\\n    fn infers_pending_work_from_recent_messages() {\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 336,
+    "cache_read_input_tokens": 64194,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 336
+    },
+    "output_tokens": 509,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": "Let me search for function definitions and analyze complexity:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01RdFDh9xbDS3byxYhRAP3yx",
+      "name": "Grep",
+      "input": "{\"pattern\": \"^\\\\s*(?:pub\\\\s+)?(?:async\\\\s+)?fn\\\\s+\\\\w+\", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/plugins/src\", \"type\": \"rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 5806,
+    "cache_read_input_tokens": 42263,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 5806,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 148,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

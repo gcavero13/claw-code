@@ -1,0 +1,36 @@
+======================================================================
+SUBAGENT_005 — RESPONSE
+======================================================================
+
+SSE events: 102
+Model: claude-haiku-4-5-20251001
+Message ID: msg_01AdBRfEbGY3Pi8zFG9BtbuN
+
+Text output (1174 chars):
+  Based on the search results, here is the Anthropic Claude API pricing per million tokens for 2026:
+
+## Current Generation Models (2026)
+
+Anthropic offers three recommended tiers in 2026: Haiku 4.5 ($1/$5), Sonnet 4.6 ($3/$15), and Opus 4.6 ($5/$25) per million input/output tokens.
+
+**Breakdown:**
+- **Claude Opus 4.6**: $5.00 per million input tokens, $25.00 per million output tokens
+- **Claude Sonnet 4.6**: $3 input / $15 output per MTok
+- **Claude Haiku 4.5**: $1.00 input / $5.00 output
+
+## Key Pricing Features
+
+**1M Context Window**: Claude Opus 4.6 and Sonnet 4.6 include the full 1M token context window at standard pricing.
+
+**Fast Mode**: Fast Mode (Opus 4.6 only): $30 input / $150 output per million tokens (6x standard).
+
+**Cost Optimization**:
+- The Batch API allows asynchronous processing of large volumes of requests with a 50% discount on both input and output tokens.
+- A cache hit costs 10% of the standard input price, which means caching pays off after just one cache read for...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 2366
+  cache_creation_input_tokens: 18031
+  output_tokens: 558

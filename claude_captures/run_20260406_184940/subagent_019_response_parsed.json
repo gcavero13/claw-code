@@ -1,0 +1,24 @@
+{
+  "text": "Let me try a different approach to find usages:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_014Xg8e3PdPq1Lp4YWTWfLs8",
+      "name": "Bash",
+      "input": "{\"command\": \"cd /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code && grep -r \\\"PermissionPolicy\\\\|PermissionEnforcer\\\" rust/crates --include=\\\"*.rs\\\" | head -30\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 189,
+    "cache_read_input_tokens": 60522,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 189,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 116,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

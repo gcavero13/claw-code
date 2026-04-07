@@ -1,0 +1,19 @@
+======================================================================
+ITERATION 40
+======================================================================
+
+System prompt: 3 blocks, 3283 chars total
+  [0] 80 chars (cache=None)
+  [1] 62 chars (cache={'type': 'ephemeral'})
+  [2] 3141 chars (cache={'type': 'ephemeral'})
+
+Model: claude-haiku-4-5-20251001
+Max tokens: 8000
+Stream: True
+Tools: 45 defined
+
+Messages: 1 total
+--------------------------------------------------
+  [0] role=user (2 blocks)
+       [0] text: <system-reminder> (306 chars)
+       [1] text: In the directory rust/crates/telemetry/src/, find the 3 most complex functions by analyzing line count and cyclomatic co... (504 chars)

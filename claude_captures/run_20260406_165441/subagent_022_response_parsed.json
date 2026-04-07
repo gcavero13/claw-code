@@ -1,0 +1,24 @@
+{
+  "text": "Now let me read more of the anthropic client to understand streaming:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01Uf43sZaKchPrLn2XUvPmuc",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/providers/anthropic.rs\", \"offset\": 396, \"limit\": 250}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 4407,
+    "cache_read_input_tokens": 66182,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 4407,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 137,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

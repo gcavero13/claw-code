@@ -1,0 +1,21 @@
+======================================================================
+AGENT_001 — RESPONSE
+======================================================================
+
+SSE events: 27
+Model: claude-opus-4-6
+Message ID: msg_013RcP76yanhWn4AjBVSd3G2
+
+Thinking (21 chars):
+  Let me read the file.
+
+Tool calls (1):
+  - Read (id=toolu_01RrbyyEKEzyhvmZyZbjxg4V)
+    input: {"file_path": "/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/compact.rs"}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 3
+  cache_creation_input_tokens: 54313
+  output_tokens: 107

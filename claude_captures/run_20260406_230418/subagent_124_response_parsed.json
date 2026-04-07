@@ -1,0 +1,24 @@
+{
+  "text": "`parse_session_command` is from lines 1506-1548 (42 lines) and `parse_mcp_command` is from lines 1550-1581 (31 lines). Now let me check `load_agents_from_roots`:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_0179mE4gKnauAXYdmGWYdhp9",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/commands/src/lib.rs\", \"offset\": 2611, \"limit\": 60}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 2,
+    "cache_creation_input_tokens": 1281,
+    "cache_read_input_tokens": 64448,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1281,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 180,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

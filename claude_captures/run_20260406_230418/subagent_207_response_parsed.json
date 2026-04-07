@@ -1,0 +1,24 @@
+{
+  "text": "Perfect! Now let me create detailed descriptions of each function by reading key sections:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_017fi5GedQF2nUm7e2A3YYxY",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/conversation.rs\", \"offset\": 296, \"limit\": 50}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 0,
+    "cache_creation_input_tokens": 160,
+    "cache_read_input_tokens": 96310,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 160,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 136,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

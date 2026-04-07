@@ -1,0 +1,18 @@
+{
+  "text": "Perfect! I've completed my analysis. Here's a comprehensive report of all the pricing constants found in the codebase:\n\n## Pricing Constants Found\n\nAll pricing constants are located in `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/usage.rs`\n\n### Default Pricing Constants (Lines 3-6)\nThese are the base constants used as defaults for the Sonnet tier:\n\n- `DEFAULT_INPUT_COST_PER_MILLION`: 15.0\n- `DEFAULT_OUTPUT_COST_PER_MILLION`: 75.0\n- `DEFAULT_CACHE_CREATION_COST_PER_MILLION`: 18.75\n- `DEFAULT_CACHE_READ_COST_PER_MILLION`: 1.5\n\n### Model-Specific Pricing (via `pricing_for_model()` function, lines 59-81)\n\n**Claude Haiku** (normalized name contains \"haiku\"):\n- Input: $1.0 per million tokens\n- Output: $5.0 per million tokens\n- Cache write (creation): $1.25 per million tokens\n- Cache read: $0.1 per million tokens\n\n**Claude Opus** (normalized name contains \"opus\"):\n- Input: $15.0 per million tokens\n- Output: $75.0 per million tokens\n- Cache write (creation): $18.75 per million tokens\n- Cache read: $1.5 per million tokens\n\n**Claude Sonnet** (normalized name contains \"sonnet\"):\n- Input: $15.0 per million tokens\n- Output: $75.0 per million tokens\n- Cache write (creation): $18.75 per million tokens\n- Cache read: $1.5 per million tokens\n- (Uses `default_sonnet_tier()` which returns the DEFAULT constants)\n\n### Related Files Checked\n\n1. `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/src/cost_tracker.py` - Simple Python tracker utility with no pricing constants\n2. `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/src/costHook.py` - Hook for cost tracking with no pricing constants\n3. `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/api/src/prompt_cache.rs` - Prompt caching logic with no pricing constants (only cache configuration)\n\nThe Rust file is the authoritative source for all pricing information in this codebase. The pricing is structured per model type with case-insensitive matching on model names.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 9645,
+    "cache_read_input_tokens": 46951,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 9645,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 615,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

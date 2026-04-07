@@ -1,0 +1,54 @@
+{
+  "model": "claude-haiku-4-5-20251001",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Perform a web search for the query: Anthropic Claude API pricing per million tokens 2026",
+          "cache_control": {
+            "type": "ephemeral"
+          }
+        }
+      ]
+    }
+  ],
+  "system": [
+    {
+      "type": "text",
+      "text": "x-anthropic-billing-header: cc_version=2.1.92.845; cc_entrypoint=cli; cch=d7c09;"
+    },
+    {
+      "type": "text",
+      "text": "You are a Claude agent, built on Anthropic's Claude Agent SDK.",
+      "cache_control": {
+        "type": "ephemeral"
+      }
+    },
+    {
+      "type": "text",
+      "text": "You are an assistant for performing a web search tool use",
+      "cache_control": {
+        "type": "ephemeral"
+      }
+    }
+  ],
+  "tools": [
+    {
+      "type": "web_search_20250305",
+      "name": "web_search",
+      "max_uses": 8
+    }
+  ],
+  "tool_choice": {
+    "type": "tool",
+    "name": "web_search"
+  },
+  "metadata": {
+    "user_id": "{\"device_id\":\"ad64483d8a9af4a5bfe6abc24db5c32a350a5203fa4ea8caf055148d55a505e9\",\"account_uuid\":\"897d71f1-4def-4403-9614-f9a7251699f8\",\"session_id\":\"901b9701-b6e9-48cc-8f4e-175c40672260\"}"
+  },
+  "max_tokens": 8000,
+  "temperature": 1,
+  "stream": true
+}
