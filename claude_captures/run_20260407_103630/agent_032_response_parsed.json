@@ -1,0 +1,24 @@
+{
+  "text": "Now let me check the `UsageTracker::from_session` and `cumulative_usage` signatures to make sure I'm using them correctly.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01Fur8dNfRrgF2gmYBr94s3w",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/usage.rs\", \"offset\": 160, \"limit\": 70}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 2920,
+    "cache_read_input_tokens": 75165,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2920
+    },
+    "output_tokens": 152,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

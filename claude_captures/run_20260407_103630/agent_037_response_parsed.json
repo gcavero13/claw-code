@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01SkBbP5HcnHdmPhWkYSvT2J",
+      "name": "Edit",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/tests/session_diff_test.rs\", \"old_string\": \"    let dir = tempfile::tempdir().expect(\\\"create temp dir\\\");\\n    let old_path = dir.path().join(\\\"old.jsonl\\\");\\n    let new_path = dir.path().join(\\\"new.jsonl\\\");\", \"new_string\": \"    let dir = std::env::temp_dir().join(format!(\\\"session_diff_test_{}\\\", std::process::id()));\\n    fs::create_dir_all(&dir).expect(\\\"create temp dir\\\");\\n    let old_path = dir.join(\\\"old.jsonl\\\");\\n    let new_path = dir.join(\\\"new.jsonl\\\");\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 321,
+    "cache_read_input_tokens": 81740,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 321
+    },
+    "output_tokens": 257,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "text": "Now let me search for the key type definitions. I'll read the main files for Session, ConversationMessage, and related types.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01JhjcXfkm3ftxxQi9n8PtFM",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"limit\": 100}"
+    },
+    {
+      "id": "toolu_01EKdq4UxkbhhXkjyKQUZ9wM",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/conversation.rs\", \"limit\": 100}"
+    },
+    {
+      "id": "toolu_01H8Lrb1ogwToGgpeSjbBy71",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/usage.rs\", \"limit\": 100}"
+    },
+    {
+      "id": "toolu_016cHf1gYEUceCEjN7eG954Y",
+      "name": "Bash",
+      "input": "{\"command\": \"ls -la /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/examples/\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 1510,
+    "cache_read_input_tokens": 42708,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1510,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 368,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

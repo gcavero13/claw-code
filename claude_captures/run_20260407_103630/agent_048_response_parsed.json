@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01GHdzDswycfyzixrHatwStT",
+      "name": "TodoWrite",
+      "input": "{\"todos\": [{\"content\":\"Create the session_diff.rs example binary\",\"status\":\"completed\",\"activeForm\":\"Creating session_diff.rs example binary\"},{\"content\":\"Create the session_diff_test.rs integration test\",\"status\":\"completed\",\"activeForm\":\"Creating session_diff_test.rs integration test\"},{\"content\":\"Verify both compile and test passes\",\"status\":\"completed\",\"activeForm\":\"Verifying compilation and tests\"}]}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 846,
+    "cache_read_input_tokens": 89768,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 846
+    },
+    "output_tokens": 157,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

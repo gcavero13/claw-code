@@ -1,0 +1,22 @@
+======================================================================
+AGENT_044 — RESPONSE
+======================================================================
+
+SSE events: 27
+Model: claude-opus-4-6
+Message ID: msg_01Q2LnKToCyZWkkpByfqt1FD
+
+Text output (32 chars):
+  Formatting issue. Let me fix it.
+
+Tool calls (1):
+  - Bash (id=toolu_0151jUqKG3mxQNapMrxYERci)
+    input: {"command": "cargo fmt -- --check 2>&1 | head -30", "description": "See full fmt diff"}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 173
+  cache_read_input_tokens: 88291
+  output_tokens: 95

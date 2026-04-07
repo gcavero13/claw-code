@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_011nQThJdSPtAJz8mc3wWbou",
+      "name": "Bash",
+      "input": "{\"command\": \"cargo fmt -- --check 2>&1 | grep session_diff\", \"description\": \"Re-check formatting\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 327,
+    "cache_read_input_tokens": 89337,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 327
+    },
+    "output_tokens": 86,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

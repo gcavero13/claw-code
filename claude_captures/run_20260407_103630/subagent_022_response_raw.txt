@@ -1,0 +1,354 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_01L3fYvhXZH1JCrp9FxVEpxr","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":4,"cache_creation_input_tokens":3033,"cache_read_input_tokens":77406,"cache_creation":{"ephemeral_5m_input_tokens":3033,"ephemeral_1h_input_tokens":0},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}   }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}}
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Perfect"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"! Now I have comprehensive information. Let me compile the final report.\n\n## Comprehensive Rust"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Codebase Exploration Report\n\nI've thoroughly explored the Rust codebase for building a session"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" diff tool. Here are all the key findings:\n\n### 1. **Core Session Type Definitions**"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs`\n\n**Lines 18-84"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":** Core enum and struct definitions:\n- `MessageRole` (enum, line"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 19-24): System, User, Assistant, Tool"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `ContentBlock` (enum, line 28-43): Text, ToolUse, ToolResult\n- `Con"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"versationMessage` (struct, line 47-51): Has role, blocks, and optional usage\n- `SessionComp"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"action` (struct, line 55-59): count, removed_message_count, summary\n- `SessionFork` (struct, line 63"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-66): parent_session_id, branch_name\n- `Session` (struct, line 75-84): version"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", session_id, created_at_ms, updated_at_ms, messages, compaction,"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" fork, persistence\n\n### 2. **JSONL Parsing/"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Serialization Functions**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs`\n\n**JSONL Record"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Types (see `from_jsonl` function at line 317-394"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"):**\n- `\"session_meta\"`: Contains version, session_id, created_at_ms, updated_at_ms, fork"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `\"message\"`: Contains message object with role, blocks, usage\n- `\"compaction\"`: Contains count, removed_message_count, summary\n\n**"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Key JSONL functions:**\n- `render_jsonl_snapshot()` (line 396"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-409): Generates full JSONL snapshot\n- `from_jsonl()` (line 317"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-394): Parses JSONL back into Session\n- `from_json()` (line 268-315): Parses legacy"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" JSON object format\n- `append_persisted_message()` (line 411-425): App"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ends individual message records\n- `meta_record()` (line 427-453): Creates session_"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"meta JSONL record\n\n**Serialization methods:**\n- `ConversationMessage::to_json()` (line 514-536)"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `ContentBlock::to_json()` (line 575-614)\n- `SessionCompaction::to_jsonl_record()` (line 670-692"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")\n- `SessionFork::to_json()` (line 708-721)\n- `message_record()` helper"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (line 737-742)\n\n### 3. **Token Usage Types**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/src/usage.rs`\n\n**Lines 30-36:** `TokenUsage` struct with:"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- input_tokens, output_tokens, cache_creation_input_tokens, cache_read_input_tokens (all"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" u32)\n\n**Lines 40-45:** `UsageC"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ostEstimate` with usd costs for each category"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**Lines 169-174:** `UsageTracker` struct for aggreg"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ating usage\n\n**Methods:**\n- `TokenUsage::total_tokens()` (line 85-90"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"): Sum all token types\n- `TokenUsage::estimate_cost_u"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"sd()` (line 93-95)\n- `TokenUsage::estimate_cost_usd_with_pricing()` (line 98-111"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")\n- `TokenUsage::summary_lines_for_model()` (line 119"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-154): Formatted output for CLI\n- `UsageTracker::from_session"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"()` (line 182-190): Aggregates usage from Session\n- `UsageTracker::cumulative_usage()` (line 207-209)"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n**Pricing model:**\n- `ModelPricing` struct (line 10-15)"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `pricing_for_model()` (line 59-81): Returns pricing for ha"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"iku/opus/sonnet models\n\n### 4. **Compaction Types and"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Functions**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/compact.rs`\n\n**Types:**\n- `CompactionConfig` (line 10"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-22): preserve_recent_messages (usize), max_estimated_tokens (u"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"size)\n- `CompactionResult` (line 26-31): summary, formatted_summary, compacted_session"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", removed_message_count\n\n**Key functions:**\n- `estimate_session_tokens()` (line 35-37"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"): Calculate total tokens in session\n- `should_compact()` (line 41-51): Check"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" if compaction is needed\n- `compact_session()` (line 96-139): Performs compaction with result\n- `format_compact"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_summary()` (line 55-67): Normalizes summary text\n- `get_compact_continuation_message"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"()` (line 71-92): Creates system message for continuation\n\n**Helper functions for analysis"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":**\n- `estimate_message_tokens()` (line 399-412)\n- `summarize_messages()` (line 151-236"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"): Generates structured summary\n- `collect_key_files()` (line 329-344)\n- `infer_pending_work()` ("}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"line 308-327)\n- `infer_current_work()` (line 345-352)\n\n### 5."}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **Session Save/Load Functionality**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs`\n\n**Core"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" methods:**\n- `Session::new()` (line 134-146): Creates new session with generated ID and timestamps"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- `Session::save_to_path()` (line 159-166): Saves JSONL snapshot (with rotation"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" at 256KB)\n- `Session::load_from_path()` (line 168-182): Loads from"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" JSONL or legacy JSON\n- `Session::push_message()` (line 184-198): Appends message to in-memory and persisted"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" state\n- `Session::push_user_text()` (line 200-202): Helper for user text\n- `Session::fork()` (line 215"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-230): Creates fork with parent reference\n- `Session::record_compaction()` (line 204-212): Records compaction metadata\n\n**File"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rotation:**\n- `rotate_session_file_if_needed()` (line 874-884): Rot"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ates at 256KB\n- `cleanup_rotated_logs()` (line 894-930): Keeps"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" only 3 rotated files (MAX_ROTATED_FILES = 3)\n- `rot"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ated_log_path()` (line 886-892): Names rotated files with timestamp\n\n**Timestamp &"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" ID generation:**\n- `current_time_millis()` (line 839-844): System"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Time based\n- `generate_session_id()` (line 846-850): Format \"session-"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"{millis}-{counter}\"\n- `SESSION_ID_COUNTER`: Static AtomicU"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"64 for uniqueness\n\n### 6. **Custom JSON Implementation**\n\n**File:** `/Users/gladyscavero/Documents/"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PEOPL/GitHub/claw-code/rust/crates/runtime/src/json.rs`\n\n**Lines 5-12:** `JsonValue` enum (custom"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", not serde_json):\n- Null, Bool, Number("}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"i64), String, Array, Object(BTreeMap)\n\n**Methods:**\n- `JsonValue::render()"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` (line 38-50): Converts to JSON string\n- `JsonValue::parse()` and helper methods for"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" parsing\n- `as_object()`, `as_array()`, `as_str()`, `as_i64()`, `as_bool()` for"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" type conversion\n\n### 7. **Helper Functions for JSON Conversion**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"code/rust/crates/runtime/src/session.rs`\n\n**Lines 744-775:** Token usage JSON helpers"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":\n- `usage_to_json()` (line 744-763): TokenUsage → JsonValue\n- `usage_from_json()` (line 765"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-775): JsonValue → TokenUsage\n\n**Lines 777-827:** Required field extraction:\n- `required"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_string()`, `required_u32()`, `required_u64()`, `required_usize("}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":")`\n- `required_u64_from_value()`, `i64_from_u"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"64()`, `i64_from_usize()`\n\n### 8. **Test Examples and Patterns**\n\n**File:** `/Users/gladyscavero/Documents/"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"PEOPL/GitHub/claw-code/rust/crates/runtime/tests/message_trace_test.rs`\n\nShows how to:\n- Create messages: `ConversationMessage::user_"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"text()`, `ConversationMessage::assistant()`\n- Access content blocks: Pattern matching on Content"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Block enum\n- Track usage: TokenUsage with all four counter types\n- Snapshot message"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" patterns (lines 30-57)\n\n**File:** `/Users/gladyscavero/Documents/PEOPL"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"/GitHub/claw-code/rust/crates/runtime/src/session.rs` (tests at line 932"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-1200)\n\nKey test patterns:\n- `persists_and_restores_session_json"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"l()` (line 945-988): Full round-trip test\n- `loads_legacy"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_session_json_object()` (line 991-1015): Legacy format support\n- `app"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ends_messages_to_persisted_jsonl_session()` (line 1018-1038): Append-"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"only writes\n- `persists_compaction_metadata()` (line 1041+): Compaction preservation\n\n### 9. **Public"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" API Exports**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/lib.rs`\n\n**Lines 134"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-137:** Session-related public exports:\n```rust\npub use session::{\n    ContentBlock, ConversationMessage, Message"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Role, Session, SessionCompaction, SessionError,\n    SessionFork,\n};\n```\n\n**Lines 47-50:** Compaction exports:\n```rust\npub use compact"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"::{\n    compact_session, estimate_session_tokens, format_compact_summary,\n    get_compact_continuation_message, should_compact, CompactionConfig, CompactionResult,"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n};\n```\n\n**Lines 145-147:** Usage exports:\n```rust\npub use usage::{\n    format"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_usd, pricing_for_model, ModelPricing, TokenUsage, UsageCostEstimate, UsageTracker,\n};\n```\n\n### 10. **Dependencies"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Available**\n\n**File:** `/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/Cargo.toml`\n\n- s"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"erde_json (v1)\n- serde (v1 with derive)\n- tokio (v1 with io"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-util, macros, process, rt, rt"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-multi-thread, time)\n- regex (v1)\n- sha2 (v0.10)\n- glob (v0"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":".3)\n- walkdir (v2)\n- telemetry (local crate)\n- plugins (local crate)"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n\n### 11. **Key Constants**\n\n- `SESSION_VERSION: u32 = 1`"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (line 12)\n- `ROTATE_AFTER_BYTES: u64 = 256 * "}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"1024` (line 13)\n- `MAX_ROTATED_FILES: usize = 3` (line 14)\n\n### Summary for Session"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" Diff Tool\n\nTo build a session diff tool, you'll want to:\n\n1. **Use"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `Session::load_from_path()`** to load two JSONL session files\n2. **Compare `"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"messages` vectors** directly (they implement PartialEq)\n3. **Access"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" token usage** via message.usage field\n4. **Leverage `Us"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ageTracker::from_session()`** to aggregate and display usage diffs\n5. **Check compaction state** via session."}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"compaction field\n6. **Parse JSONL directly** if you need incremental analysis"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" (use JsonValue::parse)\n7. **Output formatted costs** using `TokenUsage::summary"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_lines_for_model()`\n8. **Follow JSONL record types** for structured analysis (session"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_meta, message, compaction records)\n\nAll types are public, well-documented, and designed for persistence workflows"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" like yours."}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0             }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":4,"cache_creation_input_tokens":3033,"cache_read_input_tokens":77406,"output_tokens":3024},"context_management":{"applied_edits":[]}      }
+
+event: message_stop
+data: {"type":"message_stop"       }
+

@@ -1,0 +1,39 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01L6YFuf7XpXFJArXgGp2uCD",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"offset\": 100, \"limit\": 170}"
+    },
+    {
+      "id": "toolu_01AxART4K7A8biz46VM7nDMp",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"offset\": 390, \"limit\": 170}"
+    },
+    {
+      "id": "toolu_01WXJdJUhB3EAKqk8RiUz97p",
+      "name": "Glob",
+      "input": "{\"pattern\": \"rust/crates/runtime/examples/*.rs\"}"
+    },
+    {
+      "id": "toolu_01M1N91ZwP6mL3T6vhDZGzc9",
+      "name": "Glob",
+      "input": "{\"pattern\": \"rust/crates/runtime/tests/*.rs\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 5121,
+    "cache_read_input_tokens": 57567,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 5121
+    },
+    "output_tokens": 309,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

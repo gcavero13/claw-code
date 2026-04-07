@@ -1,0 +1,22 @@
+======================================================================
+AGENT_032 — RESPONSE
+======================================================================
+
+SSE events: 32
+Model: claude-opus-4-6
+Message ID: msg_01L9FH4KxM2dkmELvGeW8XJ4
+
+Text output (122 chars):
+  Now let me check the `UsageTracker::from_session` and `cumulative_usage` signatures to make sure I'm using them correctly.
+
+Tool calls (1):
+  - Read (id=toolu_01Fur8dNfRrgF2gmYBr94s3w)
+    input: {"file_path": "/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/usage.rs", "offset": 160, "limit": 70}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 2920
+  cache_read_input_tokens: 75165
+  output_tokens: 152

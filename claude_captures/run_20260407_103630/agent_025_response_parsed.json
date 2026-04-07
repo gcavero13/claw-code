@@ -1,0 +1,29 @@
+{
+  "text": "Let me check one existing test and the ConversationMessage helper methods for building test data.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01MKdF2bVVBZ1fDPBicJez2a",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/tests/message_trace_test.rs\"}"
+    },
+    {
+      "id": "toolu_01J6UXHtR9PmEytARXRquamA",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"offset\": 560, \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 4312,
+    "cache_read_input_tokens": 62688,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 4312
+    },
+    "output_tokens": 211,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

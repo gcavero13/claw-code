@@ -1,0 +1,18 @@
+{
+  "text": "Both files compile and the test passes. Here's what was built:\n\n**`rust/crates/runtime/examples/session_diff.rs`** — CLI binary that takes two JSONL session file paths and prints a colored terminal diff with four sections:\n- **Session Metadata** — session ID, version, timestamps, fork changes\n- **Compaction** — added/removed/changed compaction events with count, removed message count, and summary\n- **Messages** — positional diff showing changed messages in the shared prefix, removed tail messages, and new tail messages (with per-message token usage)\n- **Token Usage** — aggregated delta across all four token categories (input, output, cache creation, cache read) with +/- indicators\n\nUses ANSI colors: red for removals, green for additions, yellow for changes, cyan for section headers, dim for unchanged.\n\n**`rust/crates/runtime/tests/session_diff_test.rs`** — Integration test that:\n1. Builds an \"old\" session with 5 messages (user/assistant/user/assistant+tool_use/tool_result) with token usage\n2. Builds a \"new\" session with 6 messages (modified assistant text, one additional message) plus a compaction event\n3. Saves both as JSONL via `Session::save_to_path`\n4. Builds and runs the binary via `cargo run --example session_diff`\n5. Asserts all four output sections appear, compaction is reported, new messages are shown, token usage fields are present, and the modified text is visible",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 199,
+    "cache_read_input_tokens": 90614,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 199
+    },
+    "output_tokens": 356,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

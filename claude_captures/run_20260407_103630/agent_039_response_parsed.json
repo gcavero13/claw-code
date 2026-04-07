@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01BnxM6K8gi8MHZSXFfskyqo",
+      "name": "Bash",
+      "input": "{\"command\": \"cd /Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust && cargo build --example session_diff 2>&1\", \"description\": \"Build the session_diff example\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 209,
+    "cache_read_input_tokens": 82408,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 209
+    },
+    "output_tokens": 126,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

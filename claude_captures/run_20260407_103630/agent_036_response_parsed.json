@@ -1,0 +1,24 @@
+{
+  "text": "Not available in Cargo.toml. I need to add it as a dev-dependency, or avoid it. Let me use `std::env::temp_dir()` instead to keep things simple.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01VTYPuGJSfDKTQBiZoV2Tyh",
+      "name": "Edit",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/tests/session_diff_test.rs\", \"old_string\": \"use std::process::Command;\\n\\nuse runtime::{ContentBlock, ConversationMessage, Session, SessionCompaction, TokenUsage};\", \"new_string\": \"use std::fs;\\nuse std::process::Command;\\n\\nuse runtime::{ContentBlock, ConversationMessage, Session, TokenUsage};\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 240,
+    "cache_read_input_tokens": 81500,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 240
+    },
+    "output_tokens": 231,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}
