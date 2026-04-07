@@ -1,0 +1,33 @@
+======================================================================
+AGENT_014 — RESPONSE
+======================================================================
+
+SSE events: 26
+Model: claude-opus-4-6
+Message ID: msg_013W1NzQFBbCajWyftb1WSux
+
+Text output (1261 chars):
+  Dashboard is at `/tmp/codebase_health.html` and should be open in your browser. Here's what it contains:
+
+**Section 1 — Test Coverage Map**
+- Ran `cargo test --workspace` and parsed results: **426 passed, 2 failed, 1 compile error**
+- Per-crate breakdown with test counts, source lines, and pass/fail status
+- Expandable module-level detail showing which of the 60+ modules have inline tests (and how many)
+- 2 failed tests in `api` crate (integration tests), 1 compile error in `runtime/live_api_trace_test.rs` (missing `reqwest` dev-dep)
+- `mock-anthropic-service` is the only crate with zero tests
+
+**Section 2 — Code Complexity Report**
+- Top 10 longest functions with line counts and branch-point complexity
+- `validate_slash_command_input()` has the highest complexity (47 branch points in 205 lines)
+- `entries()` in commands is the longest at 1,155 lines but relatively low complexity (data table)
+- `run_turn()` and `parse_args()` are flagged as very high complexity (34 and 40)
+
+**Section 3...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 108
+  cache_read_input_tokens: 82966
+  output_tokens: 371

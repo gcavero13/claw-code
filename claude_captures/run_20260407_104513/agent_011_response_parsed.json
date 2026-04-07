@@ -1,0 +1,24 @@
+{
+  "text": "Now I have all the data. Let me build the HTML dashboard.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01PKnjaWxF1DT4snn2QN8yB4",
+      "name": "Write",
+      "input": "{\"file_path\": \"/tmp/codebase_health.html\""
+    }
+  ],
+  "stop_reason": "max_tokens",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 2227,
+    "cache_read_input_tokens": 68915,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2227
+    },
+    "output_tokens": 8000,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

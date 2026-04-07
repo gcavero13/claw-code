@@ -1,0 +1,24 @@
+{
+  "text": "Let me verify it renders correctly.",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_013DZH7SBp9kMC53LkgjraUr",
+      "name": "Bash",
+      "input": "{\"command\": \"open /tmp/codebase_health.html\", \"description\": \"Open dashboard in browser\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 11824,
+    "cache_read_input_tokens": 71142,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 11824
+    },
+    "output_tokens": 90,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}
