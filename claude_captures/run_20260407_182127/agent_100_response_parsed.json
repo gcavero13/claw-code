@@ -1,0 +1,24 @@
+{
+  "text": "This is a big run — turn 3 is doing extensive research. Let me check what's happening:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01DAob2aw12SDzE9dHr6wyCW",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | sed 's/_[0-9]*.*//' | sort | uniq -c | sort -rn\", \"description\": \"Check current breakdown\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 250,
+    "cache_read_input_tokens": 570994,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 250
+    },
+    "output_tokens": 162,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

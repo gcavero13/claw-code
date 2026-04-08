@@ -1,0 +1,19 @@
+======================================================================
+AGENT_097 — RESPONSE
+======================================================================
+
+SSE events: 60
+Model: claude-opus-4-6
+Message ID: msg_01RwadzFNqo8GoQn5AzeKq9Y
+
+Tool calls (1):
+  - Bash (id=toolu_013v95Y9zg9PafeQ1TrKymWD)
+    input: {"command": "RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 120 && PREV=$(ls \"$RUN_DIR\" | grep \"_summary.txt$\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \"$RUN_DIR\" | ...
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 250
+  cache_read_input_tokens: 571037
+  output_tokens: 221

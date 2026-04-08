@@ -1,0 +1,57 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01U3cTxdECKz15c6ZmTAhsU1","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":672,"cache_read_input_tokens":55050,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":672},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}         }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}               }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Here"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"'s a summary of the 9 crates in the workspace:\n\n| Crate | Purpose |\n|---|"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"---|\n| **rusty-claude-cli** | Main CLI binary — orchestrates everything into an interactive chat interface with markdown rendering and tool invocation |\n| **runtime"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** | Core execution engine — session persistence, conversation loops, MCP client/server, file ops, bash execution, OAuth, and permission enforcement |\n| **api"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** | HTTP client for Anthropic's API (and OpenAI-compatible providers) — streaming messages"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", OAuth tokens, prompt caching |\n| **tools** | Defines available tools (file ops, bash, LSP/MCP integration) and"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the tool execution engine bridging CLI functions with LLM calls |\n| **commands** | Command registry and manifest types for built-in and feature-gated CLI commands |\n| **plugins"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** | Plugin lifecycle, hooks, metadata, and configuration for extending the CLI with custom functionality |\n| **telemetry** | Telemetry event structures and data sinks for analytics, request profiling, session tracing, and usage"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" metrics |\n| **compat-harness** | Extracts command/tool manifests from TypeScript source files so Rust can understand the upstream CLI's capabilities |"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n| **mock-anthropic-service** | Standalone test server simulating Anthropic's API for integration testing |\n\nThe dependency flow is roughly"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":": `rusty-claude-cli` → `commands` / `runtime` / `tools` → `api` / `plugins` /"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" `telemetry`, with `compat-harness` bridging the TypeScript upstream and `mock-anthropic-service` used"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" only for testing."}             }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0}
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":672,"cache_read_input_tokens":55050,"output_tokens":375},"context_management":{"applied_edits":[]}         }
+
+event: message_stop
+data: {"type":"message_stop"           }
+

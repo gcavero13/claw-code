@@ -1,0 +1,64 @@
+{
+  "text": "Now let me read the actual source files:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01PiLUwTMfVdS456KUvaxVuL",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/tools/src/lib.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_01LYSApQJ8jwMj2STtjoXSb4",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/plugins/src/lib.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_01QUFSdXSoyNRCTvh9AobXZA",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/compat-harness/src/lib.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_01D6HQiu4WHnQVPBLtokzEKQ",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/mock-anthropic-service/src/main.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_01NiZJz8emRtqbgoKZQUAPQk",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/runtime/src/lib.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_01Eo24RAtMCZJEjGsa5VsKYz",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/rusty-claude-cli/src/main.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_017ENPYsDqdesFpWJyitNjJX",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/api/src/lib.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_012LrWYswkABC6vJo5xpQs8p",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/commands/src/lib.rs\", \"limit\": 50}"
+    },
+    {
+      "id": "toolu_01WEnzRp3es6JYZFNmFYYwxU",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/crates/telemetry/src/lib.rs\", \"limit\": 50}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 1365,
+    "cache_read_input_tokens": 44182,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 1365,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 745,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

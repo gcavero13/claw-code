@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "Let me explore the workspace structure to understand the Rust crates.",
+  "tool_uses": [
+    {
+      "id": "toolu_017pDtmMJ9Z2sAHwY2fLomgs",
+      "name": "Glob",
+      "input": "{\"pattern\": \"**/Cargo.toml\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 7432,
+    "cache_read_input_tokens": 46199,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 7432
+    },
+    "output_tokens": 88,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

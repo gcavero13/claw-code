@@ -1,0 +1,24 @@
+{
+  "text": "105 iterations with 99 agent calls — this turn is doing heavy work. Let me keep waiting:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01Ac8g5rCehTULS24uPvyhNR",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 120 && PREV=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && echo \\\"Was $PREV, now $CURR — $([ $PREV -eq $CURR ] && echo 'STABLE' || echo 'still running')\\\"\", \"description\": \"Wait for completion\", \"timeout\": 200000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 313,
+    "cache_read_input_tokens": 570561,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 313
+    },
+    "output_tokens": 243,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,6 @@
+======================================================================
+AGENT_028 — RESPONSE
+======================================================================
+
+ERROR (status 429):
+{"type":"error","error":{"type":"rate_limit_error","message":"Rate limited"},"request_id":"req_011CZqMebH7NJwTdG4MYYtfd"}

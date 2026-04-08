@@ -1,0 +1,22 @@
+======================================================================
+AGENT_101 — RESPONSE
+======================================================================
+
+SSE events: 95
+Model: claude-opus-4-6
+Message ID: msg_011PTtJDJwSVWLv8PfmUM2um
+
+Text output (85 chars):
+  This is taking a long time — the subagent is doing deep analysis. Let me wait longer:
+
+Tool calls (1):
+  - Bash (id=toolu_012fEhGXxze6BrcC3iWALvUV)
+    input: {"command": "RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 180 && PREV=$(ls \"$RUN_DIR\" | grep \"_summary.txt$\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \"$RUN_DIR\" | ...
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 250
+  cache_read_input_tokens: 570494
+  output_tokens: 287

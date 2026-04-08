@@ -683,6 +683,7 @@ def build_viz_data(run_dir):
         "internal_calls": internal_calls,
         "timeline": timeline,
         "system_reminders": system_reminders,
+        "turns": [],  # filled below
     }
 
     # Populate per_agent system prompts (using stable text, excluding billing header)
@@ -699,6 +700,40 @@ def build_viz_data(run_dir):
                     "text": stable_text,
                     "blocks": [{"length": len(b.get("text","")), "cache_control": b.get("cache_control")} for b in sys],
                 }
+
+    # Detect turns — each new DISTINCT user message in the parent's history is a new turn
+    # We track the set of user message texts seen so far. When a new one appears, that's a new turn.
+    parent_agent = next((a for a in agents if a["id"] == "parent"), None)
+    if parent_agent:
+        seen_user_texts = set()
+        for it in parent_agent["iterations"]:
+            raw_msgs = it.get("raw_messages", [])
+            # Collect all distinct user message texts (excluding system-reminders)
+            current_user_texts = []
+            for msg in raw_msgs:
+                if msg.get("role") != "user":
+                    continue
+                content = msg.get("content", [])
+                if isinstance(content, str):
+                    current_user_texts.append(content.strip()[:300])
+                elif isinstance(content, list):
+                    for block in content:
+                        if isinstance(block, dict) and block.get("type") == "text":
+                            text = block.get("text", "")
+                            if "<system-reminder>" not in text and text.strip():
+                                current_user_texts.append(text.strip()[:300])
+
+            # Check if there's a new user text we haven't seen before
+            for text in current_user_texts:
+                if text and text not in seen_user_texts:
+                    seen_user_texts.add(text)
+                    turn_num = len(viz_data["turns"]) + 1
+                    viz_data["turns"].append({
+                        "turn": turn_num,
+                        "starts_at_iteration": it["number"],
+                        "user_message": truncate(text, 200),
+                    })
+                    break  # only detect one new turn per iteration
 
     # Clean up sets (not JSON serializable)
     for h, info in system_prompts.items():

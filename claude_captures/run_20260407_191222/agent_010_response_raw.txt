@@ -1,0 +1,51 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_0163Jn4PLJ7Nc7oPyz4yq2eZ","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":1004,"cache_read_input_tokens":53872,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":1004},"output_tokens":1,"service_tier":"standard","inference_geo":"not_available"}}         }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}  }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"This"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" is a Rust workspace (rooted at `rust/Cargo.toml`) with"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 9 crates:\n\n| Crate | Purpose |\n|---|---|\n| **rusty-claude-cli** | The"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" main CLI binary (`claw`) — terminal UI, markdown rendering, readline input, OAuth auth"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":". |\n| **runtime** | Core execution engine — session persistence, permissions, MCP clients, prompt assembly, bash execution, and"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the conversation loop. |\n| **api** | HTTP client for the Anthropic API — message streaming, OAuth tokens, prompt caching. |\n|"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" **tools** | Tool execution infrastructure — invokes AI models, manages tool registries (LSP, MCP), permission enforcement. |\n| **commands** | Slash command definitions and handlers — plugins, agents, MCP servers, skills. |\n| **plugins"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"** | Plugin lifecycle management — installation, configuration, hooks for builtin/bundled/external plugins. |\n| **compat-harness** | Compatibility bridge"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" between the upstream TypeScript codebase and this Rust implementation. |\n| **telemetry** | Analytics events"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", session traces, and structured logging. |\n| **mock-anthropic-service** | Test server that mocks the Anthropic API for integration testing. |\n\nThe"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" workspace forbids `unsafe` code and uses Rust 2021 edition across all crates."}           }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0            }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":1004,"cache_read_input_tokens":53872,"output_tokens":307},"context_management":{"applied_edits":[]}          }
+
+event: message_stop
+data: {"type":"message_stop"             }
+

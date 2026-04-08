@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01KV4KbB5FSW7JxfwSGgZiqt",
+      "name": "Agent",
+      "input": "{\"subagent_type\": \"Explore\", \"description\": \"Explore Rust crate purposes\", \"prompt\": \"For each of these 9 Rust crates, read the Cargo.toml and the main entry point (lib.rs or main.rs) to summarize what each crate does in 1-2 sentences. The crates are at:\\n\\nrust/crates/api/\\nrust/crates/commands/\\nrust/crates/compat-harness/\\nrust/crates/mock-anthropic-service/\\nrust/crates/plugins/\\nrust/crates/runtime/\\nrust/crates/rusty-claude-cli/\\nrust/crates/telemetry/\\nrust/crates/tools/\\n\\nReport the crate name, its dependencies (from Cargo.toml), and a brief purpose summary. Be concise — under 200 words total.\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 206,
+    "cache_read_input_tokens": 54844,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 206
+    },
+    "output_tokens": 271,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": "\n\nI think you're asking me to send that as the second message through the proxy, not asking me directly. Let me continue the captured session:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_0131HxgyXcu39XaWxggwTs7i",
+      "name": "Bash",
+      "input": "{\"command\": \"ANTHROPIC_BASE_URL=http://127.0.0.1:9999 claude --dangerously-skip-permissions -c -p \\\"Which of those crates has the most complex code? Show me the top 3 functions by line count.\\\" 2>&1\", \"description\": \"Turn 2: find complex functions\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 569048,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 569048
+    },
+    "output_tokens": 186,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "text": "This is a Rust workspace (rooted at `rust/Cargo.toml`) with 9 crates:\n\n| Crate | Purpose |\n|---|---|\n| **rusty-claude-cli** | The main CLI binary (`claw`) — terminal UI, markdown rendering, readline input, OAuth auth. |\n| **runtime** | Core execution engine — session persistence, permissions, MCP clients, prompt assembly, bash execution, and the conversation loop. |\n| **api** | HTTP client for the Anthropic API — message streaming, OAuth tokens, prompt caching. |\n| **tools** | Tool execution infrastructure — invokes AI models, manages tool registries (LSP, MCP), permission enforcement. |\n| **commands** | Slash command definitions and handlers — plugins, agents, MCP servers, skills. |\n| **plugins** | Plugin lifecycle management — installation, configuration, hooks for builtin/bundled/external plugins. |\n| **compat-harness** | Compatibility bridge between the upstream TypeScript codebase and this Rust implementation. |\n| **telemetry** | Analytics events, session traces, and structured logging. |\n| **mock-anthropic-service** | Test server that mocks the Anthropic API for integration testing. |\n\nThe workspace forbids `unsafe` code and uses Rust 2021 edition across all crates.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 1004,
+    "cache_read_input_tokens": 53872,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 1004
+    },
+    "output_tokens": 307,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

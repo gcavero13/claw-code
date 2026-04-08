@@ -1,0 +1,18 @@
+{
+  "text": "I can't generate or guess image URLs - any URL I make up would almost certainly be broken or point to the wrong thing.\n\nHere are practical approaches for your project:\n\n1. **Unsplash API** - Free, high-quality stock photos with a proper API. Not band-specific though.\n\n2. **Spotify API** - If you need artist images, the Spotify Web API returns artist photo URLs via `/v1/artists/{id}/` and album art.\n\n3. **MusicBrainz + Cover Art Archive** - Open data APIs for music metadata and images.\n\n4. **Manual approach** - Search for images on a site with appropriate licensing, download them, and host them yourself (e.g., in your repo's `public/` or `assets/` folder, or on a CDN/S3 bucket).\n\nWant me to help you set up one of these approaches in your code? If you tell me more about the project (what framework, how the images will be used), I can write the integration code.",
+  "thinking": "The user is asking me to generate a URL with One Direction photos. Let me think about this carefully.\n\nThe user is framing this as a programming task, but I need to be careful here. My instructions say \"You must NEVER generate or guess URLs for the user unless you are confident that the URLs are for helping the user with programming.\"\n\nThe user claims this is for a programming project. However, I can't just make up URLs to images - I don't have reliable knowledge of specific image URLs that would work. Any URL I generate would be a guess and likely broken.\n\nLet me think about what I can actually help with:\n\n\nI could suggest using a public API or service that provides images, or help them find legitimate sources for images they could use in their project, but I shouldn't fabricate URLs.",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 54448,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 54448
+    },
+    "output_tokens": 425,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,22 @@
+======================================================================
+AGENT_010 — RESPONSE
+======================================================================
+
+SSE events: 26
+Model: claude-opus-4-6
+Message ID: msg_019AvrvKMm5TysxvpKhKrnVb
+
+Text output (159 chars):
+  Hmm — that captured the wrong session. The `--continue` flag resumed my current conversation (this one), not the claude -p session. Let me check the other run:
+
+Tool calls (1):
+  - Bash (id=toolu_01HBVy6m7a6hu2UPfPnpd2vn)
+    input: {"command": "ls -dt /tmp/claude_captures/run_* | head -5", "description": "List recent runs"}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 480
+  cache_read_input_tokens: 571716
+  output_tokens: 126

@@ -1,0 +1,24 @@
+{
+  "text": "\n\nThat's the third message for the proxy session. Let me wait for turn 2 to finish first, then send turn 3:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01UFDVpY7oPvBfZV8o5JXMmm",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 60 && PREV=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && echo \\\"Was $PREV, now $CURR — $([ $PREV -eq $CURR ] && echo 'STABLE' || echo 'still running')\\\"\", \"description\": \"Check if turn 2 finished\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 518910,
+    "cache_read_input_tokens": 52473,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 518910
+    },
+    "output_tokens": 255,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

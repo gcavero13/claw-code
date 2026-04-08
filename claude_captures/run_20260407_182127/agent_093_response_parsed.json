@@ -1,0 +1,24 @@
+{
+  "text": "84 agent iterations — the parent is doing most of the work itself. Let me wait more:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01XYK35hGuBPxogZe7kE3Dq3",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 120 && PREV=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && sleep 60 && CURR=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && echo \\\"Was $PREV, now $CURR — $([ $PREV -eq $CURR ] && echo 'STABLE' || echo 'still running')\\\"\", \"description\": \"Final wait\", \"timeout\": 240000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 331,
+    "cache_read_input_tokens": 570468,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 331
+    },
+    "output_tokens": 240,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

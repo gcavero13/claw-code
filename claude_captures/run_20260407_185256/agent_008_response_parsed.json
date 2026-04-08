@@ -1,0 +1,18 @@
+{
+  "text": "Here's what we learned from the multi-turn capture:\n\n**Turn 1** (#001-#010): 7 messages, 1 subagent — explored the workspace\n**Turn 2** (#011-#034+): 1,194+ messages — the full turn 1 history was resent on every API call, plus new tool calls. Heavy Bash usage (counting lines in every file)\n**Turn 3** (#035-#110): failed with exit code 1 — likely hit context limits or token budget. By this point each API call was sending 1,200+ messages\n\nThe key insight: **multi-turn conversations get expensive fast.** The message array grows with every turn, and since the entire history is resent each iteration, turn 3 was sending the entire turn 1 + turn 2 history on every API call. That's why it eventually failed — and why compaction exists.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 567,
+    "cache_read_input_tokens": 573930,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 567
+    },
+    "output_tokens": 205,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

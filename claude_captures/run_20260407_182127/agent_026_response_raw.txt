@@ -1,0 +1,3 @@
+event: error
+data: {"type":"error","error":{"details":null,"type":"rate_limit_error","message":"Rate limited"},"request_id":"req_011CZqMeJqe7pCs5dUPuStkh"   }
+

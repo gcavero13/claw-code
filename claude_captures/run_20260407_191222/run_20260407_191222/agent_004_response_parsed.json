@@ -1,0 +1,29 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01BVEhfM9y8Jr6o3bZbxUfWF",
+      "name": "Read",
+      "input": "{\"file_path\": \"/private/tmp/claw-multi-turn-test/rust/Cargo.toml\"}"
+    },
+    {
+      "id": "toolu_016NcFnLJyJYF7AMgLZ6RSzS",
+      "name": "Agent",
+      "input": "{\"description\": \"Read all crate Cargo.toml files\", \"subagent_type\": \"Explore\", \"prompt\": \"Read the Cargo.toml AND lib.rs (or main.rs) for each of these crates to understand what they do. For each crate, give me a 1-2 sentence summary of its purpose based on the code and docs:\\n\\n- rust/crates/tools/Cargo.toml\\n- rust/crates/plugins/Cargo.toml\\n- rust/crates/compat-harness/Cargo.toml\\n- rust/crates/mock-anthropic-service/Cargo.toml\\n- rust/crates/runtime/Cargo.toml\\n- rust/crates/rusty-claude-cli/Cargo.toml\\n- rust/crates/api/Cargo.toml\\n- rust/crates/commands/Cargo.toml\\n- rust/crates/telemetry/Cargo.toml\\n\\nThoroughness: medium. Report concisely.\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 241,
+    "cache_read_input_tokens": 53631,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 241
+    },
+    "output_tokens": 361,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

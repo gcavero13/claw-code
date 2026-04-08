@@ -1,0 +1,24 @@
+{
+  "text": "\n\nYou're typing that to me, but you want it sent through the proxy as turn 2. Let me do that:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01JDxr4Ai58c4hyqAg4oCs8e",
+      "name": "Bash",
+      "input": "{\"command\": \"ANTHROPIC_BASE_URL=http://127.0.0.1:9999 claude --dangerously-skip-permissions -c -p \\\"Which of those crates has the most complex code? Show me the top 3 functions by line count.\\\" 2>&1\", \"description\": \"Turn 2: find complex functions (continue session)\", \"timeout\": 180000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 569266,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 569266
+    },
+    "output_tokens": 185,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

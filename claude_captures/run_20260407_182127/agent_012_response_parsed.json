@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01T4i4RXKsH4GG9qy2N1dxLm",
+      "name": "Bash",
+      "input": "{\"command\": \"ANTHROPIC_BASE_URL=http://127.0.0.1:9999 claude --dangerously-skip-permissions -c -p \\\"Which of those crates has the most complex code? Show me the top 3 functions by line count.\\\" 2>&1\", \"description\": \"Turn 2: find complex functions (continues session)\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 516635,
+    "cache_read_input_tokens": 52473,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 516635
+    },
+    "output_tokens": 158,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

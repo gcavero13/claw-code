@@ -1,0 +1,99 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01LMg8LSa6g9pUXQP1w9x2dd","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":3,"cache_creation_input_tokens":54448,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":54448},"output_tokens":28,"service_tier":"standard","inference_geo":"not_available"}}            }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}     }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"The user is asking me to generate a URL with One Direction photos. Let me think about this carefully"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":".\n\nThe user is framing this as a programming task, but I need to be careful here. My instructions"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" say \"You must NEVER generate or guess URLs for the"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" user unless you are confident that the URLs are for helping the user with"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" programming.\"\n\nThe user claims this is for a programming project. However,"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" I can't just make up URLs to images - I don"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"'t have reliable knowledge of specific image URLs that would work. Any URL I generate would be a"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" guess and likely broken.\n\nLet me think about what I can actually help"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" with:\n"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n\nI"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" could suggest using a public API or service that provides images, or help them find legitimate sources for images they could use in their project, but I shouldn't fabricate URLs."}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EowIClkIDBgCKkBLnnkFTpMeeXWtUbjj9xVp41rbLid4/uHQRrUU6WnNZYjcAfUbviRGyaKvbbQwZKgQ3EdH/3JIwFLoVjSpkTinMg9jbGF1ZGUtb3B1cy00LTY4ABIMjgCO4Dy7fsVB9LLgGgzZ+l0LWygKsy18Z5AiMP4r5hb67ZUjhyaSl+OtibhCbdM2TJTZ/Ox6swklnVP2Eyar+iXA+Ak+mOACBsuwMSrgBu9TTy0bboQEqVa2E1ng0nlKZ7HxW+nVgBDjP1w4WAOCU8ogf4Pby1RRLSt/bJsifeUKXKfWVe7i2EarPTLaKkDwzIGwNHk/GjdbnrQ7J/P8gmYC15H3DTrs7NAAPvmSEeabzMBkn+82gb6RR7NSUpvI+kBJfiBHkILzZfIvRvEA2vcwKhLZ/tIJilzxlvwdJYpLvaNk1WwkRhQr3sq5/EiJldbtasgCZZA1TRYuXwVKjP165SfEcI0y6TMAJHqX1o0FfFgVzswXNXGeznbM2VZs1vpGOuAwMqDDi1fb/md3Z4uaxB68hLdn5A3VO+R8gGCw3QKmb02QYNAEGSM4gosN1Mz4WX7cfnm2B1PA2cN325p1PCBkcXeyxsXr+39L4w4bKJCX5PuXuxmNMi6oANPVLDrThwRpJdzj1Rk3rb0kO/Wz6uRfAs1JXtP4+4jcLpw6dMAUxge2336uQP2QBZ0j0rW4Jyv/O653HH04PA53eY38qf7IgCRFLEl70aU3sQwCWfxyKin/EdgGKuR17/T6kFLeFqsNMo/2+UTKvm0Vp7g3cMJcg1gH/Tw3r9A3pm6D3V5BL+JdqHDW6+vqdWPjwdzo7m7zjB4wFiSe4TYNlgMUpXaXCwgy07G0R/0dn3lWNj9zXp76XI7o3Da1ecmfvHEXjd3WmtX8+XSHCchJ2IDrOZlsmTRhr5MpxYNtAjKL+72RHIfFz/ju+MgYOdTR5VJbVFtMHHgYW51BKFwV+ujvQ5d2Rneabz8gaxGcU1e5QwP5oqhTfJGc6YJZek0fAPmgMaId917dcMzSOJ9UNo/Ur+vOLqQTg54hIknZnMDqs28w3nGIgFUJgSvU6Y4TZJcPOzemlNmJSc3UtYRZqjXyj+G34Erbz4lfYZpZSGXHdknaQRrTkBpeO2Q8Jd+KBUcowVui7TGgRlAtbp6ysZUsYfvMEe/ENBo2h3PjW3S/QUgeSpRcqHKeOzupFRRq2YP6dzg6XEiSZNejvJsn1lg2YwTGaKNYtMEAmedw1Lh2ero/LWKTH9Wnm9HZf+Axhaa2SkUS/9q3ot5eCV0K0HuP66eTIkBnlsBJtb4XNxgb3pMx0bjASapMuthcx8wgPpPaxpRwNLuAErtHRVOM/RKtA/XvEo+nXpAspHu6OBgB"}         }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0  }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"I can't generate or guess image URLs - any URL I make up would almost certainly be broken"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" or point to the wrong thing.\n\nHere are practical approaches for your project:\n\n1"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":". **Unsplash API** - Free, high-quality stock photos with a proper"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" API. Not band-specific though.\n\n2. **Spotify API** - If you need"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" artist images, the Spotify Web API returns artist photo URLs via"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" `/v1/artists/{id}/` and album art.\n\n3. **M"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"usicBrainz + Cover Art Archive** - Open data APIs for"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" music metadata and images.\n\n4. **Manual approach** - Search for images on a site with appropriate"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" licensing, download them, and host them yourself (e.g., in"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" your repo's `public/` or `assets/` folder, or on a CDN/"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"S3 bucket).\n\nWant me to help you set up one of these approaches in your code? If"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" you tell me more about the project (what framework, how the images will be used), I can write"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" the integration code."}               }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1               }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":3,"cache_creation_input_tokens":54448,"cache_read_input_tokens":0,"output_tokens":425},"context_management":{"applied_edits":[]}               }
+
+event: message_stop
+data: {"type":"message_stop"               }
+

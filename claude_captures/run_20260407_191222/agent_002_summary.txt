@@ -1,0 +1,21 @@
+======================================================================
+ITERATION 2
+======================================================================
+
+System prompt: 3 blocks, 26830 chars total
+  [0] 80 chars (cache=None)
+  [1] 62 chars (cache={'type': 'ephemeral', 'ttl': '1h'})
+  [2] 26688 chars (cache={'type': 'ephemeral', 'ttl': '1h'})
+
+Model: claude-opus-4-6
+Max tokens: 8000
+Stream: True
+Tools: 54 defined
+
+Messages: 1 total
+--------------------------------------------------
+  [0] role=user (4 blocks)
+       [0] text: <system-reminder> MCP Server Instructions (2243 chars)
+       [1] text: <system-reminder> Available Skills (1501 chars)
+       [2] text: <system-reminder> (306 chars)
+       [3] text: What are the main crates in this Rust workspace and what does each one do? (74 chars)

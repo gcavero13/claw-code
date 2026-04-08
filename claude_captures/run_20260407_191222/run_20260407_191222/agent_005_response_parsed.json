@@ -1,0 +1,24 @@
+{
+  "text": "Three separate run folders — each `-c -p` command started a new proxy session because each `claude` invocation is a separate process. The proxy creates a new run folder per startup. But the Claude sessions do continue via `-c`.\n\nLet me wait for turn 3 to finish:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01XfPoRZaBYCV1zdKmkMQVES",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=/tmp/claude_captures/run_20260407_191222 && sleep 60 && PREV=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && echo \\\"Was $PREV, now $CURR — $([ $PREV -eq $CURR ] && echo 'STABLE' || echo 'still running')\\\"\", \"description\": \"Wait for turn 3 in latest folder\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 178,
+    "cache_read_input_tokens": 573365,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 178
+    },
+    "output_tokens": 285,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

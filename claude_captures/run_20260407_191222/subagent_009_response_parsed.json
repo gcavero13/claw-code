@@ -1,0 +1,18 @@
+{
+  "text": "Based on my review of the Cargo.toml files and source code, here are the summaries for each crate:\n\n## Crate Summaries\n\n1. **tools** - Provides tool execution infrastructure that invokes AI models, manages local tool registries (LSP, MCP), and orchestrates tool invocations with permission enforcement and session state management.\n\n2. **plugins** - Manages plugin lifecycle, installation, and configuration for builtin, bundled, and external plugins with hook support for extensibility.\n\n3. **compat-harness** - A compatibility layer that bridges the upstream TypeScript codebase with the Rust implementation by extracting and mapping command and tool manifests.\n\n4. **mock-anthropic-service** - A standalone test server that mocks the Anthropic API for testing purposes, accepting HTTP requests and returning simulated AI responses.\n\n5. **runtime** - The core execution engine providing session persistence, permission enforcement, MCP client management, prompt assembly, bash execution, and the main conversation loop for interactive and one-shot CLI turns.\n\n6. **rusty-claude-cli** - The main CLI application (binary named `claw`) that assembles all components into an interactive terminal interface with markdown rendering, readline input handling, and OAuth authentication.\n\n7. **api** - Provides HTTP client abstractions for communicating with the Anthropic API and compatible providers, including message streaming, OAuth token management, and prompt caching.\n\n8. **commands** - Defines slash command specifications and handlers including plugins, agents, MCP servers, and skills functionality integrated into the CLI.\n\n9. **telemetry** - Lightweight telemetry infrastructure for collecting analytics events, session traces, and structured logging across the CLI application.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 6395,
+    "cache_read_input_tokens": 45547,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 6395,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 381,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

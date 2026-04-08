@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "Let me find the longest functions across all crates.",
+  "tool_uses": [
+    {
+      "id": "toolu_01XAYS2MKu36HSTuPsc8A78z",
+      "name": "Bash",
+      "input": "{\"command\": \"cd /private/tmp/claw-multi-turn-test/rust && find crates -name '*.rs' -exec awk '\\n/^[[:space:]]*(pub )?(async )?fn / {\\n    fname = FILENAME \\\":\\\" NR \\\":\\\" $0\\n    gsub(/^[[:space:]]+/, \\\"\\\", fname)\\n    fn_start = NR\\n    depth = 0\\n    in_fn = 1\\n}\\nin_fn {\\n    n = split($0, chars, \\\"\\\")\\n    for (i = 1; i <= n; i++) {\\n        if (chars[i] == \\\"{\\\") depth++\\n        if (chars[i] == \\\"}\\\") depth--\\n    }\\n    if (depth <= 0 && fn_start > 0 && NR > fn_start) {\\n        print (NR - fn_start + 1) \\\"\\\\t\\\" fname\\n        in_fn = 0\\n        fn_start = 0\\n    }\\n}\\n' {} + 2>/dev/null | sort -rn | head -20\", \"description\": \"Find longest Rust functions by line count across all crates\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 331,
+    "cache_read_input_tokens": 54876,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 331
+    },
+    "output_tokens": 355,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

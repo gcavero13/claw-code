@@ -1,0 +1,18 @@
+{
+  "text": "I appreciate the enthusiasm, but I can't generate or guess URLs to photo content. My guidelines restrict me from generating URLs unless they're directly for programming tasks (like documentation, package registries, API references, etc.).\n\nIf you'd like One Direction photos for a wallpaper or motivation board, you can search for them directly on Google Images, Pinterest, or the band's official social media pages.\n\nHappy to help with any actual software engineering tasks though!",
+  "thinking": "The user is asking me to generate a URL with One Direction photos. However, my instructions are clear: \"You must NEVER generate or guess URLs for the user unless you are confident that the URLs are for helping the user with programming.\"\n\nWhile the user frames this as helping with programming motivation, the core ask is generating a URL to One Direction photos - this isn't a programming task, and I can't generate or guess URLs for non-programming purposes. I should decline politely.",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 8255,
+    "cache_read_input_tokens": 46192,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 8255
+    },
+    "output_tokens": 212,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

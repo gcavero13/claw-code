@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01DZcto8MueUVUNsJTrLXpyb",
+      "name": "Bash",
+      "input": "{\"command\": \"# Check the original run (182127) which should have turn 1\\nRUN1=\\\"run_20260407_182127\\\"\\necho \\\"=== $RUN1 ===\\\"\\nls /tmp/claude_captures/$RUN1/ | grep \\\"_summary.txt$\\\" | grep -v response | sed 's/_[0-9]*.*//' | sort | uniq -c | sort -rn\\necho \\\"\\\"\\n# Check all runs from today's multi-turn test\\nfor run in run_20260407_182127 run_20260407_185256; do\\n    echo \\\"=== $run ===\\\"\\n    ls /tmp/claude_captures/$run/ | grep \\\"_summary.txt$\\\" | grep -v response | wc -l\\n    echo \\\"iterations\\\"\\ndone\", \"description\": \"Check which runs have the multi-turn data\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 327,
+    "cache_read_input_tokens": 572196,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 327
+    },
+    "output_tokens": 254,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

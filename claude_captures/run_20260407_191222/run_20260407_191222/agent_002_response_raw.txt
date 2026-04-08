@@ -1,0 +1,48 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01XYr4QrtELoZm6wZR1dwVpf","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":3,"cache_creation_input_tokens":7432,"cache_read_input_tokens":46199,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":7432},"output_tokens":22,"service_tier":"standard","inference_geo":"not_available"}}            }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}      }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"Let me explore the workspace structure to understand the Rust crates."}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":""} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EoACClkIDBgCKkDZgbY7GCAVT8AfgpqDI0iJ466mhxmPgC9l7oPyRWEpJSwJXSgtcjFBvakezd4x+F1nyMSfR8cFVbLy5clXkLmZMg9jbGF1ZGUtb3B1cy00LTY4ABIMrYfUEf9IkZG6In72GgzZsmBGb0HbpxqDtpIiMD6CibJQRLeuZfbwdQrIY85pz4kkRcRrPRNRiemcCLB4/08Ij9vsF4bg8wWYuR9IWypV7YOiy1DqsuwoPcSSfCCS1rrWiOFCOUTBkXm5ldAS2iz7veD/FhARrM9ChspM7ZnHrzhPNM6fMRB0daPtlwa1h4x8PNVkuzXWuo688F6U4ocJE3KxWhgB"}            }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0     }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"tool_use","id":"toolu_017pDtmMJ9Z2sAHwY2fLomgs","name":"Glob","input":{},"caller":{"type":"direct"}}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":""} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"{\"pat"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"tern"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"\": \"**/Carg"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"o.toml\"}"}        }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1        }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"tool_use","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":3,"cache_creation_input_tokens":7432,"cache_read_input_tokens":46199,"output_tokens":88},"context_management":{"applied_edits":[]}               }
+
+event: message_stop
+data: {"type":"message_stop"             }
+

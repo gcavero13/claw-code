@@ -1,0 +1,63 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01Rryyhrxbcw6biLSnvjmgZg","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":566,"cache_read_input_tokens":575026,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":566},"output_tokens":2,"service_tier":"standard","inference_geo":"not_available"}}   }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}         }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Pushing"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" in background (large files). Here's what the"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" multi-turn capture revealed:\n\n**110 API calls across 3 turns:**\n\n- **Turn 1** (explore crates): ~"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"10 iterations — Read, Glob, 1 agent, quick survey"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"\n- **Turn 2** (find complex functions): ~25 iterations — heavy Bash(grep/wc), reading"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" large files\n- **Turn 3** (suggest refactoring): ~75 iterations — deep reading of the most"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" complex function, analyzing structure\n\nThe key observation: by turn"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 3, each API call sent **1,200+ messages** — the full"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" accumulated history of turns 1 and 2 plus all tool calls and"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" results. That's why cache reads were 45M tokens"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" — the same prefix was resent 110 times, each time with a few more messages app"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ended.\n\nThis is exactly why compaction exists. Without it, a long conversation like"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" this would exhaust the context window. In this case, the 1M context model"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" handled it, but the cost was enormous.\n\nLoad `claude_captures/run_20260407"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"_182127/viz_data.json` (36MB) in the visualizer."}    }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0           }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":566,"cache_read_input_tokens":575026,"output_tokens":267},"context_management":{"applied_edits":[]}     }
+
+event: message_stop
+data: {"type":"message_stop"}
+

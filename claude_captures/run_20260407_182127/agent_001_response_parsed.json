@@ -1,0 +1,29 @@
+{
+  "text": "",
+  "thinking": "Let me explore the Rust workspace structure.",
+  "tool_uses": [
+    {
+      "id": "toolu_01RputvXBCapQADSRc2UHva7",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/Cargo.toml\"}"
+    },
+    {
+      "id": "toolu_01CzFvYp5sKebTxYWvcKHEyK",
+      "name": "Glob",
+      "input": "{\"pattern\": \"rust/*/Cargo.toml\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 54426,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 54426
+    },
+    "output_tokens": 147,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -5,3 +5,9 @@ archive/
 # Claude Code local artifacts
 .claude/settings.local.json
 .claude/sessions/
+
+# Large viz_data files exceed GitHub 100MB limit
+# Multi-turn captures generate huge files due to accumulated history
+claude_captures/run_20260407_182127/viz_data.json
+claude_captures/run_20260407_182127_viz_data.json
+claude_captures/run_20260407_185256/viz_data.json

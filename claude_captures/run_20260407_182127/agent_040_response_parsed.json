@@ -1,0 +1,24 @@
+{
+  "text": "\n\nLet me send that as the third turn through the proxy:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01NUNd1ACcS1WhUDBGz7q2rU",
+      "name": "Bash",
+      "input": "{\"command\": \"ANTHROPIC_BASE_URL=http://127.0.0.1:9999 claude --dangerously-skip-permissions -c -p \\\"Pick the most complex function you found and suggest a refactoring to simplify it. Don't make the change, just explain what you'd do.\\\" 2>&1\", \"description\": \"Turn 3: suggest refactoring\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 517630,
+    "cache_read_input_tokens": 52473,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 517630
+    },
+    "output_tokens": 178,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

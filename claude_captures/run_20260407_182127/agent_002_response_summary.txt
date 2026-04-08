@@ -1,0 +1,19 @@
+======================================================================
+AGENT_002 — RESPONSE
+======================================================================
+
+SSE events: 12
+Model: claude-opus-4-6
+Message ID: msg_0192hJ6NYhZCUteK8SouRLyD
+
+Tool calls (1):
+  - Glob (id=toolu_01PCU8T2R1GC8YiTT77eNk9g)
+    input: {"pattern": "rust/crates/*/Cargo.toml"}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 418
+  cache_read_input_tokens: 54426
+  output_tokens: 62

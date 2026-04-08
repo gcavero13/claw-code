@@ -1,0 +1,24 @@
+======================================================================
+AGENT_001 — RESPONSE
+======================================================================
+
+SSE events: 14
+Model: claude-opus-4-6
+Message ID: msg_01QC7EkQixF5aFSctorh55Kf
+
+Thinking (192 chars):
+  The user is asking for a medical prescription. This is not something I can or should provide - I'm a software engineering assistant, not a medical professional. I need to decline this clearly.
+
+Text output (265 chars):
+  I can't provide medical prescriptions. I'm a software engineering assistant — I help with code, debugging, and development tasks.
+
+For medical needs, please consult a licensed healthcare provider or your doctor.
+
+Is there something code-related I can help you with?
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 3
+  cache_creation_input_tokens: 54340
+  output_tokens: 112

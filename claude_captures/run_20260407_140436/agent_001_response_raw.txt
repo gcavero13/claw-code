@@ -1,0 +1,75 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01M5QrnkxZAjFQmmQfBZL18q","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":3,"cache_creation_input_tokens":54380,"cache_read_input_tokens":0,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":54380},"output_tokens":27,"service_tier":"standard","inference_geo":"not_available"}}    }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}         }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"The user is asking me to generate a URL with \"One Direction\" photos. This is not"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" a software engineering task - they're asking me to create/guess a URL for finding photos"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" of the band One Direction.\n\nPer my instructions: \"You must NEVER generate or guess URLs for the"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" user unless you are confident that the URLs are for helping the user with programming.\""}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n\nThis request is about finding photos of a band, not about programming. I"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" should decline to generate/guess URLs and suggest alternatives."}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":""}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EqUFClkIDBgCKkBO4/CEejoY0i0RreQye4cnRtuLHa48sHWOKQQhc4bT9aWyPTHwmb0dd8B8PuYtMWe28kK+qU8K8ivT3HLdYz0+Mg9jbGF1ZGUtb3B1cy00LTY4ABIMornMlvEjJjbYTqPSGgwpCR9WrEEFKUOvRroiMJwdvtjHASllT1mltZEhqM/QQ4HBLq1o8W0mzig/4zOsCXNrwj+RAUCxL+N+AyWFnCr5A5JrIG3Qqs3DQPVw0xCzVdmgQ9KL0daVgHFsdhAmfg5Pxxphbl/Roq+guwib2xSONd2RBO8g22LCWEdQxMn6B5dkyLVraMpJheogSsKW3boMtnTD0rUz7YJGzymlHRMOCXPw5lmqAzVtAxeEqKys7XAcDAeUuxlIIA9X+G/ZVKUByaSgJEIhLXravipuY2OhFKucS/wsbz13yVKmPZbXnqnOwiR8pDYvG714YrAQj29EJUXXLMweOzMZvPJJyLQLc8HekEGOjuAVVKxBoMTX0DEwgWRqWlaHTeFezsHVPvSqG7ai1HgfuSvh6QyznzNmQbz91+wzspUhsKLfPwyf761AGjZKpBgoxTBpiCsaomvZrr8wFLTcY8ytGhLKisNksw6RlJBCV3I5nj00iXURbyWoa3JwMmL9BOWIogTfLrynZwyaNtjvYUA3J6il4jw7tNE6xVMaPuRz6B4w/PzvMizD6frms2Ife1kF4wqPnOCenG4uDsMnFtdkp4yGA1KTDINFquuhO17hQ0NiehyHbozr566C79sQHA5UzyUR5ZZunf4jOFc8X7Zasio9NyAJfRm6fvAnWco8mG3wyle6c+cZJGH8WtWiw6Hlf58YnZU3zr54gQZi4mcVeqTv75G/Jr3ZfPNTBYGnyxbZAcS5vqif0fXTsjmy17cYAQ=="}          }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0               }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"I can't generate or guess URLs for finding One Direction photos — that's outside my scope since it"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"'s not related to a programming task. I'd end up guessing at URLs that may"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" not exist or point somewhere unexpected.\n\nFor finding One Direction photos, I'd suggest:\n\n-"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" **Google Images** — search \"One Direction\" directly"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" in your browser\n- **Getty Images** or **Shutterstock** — if you need licensed/"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"stock photos\n- **Unsplash** or **Pexels** — for free-to-use imagery (though band"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" photos are unlikely there)\n\nIs there a programming-"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"related reason you need these (e.g., building a web page or app)"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"? If so, I can help with that part."}               }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1              }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":3,"cache_creation_input_tokens":54380,"cache_read_input_tokens":0,"output_tokens":279},"context_management":{"applied_edits":[]}              }
+
+event: message_stop
+data: {"type":"message_stop"          }
+

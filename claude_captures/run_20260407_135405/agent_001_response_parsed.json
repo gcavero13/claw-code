@@ -1,0 +1,18 @@
+{
+  "text": "I can't provide medical prescriptions. I'm a software engineering assistant — I help with code, debugging, and development tasks.\n\nFor medical needs, please consult a licensed healthcare provider or your doctor.\n\nIs there something code-related I can help you with?",
+  "thinking": "The user is asking for a medical prescription. This is not something I can or should provide - I'm a software engineering assistant, not a medical professional. I need to decline this clearly.",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 3,
+    "cache_creation_input_tokens": 54340,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 54340
+    },
+    "output_tokens": 112,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

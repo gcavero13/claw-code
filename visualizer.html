@@ -33,9 +33,9 @@ pre { background:var(--card); border:1px solid var(--border); border-radius:6px;
 .tab.active { color:var(--link); border-bottom-color:var(--link); }
 
 /* Search bar */
-#searchbar { background:var(--bg); border-bottom:1px solid var(--border); padding:8px 20px; display:flex; gap:12px; align-items:center; }
-#searchbar input { background:var(--card); border:1px solid var(--border); color:var(--text); padding:6px 10px; border-radius:6px; width:300px; font-size:13px; }
-#searchbar label { font-size:12px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; gap:4px; }
+#searchbar { background:var(--bg); border-bottom:1px solid var(--border); padding:8px 20px; display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; }
+#searchbar input[type=text] { background:var(--card); border:1px solid var(--border); color:var(--text); padding:6px 10px; border-radius:6px; width:300px; max-width:100%; font-size:13px; }
+#searchbar label { font-size:12px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; gap:4px; white-space:nowrap; }
 #searchbar input[type=checkbox] { accent-color:var(--link); }
 
 /* Main layout */
@@ -128,6 +128,54 @@ pre { background:var(--card); border:1px solid var(--border); border-radius:6px;
 .flow-merge-line { stroke-dasharray:6,3; }
 .flow-legend { font-size:11px; fill:var(--text-dim); }
 
+/* Tools tab */
+.tools-search { width:100%; padding:8px 12px; background:var(--card); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:13px; margin-bottom:12px; }
+.tools-search:focus { outline:none; border-color:var(--link); }
+.tools-cats { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.tools-cat-btn { padding:4px 12px; border-radius:16px; border:1px solid var(--border); background:var(--card); color:var(--text-dim); cursor:pointer; font-size:11px; }
+.tools-cat-btn:hover { border-color:var(--link); color:var(--text); }
+.tools-cat-btn.active { background:var(--link); color:white; border-color:var(--link); }
+.tcard { background:var(--card); border:1px solid var(--border); border-radius:10px; margin-bottom:8px; overflow:hidden; }
+.tcard:hover { border-color:var(--text-dim); }
+.tcard-hdr { padding:12px 16px; cursor:pointer; display:flex; align-items:center; gap:10px; }
+.tcard-hdr:hover { background:rgba(255,255,255,0.02); }
+.tcard-name { font-weight:600; color:#39d2c0; min-width:150px; font-size:14px; }
+.tcard-preview { color:var(--text-dim); font-size:12px; flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.tcard-badges { display:flex; gap:4px; flex-shrink:0; }
+.tcard-badge { font-size:10px; padding:2px 7px; border-radius:10px; background:rgba(88,166,255,0.1); color:var(--link); }
+.tcard-badge.g { background:rgba(63,185,80,0.1); color:var(--green); }
+.tcard-chev { color:var(--text-dim); font-size:14px; transition:transform 0.2s; }
+.tcard.open .tcard-chev { transform:rotate(90deg); }
+.tcard-body { display:none; border-top:1px solid var(--border); }
+.tcard.open .tcard-body { display:block; }
+.tcard-desc { padding:12px 16px; font-size:12px; white-space:pre-wrap; line-height:1.6; max-height:250px; overflow-y:auto; background:rgba(0,0,0,0.12); }
+.tcard-params { padding:12px 16px; }
+.tcard-params h4 { font-size:11px; color:var(--text-dim); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px; }
+.tp-row { display:grid; grid-template-columns:140px 70px 1fr; gap:8px; padding:6px 0; border-bottom:1px solid rgba(48,54,61,0.4); font-size:12px; align-items:start; }
+.tp-row:last-child { border-bottom:none; }
+.tp-name { font-family:'SF Mono',monospace; font-weight:600; }
+.tp-name.req { color:var(--green); }
+.tp-name.opt { color:var(--text-dim); }
+.tp-type { font-family:'SF Mono',monospace; font-size:10px; padding:2px 5px; border-radius:4px; background:rgba(139,148,158,0.1); color:var(--text-dim); text-align:center; }
+.tp-enums { display:flex; flex-wrap:wrap; gap:3px; margin-top:3px; }
+.tp-enum { font-size:10px; padding:1px 5px; border-radius:3px; background:rgba(137,87,229,0.1); color:var(--purple); font-family:'SF Mono',monospace; }
+.tp-default { font-size:11px; color:var(--orange); margin-top:2px; }
+
+/* Responsive */
+@media (max-width:900px) {
+  #topbar { padding:8px 12px; gap:8px; }
+  #topbar .stat .value { font-size:13px; }
+  #tabs { overflow-x:auto; padding:0 10px; }
+  .tab { padding:8px 10px; font-size:12px; white-space:nowrap; }
+  #searchbar { flex-wrap:wrap; padding:6px 12px; }
+  #searchbar input[type=text] { width:180px; }
+  #content { padding:12px; }
+  #detail.open { width:100%; min-width:0; position:fixed; top:0; left:0; right:0; bottom:0; z-index:200; }
+  .tp-row { grid-template-columns:1fr; gap:2px; }
+  .tcard-name { min-width:auto; }
+  .tcard-preview { display:none; }
+}
+
 /* Loading */
 #loading { display:flex; flex-direction:column; align-items:center; justify-content:center; height:80vh; gap:16px; }
 #loading label { background:var(--card); border:2px dashed var(--border); border-radius:12px; padding:60px 80px; cursor:pointer; text-align:center; transition:border-color 0.2s; }
@@ -155,6 +203,7 @@ pre { background:var(--card); border:1px solid var(--border); border-radius:6px;
     <div class="tab" data-tab="system-prompt">System Prompt</div>
     <div class="tab" data-tab="tokens">Tokens</div>
     <div class="tab" data-tab="thinking">Thinking Chain</div>
+    <div class="tab" data-tab="tools">Tools</div>
   </div>
   <div id="searchbar">
     <input type="text" id="search-input" placeholder="Search tools, messages, errors...">
@@ -171,6 +220,7 @@ pre { background:var(--card); border:1px solid var(--border); border-radius:6px;
       <div id="tab-system-prompt" class="tab-content"></div>
       <div id="tab-tokens" class="tab-content"></div>
       <div id="tab-thinking" class="tab-content"></div>
+      <div id="tab-tools" class="tab-content"></div>
     </div>
     <div id="detail">
       <div id="detail-inner"></div>
@@ -218,6 +268,7 @@ function renderTopbar() {
   const totalCost = costInput + costOutput + costCacheCreate + costCacheRead;
   document.getElementById('topbar').innerHTML = `
     <div class="stat"><span class="label">Run</span><span class="value">${esc(DATA.run_id)}</span></div>
+    <div class="stat"><span class="label">Turns</span><span class="value">${(DATA.turns||[]).length}</span></div>
     <div class="stat"><span class="label">API Calls</span><span class="value">${s.total_calls} <span style="font-size:11px;color:var(--text-dim)">(${s.agent_calls}A ${s.subagent_calls}S ${s.internal_calls}I)</span></span></div>
     <div class="stat"><span class="label">Duration</span><span class="value">${fmtDuration(s.wall_clock_ms||s.total_duration_ms)}</span></div>
     <div class="stat"><span class="label">Input</span><span class="value">${fmt(s.total_input_tokens)}</span></div>
@@ -243,7 +294,23 @@ function renderTimeline() {
   let parallelAgents = new Set();
   let parallelCards = [];
 
+  // Build turn boundary lookup
+  const turns = DATA.turns || [];
+  const turnStartMap = {};
+  for (const turn of turns) {
+    turnStartMap[turn.starts_at_iteration] = turn;
+  }
+
   for (const t of DATA.timeline) {
+    // Insert turn divider if this iteration starts a new turn
+    const turn = turnStartMap[t.number];
+    if (turn) {
+      html += `<div style="display:flex;align-items:center;gap:10px;margin:16px 0 8px;padding:8px 12px;background:rgba(88,166,255,0.06);border:1px solid rgba(88,166,255,0.15);border-radius:8px">
+        <span style="font-size:12px;font-weight:700;color:var(--link);white-space:nowrap">Turn ${turn.turn}</span>
+        <span style="font-size:12px;color:var(--text)">${esc(turn.user_message)}</span>
+      </div>`;
+    }
+
     // Filter
     if (t.type === 'agent' && !showAgent) continue;
     if (t.type === 'subagent' && !showSubagent) continue;
@@ -490,6 +557,139 @@ function renderThinking() {
   container.querySelectorAll('.thinking-block').forEach(el => {
     el.addEventListener('click', () => openDetail(parseInt(el.dataset.num)));
   });
+}
+
+let toolsActiveCat = 'all';
+
+function renderToolsTab() {
+  const container = document.getElementById('tab-tools');
+  // Extract tools from the first parent iteration's raw_request
+  const parent = DATA.agents.find(a => a.id === 'parent');
+  let tools = [];
+  if (parent && parent.iterations.length > 0) {
+    const req = parent.iterations[0].raw_request || {};
+    tools = (req.tools || []).map(t => {
+      const schema = t.input_schema || {};
+      const props = schema.properties || {};
+      const required = schema.required || [];
+      const name = t.name || '?';
+      const isMcp = name.startsWith('mcp__');
+      let category;
+      if (isMcp) {
+        if (name.includes('Airtable')) category = 'MCP: Airtable';
+        else if (name.includes('Gmail')) category = 'MCP: Gmail';
+        else if (name.includes('Calendar')) category = 'MCP: Google Calendar';
+        else category = 'MCP: Other';
+      } else if (['Read','Write','Edit','Glob','Grep','NotebookEdit'].includes(name)) category = 'File Operations';
+      else if (['Bash','LSP'].includes(name)) category = 'Execution';
+      else if (['Agent','Skill','EnterPlanMode','ExitPlanMode','EnterWorktree','ExitWorktree'].includes(name)) category = 'Orchestration';
+      else if (['WebSearch','WebFetch'].includes(name)) category = 'Web';
+      else if (['TodoWrite','TaskOutput','TaskStop','AskUserQuestion','RemoteTrigger'].includes(name)) category = 'Task & Communication';
+      else if (['CronCreate','CronDelete','CronList'].includes(name)) category = 'Scheduling';
+      else if (['ListMcpResourcesTool','ReadMcpResourceTool'].includes(name)) category = 'MCP Resources';
+      else category = 'Other';
+      return {
+        name, category, description: t.description || '',
+        params: Object.entries(props).map(([pn, ps]) => ({
+          name: pn, type: ps.type || (ps.enum ? 'enum' : '?'),
+          description: ps.description || '', required: required.includes(pn),
+          enum: ps.enum, default: ps.default,
+        })),
+        total: Object.keys(props).length,
+        reqCount: required.length,
+      };
+    });
+  }
+
+  if (!tools.length) {
+    container.innerHTML = '<p style="color:var(--text-dim);padding:20px">No tool definitions found. Load a capture with raw_request data.</p>';
+    return;
+  }
+
+  const catIcons = {'File Operations':'\u{1F4C1}','Execution':'\u{1F4BB}','Orchestration':'\u{1F3AF}','Web':'\u{1F310}','Task & Communication':'\u{1F4CB}','Scheduling':'\u{23F0}','MCP Resources':'\u{1F50C}','MCP: Airtable':'\u{1F4CA}','MCP: Gmail':'\u{2709}','MCP: Google Calendar':'\u{1F4C5}','Other':'\u{2699}'};
+  const catOrder = ['File Operations','Execution','Orchestration','Web','Task & Communication','Scheduling','MCP Resources','MCP: Airtable','MCP: Gmail','MCP: Google Calendar','Other'];
+  const search = (document.getElementById('tools-search-input')||{}).value || '';
+  const searchLower = search.toLowerCase();
+
+  // Filter
+  let filtered = tools;
+  if (toolsActiveCat !== 'all') filtered = filtered.filter(t => t.category === toolsActiveCat);
+  if (searchLower) filtered = filtered.filter(t =>
+    t.name.toLowerCase().includes(searchLower) ||
+    t.description.toLowerCase().includes(searchLower) ||
+    t.params.some(p => p.name.toLowerCase().includes(searchLower) || (p.description||'').toLowerCase().includes(searchLower))
+  );
+
+  // Category counts
+  const cats = {};
+  tools.forEach(t => { cats[t.category] = (cats[t.category]||0)+1; });
+
+  // Nav
+  let html = `<input type="text" class="tools-search" id="tools-search-input" placeholder="Search tools by name, description, parameter..." value="${esc(search)}">`;
+  html += `<div class="tools-cats">`;
+  html += `<div class="tools-cat-btn${toolsActiveCat==='all'?' active':''}" data-cat="all">All ${tools.length}</div>`;
+  for (const cat of catOrder) {
+    if (!cats[cat]) continue;
+    html += `<div class="tools-cat-btn${toolsActiveCat===cat?' active':''}" data-cat="${cat}">${catIcons[cat]||''} ${cat} ${cats[cat]}</div>`;
+  }
+  html += `</div>`;
+
+  // Group filtered by category
+  const groups = {};
+  filtered.forEach(t => { if (!groups[t.category]) groups[t.category]=[]; groups[t.category].push(t); });
+
+  for (const cat of catOrder) {
+    if (!groups[cat]) continue;
+    html += `<h3 style="font-size:15px;margin:16px 0 8px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);padding-bottom:6px">`;
+    html += `<span>${catIcons[cat]||''}</span>${cat}<span style="font-size:11px;color:var(--text-dim);font-weight:400">${groups[cat].length} tools</span></h3>`;
+
+    for (const tool of groups[cat]) {
+      const tid = 'tc-'+tool.name.replace(/[^a-zA-Z0-9]/g,'_');
+      const preview = (tool.description||'').split('\\n')[0].substring(0,90);
+      html += `<div class="tcard" id="${tid}">`;
+      html += `<div class="tcard-hdr" onclick="document.getElementById('${tid}').classList.toggle('open')">`;
+      html += `<span class="tcard-name">${esc(tool.name)}</span>`;
+      html += `<span class="tcard-preview">${esc(preview)}</span>`;
+      html += `<div class="tcard-badges">`;
+      html += `<span class="tcard-badge">${tool.total} params</span>`;
+      if (tool.reqCount) html += `<span class="tcard-badge g">${tool.reqCount} req</span>`;
+      html += `</div><span class="tcard-chev">\u{25B6}</span></div>`;
+
+      // Body
+      html += `<div class="tcard-body">`;
+      if (tool.description) html += `<div class="tcard-desc">${esc(tool.description)}</div>`;
+      html += `<div class="tcard-params"><h4>Parameters</h4>`;
+      if (!tool.params.length) {
+        html += `<div style="color:var(--text-dim);font-size:12px;font-style:italic">No parameters</div>`;
+      }
+      for (const p of tool.params) {
+        html += `<div class="tp-row">`;
+        html += `<div class="tp-name ${p.required?'req':'opt'}">${esc(p.name)}${p.required?' *':''}</div>`;
+        html += `<div class="tp-type">${esc(String(p.type))}</div>`;
+        html += `<div>`;
+        if (p.description) html += `<div style="color:var(--text)">${esc(p.description).substring(0,200)}</div>`;
+        if (p.enum) {
+          html += `<div class="tp-enums">`;
+          p.enum.forEach(v => { html += `<span class="tp-enum">${esc(String(v))}</span>`; });
+          html += `</div>`;
+        }
+        if (p.default !== undefined && p.default !== null) html += `<div class="tp-default">default: ${esc(String(p.default))}</div>`;
+        html += `</div></div>`;
+      }
+      html += `</div></div></div>`;
+    }
+  }
+
+  if (!filtered.length) html += `<p style="color:var(--text-dim);text-align:center;padding:30px">No tools match your search.</p>`;
+
+  container.innerHTML = html;
+
+  // Bind events
+  container.querySelectorAll('.tools-cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => { toolsActiveCat = btn.dataset.cat; renderToolsTab(); });
+  });
+  const si = document.getElementById('tools-search-input');
+  if (si) si.addEventListener('input', () => { setTimeout(renderToolsTab, 150); });
 }
 
 function renderFlowMap() {
@@ -784,6 +984,18 @@ function renderFlowMap() {
     svg += `</g>`;
   }
 
+  // Turn dividers — horizontal lines across all lanes
+  const turns2 = DATA.turns || [];
+  for (const turn of turns2) {
+    if (turn.turn === 1) continue; // don't show divider before the first turn
+    const turnNode = nodes.find(n => n.num === turn.starts_at_iteration);
+    if (!turnNode) continue;
+    const divY = turnNode.y - gapY / 2 - 3;
+    svg += `<line x1="20" y1="${divY}" x2="${totalW-20}" y2="${divY}" stroke="var(--link)" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>`;
+    svg += `<rect x="24" y="${divY-10}" width="${Math.min(400, turn.user_message.length * 6 + 80)}" height="20" rx="4" fill="var(--bg)" stroke="var(--link)" stroke-width="0.5" opacity="0.8"/>`;
+    svg += `<text x="34" y="${divY+3}" style="font-size:10px;fill:var(--link);font-weight:600">Turn ${turn.turn}: ${esc(turn.user_message).substring(0, 60)}${turn.user_message.length > 60 ? '...' : ''}</text>`;
+  }
+
   svg += `</svg>`;
 
   // Legend
@@ -1067,6 +1279,7 @@ function loadData(data) {
   renderSystemPrompt();
   renderTokens();
   renderThinking();
+  renderToolsTab();
 }
 
 // Tab switching

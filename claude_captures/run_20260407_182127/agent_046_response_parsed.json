@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01RCpX1o1KdmMw9DaQu324yo",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 60 && PREV=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && echo \\\"Was $PREV, now $CURR — $([ $PREV -eq $CURR ] && echo 'STABLE' || echo 'still running')\\\"\", \"description\": \"Check stability\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 253,
+    "cache_read_input_tokens": 569558,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 253
+    },
+    "output_tokens": 219,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,96 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01RtdauFvk8vZSWRrjyP4HmF","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":3,"cache_creation_input_tokens":8287,"cache_read_input_tokens":46192,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":8287},"output_tokens":28,"service_tier":"standard","inference_geo":"not_available"}}          }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}            }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"The user is asking me to generate a URL with One Direction photos. Let me re-read the"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" system instructions carefully:\n\n\"IMPORTANT: You must NEVER generate or"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" guess URLs for the user unless you are confident that the URLs"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" are for helping the user with programming.\"\n\nThe user is framing this as a programming task, but they"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"'re actually asking me to generate/guess a URL to One Direction photos. I cannot be"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" \"confident\" about a URL I would be making up - I"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" don't know what URLs exist for One Direction photos, and any URL I generate would be a guess."}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" The instruction says I must be confident the URLs are correct, not"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" just that they're for programming.\n"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"\n\nInstead"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":", I can help them with the programming side of things"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"—like how to fetch images from legitimate sources or structure a request"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" properly—without fabricating URLs myself."}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EqgHClkIDBgCKkBg0bhYIi4qRXOFbV+KYA2ZaEr6TzCQC35OcrenK/dUd+kdjvQ84l1hbBmisrae/oVcZB9nMp8hLU6kyhwpQEouMg9jbGF1ZGUtb3B1cy00LTY4ABIMlehJnROF6hGtwkMhGgx0PQLw50yWW9hMPb0iMNZg9jMnn+kQHaGqZkRqUAgvtQOThiNHcVXOMFy3eqNYgUmdbzXGrX3iK+3ohci8hir8BU9bGRfgkrtiuWVfpovPjQsFwPCt1A04r7D9LchxE6HBeLu/oqLgp/9b052dBNADTvVGhSeEvyi2eb53jXYps/MJN874GGEErP086Dx1bptMOjDUdaJH5XgYHSQITA5MXLpUcnTc4NiLUXY5jAPYOmvfFOEFFlV0rqfZQPe035J042v2pPJmJwHvK//T9/l5DALuCTXHfJSsi6/pIrsFLPwn6eHvG1zPgNiWCsML4x0qrGZrSNy8ZX+r7GkKU0SnKHLNeHxqcuqpPVu1op6D/hWPZSjfY/mCvDJ41KxASjZIEAnH163d3OVHAQSu4DXVD88MDSZ3nC5iJzOL8sJzdUR4I8s5iFTjraTZPOssFjxtvaPKHi9uogsyaWKHhoslDNlvVkMav7B9is4WdNZFuKWSR6PiL9H/qMDMt5/E+sXbk8v8izPfADH6VhkLoIqoDtrcu3IL1T79DzLY/jmi6AVBWCsbWiyb2KvR6+4zJ9aYPY0oeTu10KkdWemQaM9gpZ9YsgDvK7RCvLX/LI5mICdF0xkXWiLwe06iHU2ZQ8JLWt1fmww5VOz6roxJ0rWXWXyR2ffB/1C85NHxNmJ02YppHHl2wr9vH/DF+avUwnHCZ5ssQCajrGpcZpmwu4wj9FFVMj3A+HXs3UPRKL8vFCVagomqgNzgJiLeR9o3C7d5U0X0QXb9ZD9PL61a91JoeUst2buDi9YDWyADS9AJu+2Ufr/Y3Oq8Rtl8AHdqgj/E2Pltykz0qSAIoAV4No6v9IfjLKDyKFnJU9PRVzkcRVGxS0x9mcxwSXWM9DSloGOwDZb+eTE99ami0Ou5sqPUV1buaLFKqxklhTaR3pUmM1vP9h494xaIDDDVmMHa2iu0dFrPDFElnDkNIutss3Qq5an6nKgK6168n8kz8vgmYMj00SZ2pRRcNMjUsRxKvpXW3NSif3b51h46mbi8RY0IQ7DctvFzhSCoeOPcYzoR+Ilqc4zrKf+MqN5MTgAEydJW+S1AsphqYOsbRXNXGAE="}          }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0    }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"I can't generate or guess image URLs — any"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" URL I'd produce would be fabricated and likely broken. I don't have a"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" database of image hosting URLs to pull from.\n\nHere are practical approaches for"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" your project:\n\n1. **Unsplash API** —"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" `https://api.unsplash.com/search/photos?query=one+direction` (requires a"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" free API key)\n2. **Pexels API** — similar free image API with search"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"\n3. **Wikipedia/Wikimedia Commons** — has freely licensed band photos with stable"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" URLs you can find via their API\n4. **Spotify API** — if you just"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" need artist artwork\n\nIf you tell me which approach fits your project"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":", I can help you write the code to fetch and use those images programmatically."}         }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1               }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":3,"cache_creation_input_tokens":8287,"cache_read_input_tokens":46192,"output_tokens":350},"context_management":{"applied_edits":[]}              }
+
+event: message_stop
+data: {"type":"message_stop"             }
+

@@ -1,0 +1,24 @@
+{
+  "text": "36MB — borderline but loadable. Let me push and you can try it:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_011cnCCm6s4ggSFeDQprmVFp",
+      "name": "Bash",
+      "input": "{\"command\": \"# Remove the 553MB file, keep only compact\\nrm claude_captures/run_20260407_182127/viz_data.json\\nmv claude_captures/run_20260407_182127/viz_data_compact.json claude_captures/run_20260407_182127/viz_data.json\\nrm -f claude_captures/run_20260407_182127/viz_data_light.json\\n\\ngit add -A && git commit -m \\\"$(cat <<'EOF'\\nadd multi-turn capture (3 user messages, 110 iterations)\\n\\n3-turn conversation: explore crates → find complex functions → suggest refactoring\\n110 API calls: 104 parent, 3 subagent, 3 internal\\nShows message accumulation across turns (1200+ messages by turn 3)\\nCompact viz_data (36MB, stripped raw request/response data)\\n\\nCo-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>\\nEOF\\n)\\\" && git push 2>&1 | tail -3\", \"description\": \"Commit and push\", \"timeout\": 120000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 490,
+    "cache_read_input_tokens": 574536,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 490
+    },
+    "output_tokens": 358,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

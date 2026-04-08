@@ -1,0 +1,22 @@
+======================================================================
+AGENT_022 — RESPONSE
+======================================================================
+
+SSE events: 64
+Model: claude-opus-4-6
+Message ID: msg_01BUwLQNiQjWkTwB5Zh4mhDB
+
+Text output (104 chars):
+  **20 API calls, 3 turns, 130 seconds.** The multi-turn capture worked. Let me check the turn boundaries:
+
+Tool calls (1):
+  - Bash (id=toolu_01CianTEbjxkwZV7wGUQbq4R)
+    input: {"command": "python3 -c \"\nimport json\nwith open('claude_captures/run_20260407_191222/viz_data.json') as f:\n    data = json.load(f)\nprint('Turns:', json.dumps(data.get('turns', []), indent=2))\npr...
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 496
+  cache_read_input_tokens: 580544
+  output_tokens: 226

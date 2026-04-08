@@ -1,0 +1,24 @@
+{
+  "text": "95 agent iterations — the `--continue` flag is making each turn accumulate the full history. Let me wait for it to finish:",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01RvdUo1Ro7ycshDm8P8t4aD",
+      "name": "Bash",
+      "input": "{\"command\": \"RUN_DIR=$(ls -dt /tmp/claude_captures/run_* | head -1) && sleep 120 && PREV=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && sleep 30 && CURR=$(ls \\\"$RUN_DIR\\\" | grep \\\"_summary.txt$\\\" | grep -v response | wc -l) && echo \\\"Was $PREV, now $CURR — $([ $PREV -eq $CURR ] && echo 'STABLE' || echo 'still running')\\\"\", \"description\": \"Final wait\", \"timeout\": 200000}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 198,
+    "cache_read_input_tokens": 571244,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 198
+    },
+    "output_tokens": 249,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "text": "Pushing in background. The multi-turn capture is at `claude_captures/run_20260407_191222/`. Load it in the visualizer to see how the context grows across turns — the message count jumps from 1 → 7 → 13 → 17 as each turn adds user message + assistant response + tool results.\n\nThe `build_viz_data.py` now also detects turn boundaries (the `turns` array in the JSON), which the visualizer could use to draw horizontal dividers in the flow map between turns.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 499,
+    "cache_read_input_tokens": 581847,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 499
+    },
+    "output_tokens": 124,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

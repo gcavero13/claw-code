@@ -1,0 +1,30 @@
+======================================================================
+AGENT_018 — RESPONSE
+======================================================================
+
+SSE events: 21
+Model: claude-opus-4-6
+Message ID: msg_01Rryyhrxbcw6biLSnvjmgZg
+
+Text output (963 chars):
+  Pushing in background (large files). Here's what the multi-turn capture revealed:
+
+**110 API calls across 3 turns:**
+
+- **Turn 1** (explore crates): ~10 iterations — Read, Glob, 1 agent, quick survey
+- **Turn 2** (find complex functions): ~25 iterations — heavy Bash(grep/wc), reading large files
+- **Turn 3** (suggest refactoring): ~75 iterations — deep reading of the most complex function, analyzing structure
+
+The key observation: by turn 3, each API call sent **1,200+ messages** — the full accumulated history of turns 1 and 2 plus all tool calls and results. That's why cache reads were 45M tokens — the same prefix was resent 110 times, each time with a few more messages appended.
+
+This is exactly why compaction exists. Without it, a long conversation like this would exhaust the context window. In this case, the 1M context model handled it, but the cost was enormous.
+
+Load `claude_captures/run_20260407_182127/viz_data.json` (36MB) in the visualizer.
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 566
+  cache_read_input_tokens: 575026
+  output_tokens: 267

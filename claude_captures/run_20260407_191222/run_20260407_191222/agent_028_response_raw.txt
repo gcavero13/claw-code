@@ -1,0 +1,39 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01XFM1sZ32mykAEtP7nh7XnX","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":499,"cache_read_input_tokens":581847,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":499},"output_tokens":2,"service_tier":"standard","inference_geo":"not_available"}}   }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}   }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Pushing"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" in background. The multi-turn capture is at `claude_captures/run_20260407_191222/`. Load it in"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the visualizer to see how the context grows across turns — the message count jumps from"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" 1 → 7 → 13 → 17 as each turn adds user message"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" + assistant response + tool results.\n\nThe `build_viz_data.py` now also detects turn boundaries ("}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"the `turns` array in the JSON), which the visualizer could use to draw"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" horizontal dividers in the flow map between turns."}           }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0         }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":499,"cache_read_input_tokens":581847,"output_tokens":124},"context_management":{"applied_edits":[]}         }
+
+event: message_stop
+data: {"type":"message_stop"  }
+
