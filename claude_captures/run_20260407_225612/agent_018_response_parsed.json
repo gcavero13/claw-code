@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01VL1iL9Ewimx5RwmXmmyf7t",
+      "name": "Edit",
+      "input": "{\"replace_all\": false, \"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"old_string\": \"        let now = current_time_millis();\\n        Ok(Self {\\n            version,\\n            session_id: session_id.unwrap_or_else(generate_session_id),\\n            created_at_ms: created_at_ms.unwrap_or(now),\\n            updated_at_ms: updated_at_ms.unwrap_or(created_at_ms.unwrap_or(now)),\\n            messages,\\n            compaction,\\n            fork,\\n            persistence: None,\\n        })\\n    }\", \"new_string\": \"        let now = current_time_millis();\\n        Ok(Self {\\n            version,\\n            session_id: session_id.unwrap_or_else(generate_session_id),\\n            created_at_ms: created_at_ms.unwrap_or(now),\\n            updated_at_ms: updated_at_ms.unwrap_or(created_at_ms.unwrap_or(now)),\\n            archived_at,\\n            messages,\\n            compaction,\\n            fork,\\n            persistence: None,\\n        })\\n    }\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 610,
+    "cache_read_input_tokens": 97169,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 610
+    },
+    "output_tokens": 480,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

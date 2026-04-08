@@ -1,0 +1,19 @@
+======================================================================
+AGENT_007 — RESPONSE
+======================================================================
+
+SSE events: 29
+Model: claude-opus-4-6
+Message ID: msg_01KmR82pmATvxYFjzbvouMpK
+
+Tool calls (1):
+  - Read (id=toolu_01Knvr7W7kjF9g81XKaLLpnk)
+    input: {"file_path": "/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs", "offset": 500, "limit": 300}
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 4390
+  cache_read_input_tokens: 76825
+  output_tokens: 154

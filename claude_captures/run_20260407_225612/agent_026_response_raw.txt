@@ -1,0 +1,132 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01PTBdZ5g5tSWZYsd3DweiRQ","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":577,"cache_read_input_tokens":106017,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":577},"output_tokens":10,"service_tier":"standard","inference_geo":"not_available"}}}
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}             }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" I"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":"'m isolating the session.rs file to verify that the formatting is actually clean"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" there."}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"EsgCCmkIDBgCKkCYL51tK8gDUxPBZ4ZP7vWbW0SjSN19kaVDJLilw6Dns5I65UQ16CsukyykhanMDbE8fGbXQwWMB9ut92qKkxLbMh9udW1iYXQtdjUtZWZmb3J0cy0xMC00MC04MC1wcm9kOAASDPx/d2mBHLR5yzTjBhoMqeZz3RfFhPnwlB6nIjAaYBokXz0DsGfLG98YNVKP1WGop6ib6G1H6A0L8oPlxcFD5r2maTApebl53nvkgGgqjAEKqY4rg+IxdeIS6bR5dFA5z9CN6XVTczr4+poeJW8uQ+MrttsQOu6VYoLnLB8tp4ccmpxbqKaT45v7q+QcTxo1ciRQ22dE6z+EI4DhloH9A2QkFZdBs0k+ZLYcaVno7jKUJHkA42E9ZBxiQgj7JZh+8+bjUoaMlOIRy9QfKHyLKKgwTE9mHhi5YCHtWRgB"}         }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0        }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"text","text":""}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":"The"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":" formatting diffs are all in other files unrelated to my changes. Let me confirm `session"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"text_delta","text":".rs` itself is clean:"}  }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1     }
+
+event: content_block_start
+data: {"type":"content_block_start","index":2,"content_block":{"type":"tool_use","id":"toolu_019dUGPxfK4zw9rUyx7paT9P","name":"Bash","input":{},"caller":{"type":"direct"}}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":""}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"{\"command\""}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":": \"cd /Users"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"/gladysc"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"avero/"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"Document"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"s/PEOPL/Gi"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"tHub"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"/claw-cod"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"e/rus"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"t && ru"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"stf"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"mt --check"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":" crates/ru"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ntime/src/se"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ssi"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"on.rs 2>&1 &"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"& echo \\\"O"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"K\\\"\""}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":", \"desc"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ription\": "} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"\"Check fo"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"rmatt"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"in"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"g of se"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ssion.rs o"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"nly\"}"}       }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":2       }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"tool_use","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":577,"cache_read_input_tokens":106017,"output_tokens":263},"context_management":{"applied_edits":[]}      }
+
+event: message_stop
+data: {"type":"message_stop" }
+

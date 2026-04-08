@@ -1,0 +1,19 @@
+======================================================================
+AGENT_025 — RESPONSE
+======================================================================
+
+SSE events: 41
+Model: claude-opus-4-6
+Message ID: msg_018CMJesi1NpecCsqQQbBiJD
+
+Tool calls (1):
+  - Grep (id=toolu_01FxiAPAyCBguoAPwGbV1pio)
+    input: {"pattern": "CliAction::Agents|CliAction::Mcp|fn run_agents|fn run_mcp", "path": "/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs", "output_mode": "conten...
+
+Stop reason: tool_use
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 2721
+  cache_read_input_tokens: 92513
+  output_tokens: 240

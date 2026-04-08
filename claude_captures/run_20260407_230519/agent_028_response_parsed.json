@@ -1,0 +1,24 @@
+{
+  "text": "I have enough context. The runtime crate already has `task_registry.rs` with a `TaskRegistry` struct (Arc<Mutex<HashMap>>) that implements all the lifecycle ops you described — but it's process-global (`OnceLock` in `tools/src/lib.rs:58`), not persisted, and not exposed via the session. The work is to wire those three gaps closed.\n\nLet me enter plan mode to lay this out for your approval before I start writing code.",
+  "thinking": " I've got what I need to sketch out the design now. The `TaskRegistry` in the runtime crate already has all the CRUD operations and a status enum covering the lifecycle from creation through completion or failure, so I can build on that foundation.\n\nThe real question is how to persist and expose these tasks. Option A—a sidecar JSONL file next to the session—keeps things decoupled and follows the append-only pattern already in use, making it trivial to query from the CLI. Option B would embed tasks directly in the Session struct, giving me a single source of truth, but that requires a schema version bump and backward-compatibility handling. Option C, a global tasks file, would let me track tasks across sessions but doesn't align with the user's request to expose them via the session.\n\nSince the user specifically wants tasks exposed through the session, Option A seems like the right call—it's the least invasive and keeps the session schema stable.\n\nThe tricky part is that TaskRegistry currently mutates tasks in place when their status changes, which doesn't fit an append-only model. I could switch to an event log approach where each status change appends a new record and the in-memory state replays the log on load. That's cleaner than rewriting the whole task list every time.\n\nThe challenge is that TaskRegistry lives as a global OnceLock in tools/src/lib.rs, completely separate from the session. Making it session-scoped would require threading it through the tool execution context, which is invasive. A more pragmatic approach is to keep the registry global but add file persistence to it, then expose it through the session via accessor methods that delegate to the global registry.\n\nThe persistence file would be per-session (stored as a sidecar next to the session file), and the CLI loads and saves at session boundaries. The main concern is that if two sessions run concurrently they'd share state, but that's probably not a real issue since the CLI runs one process per session.\n\nSo here's the plan: add persistence methods to TaskRegistry that write JSONL events on each mutation (create, status changes, output appends, etc.), replay those events on load to reconstruct state, and use atomic writes like the session does. Then wire it up so the CLI loads the tasks file as a sidecar after loading the session, and either inject it into the global OnceLock or give the registry a method to set its persistence path once at startup.\n\nFor the Session struct, I'll add a `tasks_path()` accessor that derives the sidecar path from the session's persistence path, and the CLI ensures the registry uses that path. Then I need a new `tasks` subcommand that can list, get, or stop tasks, reading from the persisted file or the latest session's sidecar when invoked outside an active session. I'll add tests for persistence (load, append, replay, verify state survives reload) and integration tests for the full flow, then run the standard checks.\n\nOn the status names though—the existing enum uses \"Created\" but the user wants \"queued, running, completed, failed\". Rather than break the public API by renaming, I'll leave \"Created\" as-is since it semantically means \"queued, not yet running\" and note this as a decision point for the user.",
+  "tool_uses": [
+    {
+      "id": "toolu_01Pkno3qnRBb6Q1xPeFUR26r",
+      "name": "EnterPlanMode",
+      "input": ""
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 895,
+    "cache_read_input_tokens": 96181,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 895
+    },
+    "output_tokens": 2619,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

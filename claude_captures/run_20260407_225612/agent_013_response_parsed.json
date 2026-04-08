@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01HtN7DhbQRC35AEfVCL1oYi",
+      "name": "Edit",
+      "input": "{\"replace_all\": false, \"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"old_string\": \"    #[must_use]\\n    pub fn fork(&self, branch_name: Option<String>) -> Self {\\n        let now = current_time_millis();\\n        Self {\\n            version: self.version,\\n            session_id: generate_session_id(),\\n            created_at_ms: now,\\n            updated_at_ms: now,\\n            messages: self.messages.clone(),\\n            compaction: self.compaction.clone(),\\n            fork: Some(SessionFork {\\n                parent_session_id: self.session_id.clone(),\\n                branch_name: normalize_optional_string(branch_name),\\n            }),\\n            persistence: None,\\n        }\\n    }\", \"new_string\": \"    #[must_use]\\n    pub fn fork(&self, branch_name: Option<String>) -> Self {\\n        let now = current_time_millis();\\n        Self {\\n            version: self.version,\\n            session_id: generate_session_id(),\\n            created_at_ms: now,\\n            updated_at_ms: now,\\n            archived_at: None,\\n            messages: self.messages.clone(),\\n            compaction: self.compaction.clone(),\\n            fork: Some(SessionFork {\\n                parent_session_id: self.session_id.clone(),\\n                branch_name: normalize_optional_string(branch_name),\\n            }),\\n            persistence: None,\\n        }\\n    }\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 532,
+    "cache_read_input_tokens": 93790,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 532
+    },
+    "output_tokens": 586,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

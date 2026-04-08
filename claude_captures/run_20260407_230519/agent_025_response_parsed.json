@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01FxiAPAyCBguoAPwGbV1pio",
+      "name": "Grep",
+      "input": "{\"pattern\": \"CliAction::Agents|CliAction::Mcp|fn run_agents|fn run_mcp\", \"path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/rusty-claude-cli/src/main.rs\", \"output_mode\": \"content\", \"-n\": true, \"head_limit\": 20}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 2721,
+    "cache_read_input_tokens": 92513,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 2721
+    },
+    "output_tokens": 240,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

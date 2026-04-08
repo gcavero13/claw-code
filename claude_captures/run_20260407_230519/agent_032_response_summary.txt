@@ -1,0 +1,23 @@
+======================================================================
+AGENT_032 — RESPONSE
+======================================================================
+
+SSE events: 34
+Model: claude-opus-4-6
+Message ID: msg_01CwPLnZtgFxeanZMuPSwmdT
+
+Text output (1509 chars):
+  Plan written and ready for review. Summary of the approach:
+
+- **Reuse the existing `TaskRegistry`** in `runtime/src/task_registry.rs` (already has all CRUD + status enum). Add persistence by mirroring `Session`'s pattern: `with_persistence_path()` builder, `load_from_path()` constructor, append-only JSONL event log on every mutation, rollback-on-IO-error like `Session::push_message`.
+- **Per-session sidecar file** `<session>.tasks.jsonl`. Session exposes it via a single new `Session::tasks_path()` accessor — no schema bump, no field additions.
+- **Wire at CLI session boundaries** in `rusty-claude-cli/src/main.rs`: when the session is loaded/created, set the global `OnceLock<TaskRegistry>`'s path before any tool runs. Existing global registry in `tools/src/lib.rs:58-62` stays put.
+- **New `claw tasks` subcommand** following the exact `Agents`/`Mcp`/`Skills` shape at `main.rs:148-191, 351-380`. Subcommands: `list [--status]`, `get <id>`, `stop <id>`. Operates directly on the sidecar fil...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 75
+  cache_read_input_tokens: 110154
+  output_tokens: 638

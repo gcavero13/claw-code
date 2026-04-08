@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_01Wh4Z83goqzfcXYmZbfQaJj",
+      "name": "Edit",
+      "input": "{\"replace_all\": false, \"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"old_string\": \"                \\\"session_meta\\\" => {\\n                    version = required_u32(object, \\\"version\\\")?;\\n                    session_id = Some(required_string(object, \\\"session_id\\\")?);\\n                    created_at_ms = Some(required_u64(object, \\\"created_at_ms\\\")?);\\n                    updated_at_ms = Some(required_u64(object, \\\"updated_at_ms\\\")?);\\n                    fork = object.get(\\\"fork\\\").map(SessionFork::from_json).transpose()?;\\n                }\", \"new_string\": \"                \\\"session_meta\\\" => {\\n                    version = required_u32(object, \\\"version\\\")?;\\n                    session_id = Some(required_string(object, \\\"session_id\\\")?);\\n                    created_at_ms = Some(required_u64(object, \\\"created_at_ms\\\")?);\\n                    updated_at_ms = Some(required_u64(object, \\\"updated_at_ms\\\")?);\\n                    archived_at = object\\n                        .get(\\\"archived_at\\\")\\n                        .and_then(JsonValue::as_str)\\n                        .map(ToOwned::to_owned);\\n                    fork = object.get(\\\"fork\\\").map(SessionFork::from_json).transpose()?;\\n                }\"}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 489,
+    "cache_read_input_tokens": 96680,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 489
+    },
+    "output_tokens": 524,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

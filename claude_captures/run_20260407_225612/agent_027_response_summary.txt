@@ -1,0 +1,32 @@
+======================================================================
+AGENT_027 — RESPONSE
+======================================================================
+
+SSE events: 35
+Model: claude-opus-4-6
+Message ID: msg_01U95zvsN3dJhVEpmUmozdwu
+
+Text output (1716 chars):
+  Done. Summary:
+
+**Changes to `rust/crates/runtime/src/session.rs`:**
+
+1. **Struct field**: Added `pub archived_at: Option<String>` to `Session` (session.rs:80) and to its `PartialEq` impl.
+2. **Constructors**: `Session::new()` and `Session::fork()` initialize `archived_at: None` (forks always start unarchived).
+3. **Serialization**:
+   - `to_json()` writes `archived_at` only when `Some` (omitted otherwise so old readers stay forward-compatible).
+   - `meta_record()` (the JSONL `session_meta` line) does the same.
+4. **Migration / deserialization**:
+   - `from_json()` reads `archived_at` via `.get("archived_at").and_then(as_str)` — missing key → `None`.
+   - `from_jsonl()` reads it from the `session_meta` record the same way, so legacy sessions written before this field existed load with `archived_at = None`.
+5. **Tests** (5 new, alongside the existing 12):
+   - `loads_legacy_jsonl_session_without_archived_at` — legacy JSONL session_meta with no field → `None`.
+   - `loads_legacy_session...
+
+Stop reason: end_turn
+
+Usage:
+  input_tokens: 1
+  cache_creation_input_tokens: 405
+  cache_read_input_tokens: 106594
+  output_tokens: 695

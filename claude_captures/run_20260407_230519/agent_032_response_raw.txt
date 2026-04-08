@@ -1,0 +1,102 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_01CwPLnZtgFxeanZMuPSwmdT","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":75,"cache_read_input_tokens":110154,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":75},"output_tokens":2,"service_tier":"standard","inference_geo":"not_available"}}           }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}  }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Pl"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"an written and ready for review. Summary of the approach:\n\n- **"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Reuse the existing `TaskRegistry`** in `runtime/src/task_registry.rs` ("}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"already has all CRUD + status enum). Add"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" persistence by mirroring `Session`'s p"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"attern: `with_persistence_path()` builder"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", `load_from_path()` constructor, append-only JSONL event log on"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" every mutation, rollback-on-I"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"O-error like `Session::push_message`.\n- **Per-session s"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"idecar file** `<session>.tasks.jsonl`. Session expos"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"es it via a single new `Session::tasks_path()` accessor —"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" no schema bump, no field additions.\n- **Wire at C"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"LI session boundaries** in `rusty-claude-cli/src/main.rs`: when"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the session is loaded/created, set the global `OnceLock"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"<TaskRegistry>`'s path before any tool runs. Exist"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ing global registry in `tools/src/lib.rs:58-62"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"` stays put.\n- **New `claw tasks` subcommand** following the ex"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"act `Agents`/`Mcp`/`Skills` sh"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ape at `main.rs:148-191, 351"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"-380`. Subcommands: `list [--status]`, `get <id>`, `stop <id"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":">`. Operates directly on the sidecar file via `TaskRegistry::load_from_path`"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" rather than the global `OnceLock`.\n- **Out of scope**: conversation loop changes, removing"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the global `OnceLock`, renaming `Created`→`Queued`, SESSION_VERSION"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" bump.\n\nVerification: `cargo fmt &&"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace` from `rust/`"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":", plus the end-to-end smoke flow (spawn task → exit → `cla"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"w tasks list` → resume → `claw tasks stop`).\n\nFull plan at `/Users/gladyscavero/.cla"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"ude/plans/polymorphic-yawning-elephant.md`."}            }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0        }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"end_turn","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":75,"cache_read_input_tokens":110154,"output_tokens":638},"context_management":{"applied_edits":[]}              }
+
+event: message_stop
+data: {"type":"message_stop"      }
+

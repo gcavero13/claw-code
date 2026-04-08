@@ -1,0 +1,18 @@
+{
+  "text": "Plan written and ready for review. Summary of the approach:\n\n- **Reuse the existing `TaskRegistry`** in `runtime/src/task_registry.rs` (already has all CRUD + status enum). Add persistence by mirroring `Session`'s pattern: `with_persistence_path()` builder, `load_from_path()` constructor, append-only JSONL event log on every mutation, rollback-on-IO-error like `Session::push_message`.\n- **Per-session sidecar file** `<session>.tasks.jsonl`. Session exposes it via a single new `Session::tasks_path()` accessor — no schema bump, no field additions.\n- **Wire at CLI session boundaries** in `rusty-claude-cli/src/main.rs`: when the session is loaded/created, set the global `OnceLock<TaskRegistry>`'s path before any tool runs. Existing global registry in `tools/src/lib.rs:58-62` stays put.\n- **New `claw tasks` subcommand** following the exact `Agents`/`Mcp`/`Skills` shape at `main.rs:148-191, 351-380`. Subcommands: `list [--status]`, `get <id>`, `stop <id>`. Operates directly on the sidecar file via `TaskRegistry::load_from_path` rather than the global `OnceLock`.\n- **Out of scope**: conversation loop changes, removing the global `OnceLock`, renaming `Created`→`Queued`, SESSION_VERSION bump.\n\nVerification: `cargo fmt && cargo clippy --workspace --all-targets -- -D warnings && cargo test --workspace` from `rust/`, plus the end-to-end smoke flow (spawn task → exit → `claw tasks list` → resume → `claw tasks stop`).\n\nFull plan at `/Users/gladyscavero/.claude/plans/polymorphic-yawning-elephant.md`.",
+  "thinking": "",
+  "tool_uses": [],
+  "stop_reason": "end_turn",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 75,
+    "cache_read_input_tokens": 110154,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 75
+    },
+    "output_tokens": 638,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}

@@ -1,0 +1,255 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-haiku-4-5-20251001","id":"msg_0135D9MDyiHk3sDKwyUtz1Rf","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":299,"cache_creation_input_tokens":2403,"cache_read_input_tokens":55278,"cache_creation":{"ephemeral_5m_input_tokens":2403,"ephemeral_1h_input_tokens":0},"output_tokens":3,"service_tier":"standard","inference_geo":"not_available"}}              }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"text","text":""}    }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Let me check"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":" the API crate dependencies and how the CLI invokes the runtime"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":":"}        }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0              }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"tool_use","id":"toolu_01AhQYahbvB3vFjLXwaC4dAK","name":"Read","input":{},"caller":{"type":"direct"}}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":""}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"{\"fi"}         }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"le_pat"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"h\": \"/Use"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"rs/gla"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"dyscavero/Do"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"cuments/"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"PEOPL/GitHu"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"b/"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"claw-"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"code/rust/cr"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"ates/ap"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"i/"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"Cargo.to"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"ml\"}"}           }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1        }
+
+event: content_block_start
+data: {"type":"content_block_start","index":2,"content_block":{"type":"tool_use","id":"toolu_01AvMGLz94QRUookQhgA1zN8","name":"Bash","input":{},"caller":{"type":"direct"}}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":""}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"{\""}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"command\""}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":": "}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"\"grep "}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"-n \\\"fn run"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"\\\\|enum"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":" Com"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"mand\\\\"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"|stru"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ct\\\\"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"|pub async\\"}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"\" /Users/"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"glady"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"sca"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"vero"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"/Doc"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"umen"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ts"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"/PEOPL/"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"GitHub/cl"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"aw-"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"code/ru"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"st/cr"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"ates/rusty-"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"claude-cli/"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"src"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":"/main.rs |"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":" head"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":2,"delta":{"type":"input_json_delta","partial_json":" -50\"}"}        }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":2           }
+
+event: content_block_start
+data: {"type":"content_block_start","index":3,"content_block":{"type":"tool_use","id":"toolu_01EmS9rTSJCjNC9MtvMWzHVf","name":"Bash","input":{},"caller":{"type":"direct"}}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":""}          }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"{\"command\""}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":": \""}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"grep"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":" -n "}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"\\\"Arc\\\\|Mute"}    }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"x\\\\|Chann"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"el\\\\|Sender"}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"\\\\|tokio::\\"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"\" "}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"/Users"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"/g"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"ladyscav"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"ero/Docum"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"ents/P"}}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"EOPL/Gi"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"tHub/c"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"law-code/rus"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"t/crates"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"/runtim"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"e/src/tas"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"k_registr"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"y."}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"rs"}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":3,"delta":{"type":"input_json_delta","partial_json":"\"}"}      }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":3      }
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"tool_use","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":299,"cache_creation_input_tokens":2403,"cache_read_input_tokens":55278,"output_tokens":288},"context_management":{"applied_edits":[]}}
+
+event: message_stop
+data: {"type":"message_stop"}
+

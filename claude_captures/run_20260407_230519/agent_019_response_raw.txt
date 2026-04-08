@@ -1,0 +1,93 @@
+event: message_start
+data: {"type":"message_start","message":{"model":"claude-opus-4-6","id":"msg_019sH7YaEz75BYH7cu4dKXS8","type":"message","role":"assistant","content":[],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":1,"cache_creation_input_tokens":8090,"cache_read_input_tokens":76241,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":8090},"output_tokens":32,"service_tier":"standard","inference_geo":"not_available"}}       }
+
+event: content_block_start
+data: {"type":"content_block_start","index":0,"content_block":{"type":"thinking","thinking":"","signature":""}    }
+
+event: ping
+data: {"type": "ping"}
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" Now"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" I'm looking at the session.rs file to understand how persistence works,"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"thinking_delta","thinking":" then I'll trace through the CLI to figure out how to connect everything together."}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":0,"delta":{"type":"signature_delta","signature":"Es4CCmkIDBgCKkB+pOkQCGcxBt+06vQ5WcxPF1ngbSeo8qXBVY1KBxncTmQq0fbRHrLXAhn3j8Rtan6xNu2HHlbuNY8GyK2kKtz3Mh9udW1iYXQtdjUtZWZmb3J0cy0xMC00MC04MC1wcm9kOAASDJm5fHfg1ux69L3c+BoM4s4aPgK46bwhk2lKIjAZ5dWTbJ76t27A7zMF1sAxJb/MkyQl6QfMBnh9VipeVKWd4ERD3MnmhhNkEYMI/HUqkgHqu49kkFVPDjrIjPVJ78EX+r88G5O/G76Ql0wUnXLWAAs4L3W/Qz5Ioujig6/aLYE+V4dQr2TYPEFbkqmwH8+3idaw/SFDoQ2t8kYN0zGpMmnYmcWYSgbCBc7dwrpiFY9rd2TrJCEXp++XgmJ6aUQRjXVSMUVbHSyEEh8CJJ9rW6Jxy7fEIa7YVh9IN4tOTn5kPxgB"} }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":0               }
+
+event: content_block_start
+data: {"type":"content_block_start","index":1,"content_block":{"type":"tool_use","id":"toolu_01XsYu4RVs1tv1ozdTdSs1X6","name":"Read","input":{},"caller":{"type":"direct"}}               }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":""}       }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"{\"fil"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"e_path\": \"/U"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"sers/gladysc"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"avero/Doc"}            }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"ume"}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"nts/PEOP"} }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"L/GitHub/"}      }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"claw-cod"}             }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"e/rus"}           }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"t/crate"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"s/ru"}  }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"ntime/sr"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"c/session."}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"rs\""}   }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":", \"offset"}        }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":"\": 1"}     }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":", \"limit\":"}              }
+
+event: content_block_delta
+data: {"type":"content_block_delta","index":1,"delta":{"type":"input_json_delta","partial_json":" 250}"}    }
+
+event: content_block_stop
+data: {"type":"content_block_stop","index":1}
+
+event: message_delta
+data: {"type":"message_delta","delta":{"stop_reason":"tool_use","stop_sequence":null,"stop_details":null},"usage":{"input_tokens":1,"cache_creation_input_tokens":8090,"cache_read_input_tokens":76241,"output_tokens":219},"context_management":{"applied_edits":[]}         }
+
+event: message_stop
+data: {"type":"message_stop"    }
+

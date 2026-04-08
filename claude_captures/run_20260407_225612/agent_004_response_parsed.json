@@ -1,0 +1,24 @@
+{
+  "text": "",
+  "thinking": "",
+  "tool_uses": [
+    {
+      "id": "toolu_012dLNoiUrnBf1P4wBohbewb",
+      "name": "Read",
+      "input": "{\"file_path\": \"/Users/gladyscavero/Documents/PEOPL/GitHub/claw-code/rust/crates/runtime/src/session.rs\", \"offset\": 1, \"limit\": 200}"
+    }
+  ],
+  "stop_reason": "tool_use",
+  "usage": {
+    "input_tokens": 1,
+    "cache_creation_input_tokens": 214,
+    "cache_read_input_tokens": 73692,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 214
+    },
+    "output_tokens": 154,
+    "service_tier": "standard",
+    "inference_geo": "not_available"
+  }
+}
