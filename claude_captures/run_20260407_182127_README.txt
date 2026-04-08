@@ -1,0 +1,1 @@
+run_20260407_182127: 110 iterations, 3 turns, 579MB viz_data (too large for git)
